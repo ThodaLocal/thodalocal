@@ -3,24 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ThodaLocal — Apni Dukaan, Online</title>
-  <meta name="description" content="ThodaLocal — Apne area ki hygiene verified local stores. Live camera transparency, AI powered, with our own delivery network. Gurugram, Delhi aur aas paas." />
+  <title>ThodaLocal — Verified Local. Trusted Quality.</title>
+  <meta name="description" content="ThodaLocal connects you with hygiene-verified local stores in your area. Live camera transparency, AI-powered, with our own delivery network. Gurugram & Delhi." />
   <meta name="keywords" content="local stores online, hyperlocal delivery, verified stores, hygiene verified, ThodaLocal, Gurugram, Delhi, local shopping" />
   <meta name="author" content="RYC Corporation" />
   <meta property="og:title" content="ThodaLocal — Verified Local. Trusted Quality." />
-  <meta property="og:description" content="Apne area ki hygiene verified local stores — seedha aapke paas. Live camera, AI powered, safe delivery." />
+  <meta property="og:description" content="Hygiene-verified local stores, live camera transparency, AI-powered, safe delivery." />
   <meta property="og:url" content="https://thodalocal.in" />
   <meta property="og:type" content="website" />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
   <style>
     :root {
-      --black: #080808;
-      --white: #f5f2ed;
-      --gold: #d4a843;
-      --gold2: #f0c96a;
-      --green: #2d6a4f;
-      --muted: #666;
-      --border: rgba(255,255,255,0.06);
+      --white: #ffffff;
+      --off: #f7f5f0;
+      --off2: #f0ede6;
+      --black: #111110;
+      --green: #1e5c3a;
+      --green2: #2d7a52;
+      --green3: #e8f4ee;
+      --gold: #c17f24;
+      --gold2: #e09a35;
+      --muted: #888;
+      --muted2: #555;
+      --border: #e8e4dc;
+      --border2: #d4cfc6;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,349 +34,411 @@
 
     body {
       font-family: 'DM Sans', sans-serif;
-      background: var(--black);
-      color: var(--white);
+      background: var(--white);
+      color: var(--black);
       overflow-x: hidden;
-      cursor: none;
-    }
-
-    /* CURSOR */
-    .cursor {
-      width: 8px; height: 8px;
-      background: var(--gold);
-      border-radius: 50%;
-      position: fixed; top: 0; left: 0;
-      pointer-events: none; z-index: 9999;
-    }
-    .cursor-ring {
-      width: 36px; height: 36px;
-      border: 1px solid rgba(212,168,67,0.4);
-      border-radius: 50%;
-      position: fixed; top: 0; left: 0;
-      pointer-events: none; z-index: 9998;
-      transition: width 0.2s, height 0.2s, border-color 0.2s;
     }
 
     /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0;
-      padding: 24px 6vw;
+      padding: 0 6vw;
+      height: 68px;
       display: flex; justify-content: space-between; align-items: center;
       z-index: 100;
+      background: rgba(255,255,255,0.92);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
-      background: rgba(8,8,8,0.85);
     }
     .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--black);
+    }
+    .nav-logo img { height: 36px; width: 36px; object-fit: contain; }
+    .nav-logo-text {
       font-family: 'Syne', sans-serif;
-      font-size: 20px; font-weight: 800;
-      text-decoration: none; color: var(--white); letter-spacing: -0.5px;
+      font-size: 18px; font-weight: 800; letter-spacing: -0.5px;
     }
-    .nav-logo span { color: var(--gold); }
-    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-logo-text span { color: var(--green); }
+    .nav-links { display: flex; gap: 8px; align-items: center; }
     .nav-links a {
-      color: var(--muted); text-decoration: none;
-      font-size: 13px; font-weight: 500; letter-spacing: 0.5px;
-      transition: color 0.2s;
+      color: var(--muted2); text-decoration: none;
+      font-size: 13px; font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
     }
-    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover { background: var(--off); color: var(--black); }
     .nav-cta {
-      background: var(--gold) !important; color: var(--black) !important;
-      padding: 10px 20px !important; font-weight: 700 !important;
-      font-size: 11px !important; letter-spacing: 1.5px !important;
-      text-transform: uppercase;
+      background: var(--green) !important; color: var(--white) !important;
+      font-weight: 600 !important; border-radius: 6px !important;
     }
+    .nav-cta:hover { background: var(--green2) !important; color: var(--white) !important; }
 
     /* HERO */
     .hero {
       min-height: 100vh;
-      display: flex; flex-direction: column; justify-content: center;
       padding: 120px 6vw 80px;
+      display: flex; flex-direction: column; justify-content: center;
       position: relative; overflow: hidden;
+      background: var(--white);
     }
 
     .hero-bg {
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 60% 50% at 80% 50%, rgba(45,106,79,0.12) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(212,168,67,0.06) 0%, transparent 60%);
+        radial-gradient(ellipse 70% 60% at 100% 50%, rgba(30,92,58,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 0% 100%, rgba(193,127,36,0.04) 0%, transparent 60%);
       pointer-events: none;
     }
 
-    .hero-grid {
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-    }
-
-    .hero-tag {
+    .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(212,168,67,0.08); border: 1px solid rgba(212,168,67,0.2);
-      color: var(--gold); padding: 8px 16px;
-      font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600;
-      width: fit-content; margin-bottom: 40px;
-      animation: fadeUp 0.8s ease both;
+      background: var(--green3); border: 1px solid rgba(30,92,58,0.15);
+      color: var(--green); padding: 6px 14px;
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
+      width: fit-content; margin-bottom: 32px; border-radius: 4px;
+      animation: fadeUp 0.7s ease both;
     }
-    .hero-tag::before {
+    .hero-eyebrow::before {
       content: ''; width: 6px; height: 6px;
-      background: var(--gold); border-radius: 50%;
+      background: var(--green); border-radius: 50%;
       animation: pulse 2s infinite;
     }
-
     @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.8); }
+      0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
     }
 
     .hero h1 {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(52px, 8vw, 120px);
+      font-size: clamp(48px, 7vw, 108px);
       font-weight: 800; line-height: 0.92;
-      letter-spacing: -3px; margin-bottom: 40px; max-width: 900px;
-      animation: fadeUp 0.8s 0.1s ease both;
+      letter-spacing: -3px; margin-bottom: 32px; max-width: 860px;
+      animation: fadeUp 0.7s 0.1s ease both;
     }
-    .hero h1 .gold { color: var(--gold); display: block; }
-    .hero h1 .dim { color: rgba(255,255,255,0.18); display: block; }
+    .hero h1 .green { color: var(--green); display: block; }
+    .hero h1 .light { color: var(--border2); display: block; }
 
     .hero-sub {
-      font-size: 17px; color: var(--muted); max-width: 480px;
+      font-size: 17px; color: var(--muted2); max-width: 520px;
       line-height: 1.8; margin-bottom: 48px; font-weight: 300;
-      animation: fadeUp 0.8s 0.2s ease both;
+      animation: fadeUp 0.7s 0.2s ease both;
     }
 
     .hero-actions {
-      display: flex; gap: 16px; flex-wrap: wrap;
-      animation: fadeUp 0.8s 0.3s ease both;
+      display: flex; gap: 12px; flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.3s ease both;
+      margin-bottom: 72px;
     }
 
-    .btn-primary {
-      background: var(--gold); color: var(--black);
-      padding: 16px 32px; font-size: 12px; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
-      border: none; cursor: none; transition: background 0.2s, transform 0.2s;
-      display: inline-block; font-family: 'Syne', sans-serif;
+    .btn-green {
+      background: var(--green); color: var(--white);
+      padding: 15px 28px; font-size: 13px; font-weight: 600;
+      letter-spacing: 0.5px; text-decoration: none; border: none;
+      border-radius: 6px; cursor: pointer;
+      transition: background 0.2s, transform 0.2s; display: inline-block;
     }
-    .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+    .btn-green:hover { background: var(--green2); transform: translateY(-1px); }
 
-    .btn-secondary {
-      background: transparent; color: var(--muted);
-      padding: 16px 32px; font-size: 13px; font-weight: 500;
-      text-decoration: none; border: 1px solid var(--border); cursor: none;
-      transition: color 0.2s, border-color 0.2s; display: inline-block;
+    .btn-outline {
+      background: transparent; color: var(--muted2);
+      padding: 15px 28px; font-size: 13px; font-weight: 500;
+      text-decoration: none; border: 1px solid var(--border2);
+      border-radius: 6px; cursor: pointer;
+      transition: border-color 0.2s, color 0.2s; display: inline-block;
     }
-    .btn-secondary:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
+    .btn-outline:hover { border-color: var(--black); color: var(--black); }
 
-    .hero-stats {
-      position: absolute; right: 6vw; bottom: 80px;
-      display: flex; flex-direction: column; gap: 32px;
-      animation: fadeUp 0.8s 0.4s ease both;
+    .hero-trust {
+      display: flex; gap: 32px; flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.4s ease both;
     }
-    .stat-item { text-align: right; }
-    .stat-num {
-      font-family: 'Syne', sans-serif; font-size: 36px;
-      font-weight: 800; color: var(--white); line-height: 1;
+    .trust-pill {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; color: var(--muted2); font-weight: 400;
     }
-    .stat-label { font-size: 10px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+    .trust-pill-icon {
+      width: 28px; height: 28px;
+      background: var(--green3); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px;
+    }
 
-    .hero-scroll {
-      position: absolute; bottom: 40px; left: 6vw;
-      display: flex; align-items: center; gap: 12px;
-      font-size: 10px; color: var(--muted); letter-spacing: 3px; text-transform: uppercase;
-      animation: fadeUp 0.8s 0.5s ease both;
+    .hero-image {
+      position: absolute; right: 6vw; top: 50%; transform: translateY(-50%);
+      width: min(420px, 38vw);
+      animation: fadeUp 0.7s 0.3s ease both;
     }
-    .scroll-line {
-      width: 40px; height: 1px; background: var(--muted);
-      animation: scrollAnim 2s ease infinite;
+
+    .hero-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
     }
-    @keyframes scrollAnim {
-      0% { width: 40px; } 50% { width: 64px; opacity: 0.5; } 100% { width: 40px; }
+
+    .card-header {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
     }
+    .card-avatar {
+      width: 40px; height: 40px; border-radius: 8px;
+      background: var(--green3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .card-store-name { font-size: 15px; font-weight: 600; }
+    .card-store-area { font-size: 12px; color: var(--muted); }
+    .card-badge {
+      margin-left: auto;
+      background: var(--green3); color: var(--green);
+      padding: 4px 10px; border-radius: 20px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .card-items { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .card-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 14px; background: var(--off); border-radius: 8px;
+      font-size: 13px;
+    }
+    .card-item-price { font-weight: 600; color: var(--green); }
+    .card-live {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 14px; background: #fff8f0;
+      border: 1px solid rgba(193,127,36,0.2); border-radius: 8px;
+      font-size: 12px; color: var(--gold);
+    }
+    .live-dot {
+      width: 6px; height: 6px; background: #e74c3c; border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+    .card-btn {
+      width: 100%; background: var(--green); color: var(--white);
+      padding: 12px; border: none; border-radius: 8px;
+      font-size: 13px; font-weight: 600; cursor: pointer; margin-top: 4px;
+    }
+
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     /* MARQUEE */
     .marquee-wrap {
       border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-      padding: 18px 0; overflow: hidden; background: rgba(212,168,67,0.02);
+      padding: 16px 0; overflow: hidden; background: var(--off);
     }
-    .marquee-track {
-      display: flex; animation: marquee 22s linear infinite; white-space: nowrap;
-    }
+    .marquee-track { display: flex; animation: marquee 24s linear infinite; white-space: nowrap; }
     .marquee-item {
-      display: flex; align-items: center; gap: 20px;
-      padding: 0 40px; font-size: 11px; letter-spacing: 3px;
+      display: flex; align-items: center; gap: 16px;
+      padding: 0 36px; font-size: 11px; letter-spacing: 2px;
       text-transform: uppercase; color: var(--muted); font-weight: 500;
     }
-    .marquee-dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
-    @keyframes marquee {
-      from { transform: translateX(0); } to { transform: translateX(-50%); }
-    }
+    .marquee-dot { width: 4px; height: 4px; background: var(--green); border-radius: 50%; flex-shrink: 0; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    /* FEATURES */
-    .features { padding: 120px 6vw; }
-    .section-header {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      margin-bottom: 64px; flex-wrap: wrap; gap: 24px;
-    }
-    .sec-label { font-size: 11px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; font-weight: 600; margin-bottom: 16px; }
+    /* SECTION COMMON */
+    .section { padding: 100px 6vw; }
+    .section-alt { padding: 100px 6vw; background: var(--off); }
+    .sec-label { font-size: 11px; letter-spacing: 3px; color: var(--green); text-transform: uppercase; font-weight: 600; margin-bottom: 14px; }
     .sec-title {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(32px, 4vw, 56px); font-weight: 800;
-      line-height: 1; letter-spacing: -2px;
+      font-size: clamp(30px, 3.5vw, 52px); font-weight: 800;
+      line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 16px;
     }
-    .sec-title .dim { color: rgba(255,255,255,0.18); }
-    .sec-desc { font-size: 15px; color: var(--muted); max-width: 300px; line-height: 1.7; text-align: right; font-weight: 300; }
+    .sec-sub { font-size: 16px; color: var(--muted2); line-height: 1.8; max-width: 560px; font-weight: 300; }
 
+    /* FOR CUSTOMERS */
+    .audience-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+      margin-top: 56px; background: var(--border);
+    }
+    .audience-panel {
+      background: var(--white); padding: 56px 48px;
+      position: relative; overflow: hidden;
+    }
+    .audience-panel.green-panel { background: var(--green); color: var(--white); }
+
+    .audience-tag {
+      display: inline-block;
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      font-weight: 700; margin-bottom: 24px; padding: 5px 12px;
+      border-radius: 4px;
+    }
+    .audience-tag.customer { background: var(--green3); color: var(--green); }
+    .audience-tag.store { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); }
+
+    .audience-panel h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(24px, 2.5vw, 36px); font-weight: 800;
+      letter-spacing: -1px; margin-bottom: 16px; line-height: 1.1;
+    }
+    .audience-panel p { font-size: 15px; line-height: 1.8; margin-bottom: 32px; font-weight: 300; }
+    .audience-panel.green-panel p { color: rgba(255,255,255,0.7); }
+    .audience-panel:not(.green-panel) p { color: var(--muted2); }
+
+    .audience-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
+    .audience-list-item { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; }
+    .audience-list-item .check {
+      width: 20px; height: 20px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px; font-size: 10px;
+    }
+    .audience-panel.green-panel .check { background: rgba(255,255,255,0.2); color: var(--white); }
+    .audience-panel:not(.green-panel) .check { background: var(--green3); color: var(--green); }
+
+    .audience-panel.green-panel .audience-list-item { color: rgba(255,255,255,0.85); }
+    .audience-panel:not(.green-panel) .audience-list-item { color: var(--muted2); }
+
+    .btn-white {
+      background: var(--white); color: var(--green);
+      padding: 14px 28px; font-size: 13px; font-weight: 700;
+      border: none; border-radius: 6px; cursor: pointer;
+      text-decoration: none; display: inline-block;
+      transition: background 0.2s;
+    }
+    .btn-white:hover { background: var(--off); }
+
+    /* HOW IT WORKS */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); margin-top: 56px; }
+    .step { background: var(--white); padding: 40px 32px; position: relative; }
+    .step-num {
+      font-family: 'Syne', sans-serif; font-size: 56px; font-weight: 800;
+      color: var(--green3); line-height: 1; margin-bottom: 20px;
+    }
+    .step-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.5px; }
+    .step-desc { font-size: 14px; color: var(--muted2); line-height: 1.7; font-weight: 300; }
+    .step-arrow {
+      position: absolute; right: -12px; top: 40px;
+      width: 24px; height: 24px; background: var(--green);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 11px; z-index: 1;
+    }
+    .step:last-child .step-arrow { display: none; }
+
+    /* FEATURES */
     .features-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1px; background: var(--border);
+      gap: 1px; background: var(--border); margin-top: 56px;
     }
     .feature-card {
-      background: var(--black); padding: 48px 40px;
-      position: relative; overflow: hidden; transition: background 0.3s;
+      background: var(--white); padding: 40px 36px;
+      transition: background 0.2s; position: relative; overflow: hidden;
     }
     .feature-card::after {
       content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 2px; background: var(--gold);
-      transform: scaleX(0); transform-origin: left;
-      transition: transform 0.4s ease;
+      height: 2px; background: var(--green);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
     }
-    .feature-card:hover { background: #0c0c0c; }
+    .feature-card:hover { background: var(--off); }
     .feature-card:hover::after { transform: scaleX(1); }
-
-    .feature-num {
-      font-family: 'Syne', sans-serif; font-size: 80px; font-weight: 800;
-      color: rgba(255,255,255,0.025); position: absolute; top: 12px; right: 20px; line-height: 1;
-    }
-    .feature-icon { font-size: 28px; margin-bottom: 24px; display: block; }
-    .feature-title { font-family: 'Syne', sans-serif; font-size: 19px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.5px; }
-    .feature-desc { font-size: 14px; color: var(--muted); line-height: 1.7; font-weight: 300; }
-
-    /* TRUST */
-    .trust {
-      padding: 120px 6vw;
-      background: #050505;
-      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-    }
-    .trust-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-    .trust-left h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(36px, 4vw, 60px); font-weight: 800;
-      line-height: 1; letter-spacing: -2px; margin-bottom: 24px;
-    }
-    .trust-left h2 em { font-style: normal; color: var(--gold); }
-    .trust-left p { font-size: 16px; color: var(--muted); line-height: 1.8; font-weight: 300; }
-
-    .trust-right { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
-    .trust-item {
-      background: var(--black); padding: 28px 32px;
-      display: flex; align-items: center; gap: 20px; transition: background 0.2s;
-    }
-    .trust-item:hover { background: #0d0d0d; }
-    .trust-icon {
-      width: 44px; height: 44px;
-      background: rgba(212,168,67,0.08); border: 1px solid rgba(212,168,67,0.15);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; flex-shrink: 0;
-    }
-    .trust-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
-    .trust-sub { font-size: 13px; color: var(--muted); font-weight: 300; }
+    .feature-icon { font-size: 26px; margin-bottom: 20px; display: block; }
+    .feature-title { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.3px; }
+    .feature-desc { font-size: 14px; color: var(--muted2); line-height: 1.7; font-weight: 300; }
 
     /* REGISTER */
-    .register { padding: 120px 6vw; position: relative; overflow: hidden; }
-    .register-bg {
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 50% 80% at 50% 100%, rgba(45,106,79,0.07) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .register-inner { max-width: 600px; margin: 0 auto; text-align: center; }
+    .register { padding: 100px 6vw; background: var(--green); color: var(--white); }
+    .register-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+    .register-inner .sec-label { color: rgba(255,255,255,0.5); }
     .register-inner h2 {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(36px, 4vw, 60px); font-weight: 800;
+      font-size: clamp(32px, 4vw, 56px); font-weight: 800;
       line-height: 1; letter-spacing: -2px; margin-bottom: 16px;
     }
-    .register-inner h2 span { color: var(--gold); }
-    .register-inner p { font-size: 16px; color: var(--muted); margin-bottom: 48px; line-height: 1.7; font-weight: 300; }
+    .register-inner p { font-size: 16px; color: rgba(255,255,255,0.65); margin-bottom: 48px; line-height: 1.7; font-weight: 300; }
+
+    .tabs {
+      display: flex; gap: 0; margin-bottom: 32px;
+      background: rgba(255,255,255,0.1); border-radius: 8px; padding: 4px;
+    }
+    .tab {
+      flex: 1; padding: 10px; font-size: 13px; font-weight: 600;
+      border: none; background: transparent; color: rgba(255,255,255,0.5);
+      cursor: pointer; border-radius: 6px; transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .tab.active { background: var(--white); color: var(--green); }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
 
     .register-form { display: flex; flex-direction: column; gap: 12px; text-align: left; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .register-form input {
-      background: #0d0d0d; border: 1px solid var(--border);
-      color: var(--white); padding: 16px 20px; font-size: 14px;
-      font-family: 'DM Sans', sans-serif; outline: none;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+      color: var(--white); padding: 14px 18px; font-size: 14px;
+      font-family: 'DM Sans', sans-serif; outline: none; border-radius: 6px;
       transition: border-color 0.2s, background 0.2s; width: 100%;
     }
-    .register-form input::placeholder { color: #3a3a3a; }
-    .register-form input:focus { border-color: rgba(212,168,67,0.4); background: #111; }
+    .register-form input::placeholder { color: rgba(255,255,255,0.3); }
+    .register-form input:focus { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.15); }
     .register-form button {
-      background: var(--gold); color: var(--black); border: none;
-      padding: 18px; font-size: 12px; font-weight: 700;
-      font-family: 'Syne', sans-serif; cursor: none;
-      letter-spacing: 2px; text-transform: uppercase;
-      transition: background 0.2s, transform 0.2s; margin-top: 8px;
+      background: var(--white); color: var(--green); border: none;
+      padding: 16px; font-size: 14px; font-weight: 700;
+      font-family: 'Syne', sans-serif; cursor: pointer; border-radius: 6px;
+      transition: background 0.2s; margin-top: 8px;
     }
-    .register-form button:hover { background: var(--gold2); transform: translateY(-2px); }
+    .register-form button:hover { background: var(--off); }
 
     .success-msg {
-      color: var(--gold); font-size: 17px; padding: 40px;
-      display: none; background: rgba(212,168,67,0.05);
-      border: 1px solid rgba(212,168,67,0.15); margin-top: 16px;
+      color: var(--white); font-size: 16px; padding: 32px;
+      display: none; background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; margin-top: 16px;
     }
 
     /* FOOTER */
-    footer {
-      background: #050505; border-top: 1px solid var(--border);
-      padding: 64px 6vw 40px;
-    }
+    footer { background: var(--black); padding: 64px 6vw 40px; }
     .footer-top {
       display: flex; justify-content: space-between; align-items: flex-start;
       margin-bottom: 48px; flex-wrap: wrap; gap: 40px;
     }
-    .footer-brand { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -1px; }
-    .footer-brand span { color: var(--gold); }
-    .footer-tagline { font-size: 13px; color: var(--muted); margin-top: 8px; font-style: italic; }
+    .footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .footer-brand img { height: 32px; width: 32px; object-fit: contain; }
+    .footer-brand-text { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: -0.5px; }
+    .footer-brand-text span { color: var(--gold2); }
+    .footer-tagline { font-size: 13px; color: #555; font-style: italic; }
     .footer-links-group { display: flex; gap: 48px; flex-wrap: wrap; }
     .footer-col { display: flex; flex-direction: column; gap: 12px; }
-    .footer-col-label { font-size: 10px; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; margin-bottom: 4px; font-weight: 600; }
-    .footer-col a { color: #444; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    .footer-col-label { font-size: 10px; letter-spacing: 3px; color: #444; text-transform: uppercase; font-weight: 600; margin-bottom: 4px; }
+    .footer-col a { color: #555; text-decoration: none; font-size: 14px; transition: color 0.2s; }
     .footer-col a:hover { color: var(--white); }
     .footer-bottom {
       display: flex; justify-content: space-between; align-items: center;
-      padding-top: 32px; border-top: 1px solid var(--border);
+      padding-top: 32px; border-top: 1px solid #1a1a1a;
       flex-wrap: wrap; gap: 16px;
     }
-    .footer-copy { font-size: 12px; color: #2a2a2a; }
-    .footer-ryc { font-size: 12px; color: #2a2a2a; }
-    .footer-ryc span { color: var(--gold); }
+    .footer-copy { font-size: 12px; color: #333; }
+    .footer-ryc { font-size: 12px; color: #333; }
+    .footer-ryc span { color: var(--gold2); }
 
     /* REVEAL */
-    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
+      .hero-image { display: none; }
+      .audience-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
       .features-grid { grid-template-columns: 1fr; }
-      .trust-inner { grid-template-columns: 1fr; gap: 48px; }
+      .steps { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
-      .hero-stats { display: none; }
-      .sec-desc { text-align: left; }
-      .section-header { flex-direction: column; align-items: flex-start; }
-      body { cursor: auto; }
-      .cursor, .cursor-ring { display: none; }
+      .hero-trust { flex-direction: column; gap: 16px; }
+      .nav-links a:not(.nav-cta) { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
+  <!-- NAV -->
   <nav>
-    <a href="index.html" class="nav-logo">Thoda<span>Local</span></a>
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="ThodaLocal" />
+      <span class="nav-logo-text">Thoda<span>Local</span></span>
+    </a>
     <div class="nav-links">
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
@@ -378,28 +446,53 @@
     </div>
   </nav>
 
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
-    <div class="hero-grid"></div>
-    <div class="hero-tag">Now Onboarding Stores — Gurugram & Delhi</div>
+    <div class="hero-eyebrow">Now Live — Gurugram & Delhi</div>
     <h1>
-      Apni Dukaan,
-      <span class="gold">Online Karo.</span>
-      <span class="dim">Verified. Trusted.</span>
+      Your Local Stores,
+      <span class="green">Verified &amp; Online.</span>
+      <span class="light">Safe. Transparent. Trusted.</span>
     </h1>
-    <p class="hero-sub">Har local store — chahe kitni bhi chhoti ho — ab online aa sakti hai. Hygiene verified. Live camera. Apna delivery network.</p>
+    <p class="hero-sub">ThodaLocal brings every local store in your area online — hygiene verified, with live camera transparency and our own delivery network.</p>
     <div class="hero-actions">
-      <a href="#register" class="btn-primary">Store List Karo — Free</a>
-      <a href="about.html" class="btn-secondary">Hamare Baare Mein →</a>
+      <a href="#customers" class="btn-green">Find Stores Near Me</a>
+      <a href="#register" class="btn-outline">List Your Store — Free</a>
     </div>
-    <div class="hero-stats">
-      <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Hygiene Verified</div></div>
-      <div class="stat-item"><div class="stat-num">Live</div><div class="stat-label">Camera Feed</div></div>
-      <div class="stat-item"><div class="stat-num">₹0</div><div class="stat-label">Listing Fee</div></div>
+    <div class="hero-trust">
+      <div class="trust-pill"><div class="trust-pill-icon">🧼</div>Hygiene Verified</div>
+      <div class="trust-pill"><div class="trust-pill-icon">📷</div>Live Camera Feed</div>
+      <div class="trust-pill"><div class="trust-pill-icon">🚴</div>Safe Delivery</div>
+      <div class="trust-pill"><div class="trust-pill-icon">🤖</div>AI Powered</div>
     </div>
-    <div class="hero-scroll"><div class="scroll-line"></div>Scroll</div>
+
+    <!-- FLOATING CARD -->
+    <div class="hero-image">
+      <div class="hero-card">
+        <div class="card-header">
+          <div class="card-avatar">🥬</div>
+          <div>
+            <div class="card-store-name">Sharma Kirana Store</div>
+            <div class="card-store-area">Sector 14, Gurugram</div>
+          </div>
+          <div class="card-badge">✓ Verified</div>
+        </div>
+        <div class="card-items">
+          <div class="card-item"><span>Fresh Tomatoes (1kg)</span><span class="card-item-price">₹40</span></div>
+          <div class="card-item"><span>Atta — Aashirvaad 5kg</span><span class="card-item-price">₹285</span></div>
+          <div class="card-item"><span>Toned Milk (1L)</span><span class="card-item-price">₹62</span></div>
+        </div>
+        <div class="card-live">
+          <div class="live-dot"></div>
+          Live camera active — watch your order being packed
+        </div>
+        <button class="card-btn">Order Now — Delivery in 30 min</button>
+      </div>
+    </div>
   </section>
 
+  <!-- MARQUEE -->
   <div class="marquee-wrap">
     <div class="marquee-track">
       <div class="marquee-item"><div class="marquee-dot"></div>Hygiene Verified</div>
@@ -421,65 +514,145 @@
     </div>
   </div>
 
-  <section class="features">
-    <div class="section-header reveal">
-      <div>
-        <div class="sec-label">// Why ThodaLocal</div>
-        <div class="sec-title">Alag Kya Hai <span class="dim">Hamare Mein?</span></div>
+  <!-- FOR CUSTOMERS & STORES -->
+  <section class="section" id="customers">
+    <div class="reveal">
+      <div class="sec-label">// Who Is ThodaLocal For?</div>
+      <div class="sec-title">Built for Everyone<br>in Your Neighbourhood</div>
+    </div>
+    <div class="audience-grid reveal">
+
+      <div class="audience-panel">
+        <div class="audience-tag customer">For Customers</div>
+        <h3>Shop Local,<br>Shop Safe.</h3>
+        <p>Discover hygiene-verified stores in your area. Watch your order being packed live. Get it delivered by our trusted delivery team.</p>
+        <div class="audience-list">
+          <div class="audience-list-item"><div class="check">✓</div>Browse verified stores near you</div>
+          <div class="audience-list-item"><div class="check">✓</div>Watch live camera before ordering</div>
+          <div class="audience-list-item"><div class="check">✓</div>Safe, fast hyperlocal delivery</div>
+          <div class="audience-list-item"><div class="check">✓</div>AI-powered smart recommendations</div>
+          <div class="audience-list-item"><div class="check">✓</div>Zero scammers, zero toxic sellers</div>
+        </div>
+        <a href="#customerWaitlist" class="btn-green">Join Customer Waitlist</a>
       </div>
-      <p class="sec-desc">Sirf ek listing platform nahi — ek trust system. Har store verified. Har order transparent.</p>
+
+      <div class="audience-panel green-panel">
+        <div class="audience-tag store">For Store Owners</div>
+        <h3>Take Your Store<br>Online — Free.</h3>
+        <p>No matter how small your store is, ThodaLocal gives you a digital presence, hygiene certification, and thousands of local customers.</p>
+        <div class="audience-list">
+          <div class="audience-list-item"><div class="check">✓</div>Free store listing — always</div>
+          <div class="audience-list-item"><div class="check">✓</div>Hygiene badge — builds trust fast</div>
+          <div class="audience-list-item"><div class="check">✓</div>Reach thousands of local customers</div>
+          <div class="audience-list-item"><div class="check">✓</div>We handle delivery for you</div>
+          <div class="audience-list-item"><div class="check">✓</div>Simple dashboard — easy to manage</div>
+        </div>
+        <a href="#register" class="btn-white">List My Store Now</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section-alt">
+    <div class="reveal">
+      <div class="sec-label">// How It Works</div>
+      <div class="sec-title">Simple. Fast. Trusted.</div>
+      <p class="sec-sub">From store discovery to doorstep delivery — every step is designed around trust and transparency.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-arrow">→</div>
+        <div class="step-num">01</div>
+        <div class="step-title">Discover</div>
+        <div class="step-desc">Browse hygiene-verified local stores in your area. Filter by category, distance, or rating.</div>
+      </div>
+      <div class="step">
+        <div class="step-arrow">→</div>
+        <div class="step-num">02</div>
+        <div class="step-title">Verify</div>
+        <div class="step-desc">Check the hygiene badge. Watch the live camera feed to see your items before ordering.</div>
+      </div>
+      <div class="step">
+        <div class="step-arrow">→</div>
+        <div class="step-num">03</div>
+        <div class="step-title">Order</div>
+        <div class="step-desc">Place your order directly. Watch it being packed live. Real-time updates throughout.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title">Receive</div>
+        <div class="step-desc">Our verified delivery team brings it to your door. Safe, fast, and reliable — every time.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section">
+    <div class="reveal">
+      <div class="sec-label">// Platform Features</div>
+      <div class="sec-title">What Makes Us<br>Different</div>
     </div>
     <div class="features-grid reveal">
-      <div class="feature-card"><div class="feature-num">01</div><span class="feature-icon">🧼</span><div class="feature-title">Hygiene Verified</div><div class="feature-desc">Har store physically inspect hota hai. Hygiene badge tabhi milta hai jab sab kuch sahi ho. Koi shortcut nahi.</div></div>
-      <div class="feature-card"><div class="feature-num">02</div><span class="feature-icon">📷</span><div class="feature-title">Live Camera Feed</div><div class="feature-desc">Store owner head-mounted camera pehenta hai. Aap live dekh sakte ho apna order pack hote hue. 100% transparency.</div></div>
-      <div class="feature-card"><div class="feature-num">03</div><span class="feature-icon">🏪</span><div class="feature-title">Har Dukaan Welcome</div><div class="feature-desc">Chhoti se chhoti dukaan bhi list ho sakti hai. Sabzi wala, halwai, kirana — sab. Sirf ek condition — hygiene.</div></div>
-      <div class="feature-card"><div class="feature-num">04</div><span class="feature-icon">🤖</span><div class="feature-title">AI Powered</div><div class="feature-desc">Smart search, hygiene scoring, fraud detection — AI andar se kaam karta hai taaki experience hamesha safe rahe.</div></div>
-      <div class="feature-card"><div class="feature-num">05</div><span class="feature-icon">🚴</span><div class="feature-title">ThodaLocal Delivery</div><div class="feature-desc">Apna delivery network — verified riders, safe hands. Aapka order usi trust ke saath aayega jis trust se order kiya.</div></div>
-      <div class="feature-card"><div class="feature-num">06</div><span class="feature-icon">🚫</span><div class="feature-title">Zero Tolerance</div><div class="feature-desc">Scammers, rude sellers, toxic behavior — permanent ban. Yeh platform sirf genuine logon ke liye hai. Hamesha.</div></div>
+      <div class="feature-card"><span class="feature-icon">🧼</span><div class="feature-title">Hygiene Verification</div><div class="feature-desc">Every store is physically inspected by our team. The hygiene badge is earned — not bought. Renewed every 3 months.</div></div>
+      <div class="feature-card"><span class="feature-icon">📷</span><div class="feature-title">Live Camera Feed</div><div class="feature-desc">Store owners wear head-mounted cameras. Watch your order being packed in real time. No surprises, ever.</div></div>
+      <div class="feature-card"><span class="feature-icon">🤖</span><div class="feature-title">AI-Powered Platform</div><div class="feature-desc">Smart search, fraud detection, hygiene scoring automation — AI works silently in the background to keep you safe.</div></div>
+      <div class="feature-card"><span class="feature-icon">🚴</span><div class="feature-title">ThodaLocal Delivery</div><div class="feature-desc">Our own verified delivery network. Every rider is background-checked. Your order arrives exactly as you saw it packed.</div></div>
+      <div class="feature-card"><span class="feature-icon">🏪</span><div class="feature-title">Every Store Welcome</div><div class="feature-desc">Kirana stores, vegetable vendors, halwai, salons — any store can list. Size doesn't matter. Hygiene does.</div></div>
+      <div class="feature-card"><span class="feature-icon">🛡️</span><div class="feature-title">Zero Tolerance Policy</div><div class="feature-desc">Scammers, rude sellers, or any toxic behaviour means a permanent ban. This platform is built on mutual respect.</div></div>
     </div>
   </section>
 
-  <section class="trust">
-    <div class="trust-inner">
-      <div class="trust-left reveal">
-        <div class="sec-label">// The ThodaLocal Promise</div>
-        <h2>Trust Banana<br><em>Hamaara Kaam Hai</em></h2>
-        <p>India mein lakho chhote stores hain jo sirf isliye band ho rahe hain kyunki unhe online aane ka mauka nahi mila. ThodaLocal unhe woh mauka deta hai — aur users ko deta hai woh guarantee jo unhein chahiye thi.</p>
-      </div>
-      <div class="trust-right reveal">
-        <div class="trust-item"><div class="trust-icon">🔍</div><div><div class="trust-title">Physical Inspection</div><div class="trust-sub">Hamare agents khud jaate hain — har store personally verify hota hai.</div></div></div>
-        <div class="trust-item"><div class="trust-icon">🎖️</div><div><div class="trust-title">Hygiene Badge System</div><div class="trust-sub">Badge milta hai tabhi jab sab sahi ho. Renewable every 3 months.</div></div></div>
-        <div class="trust-item"><div class="trust-icon">📡</div><div><div class="trust-title">Live Transparency</div><div class="trust-sub">Head-cam se user khud dekh sakta hai — real time mein.</div></div></div>
-        <div class="trust-item"><div class="trust-icon">⚡</div><div><div class="trust-title">Instant Action</div><div class="trust-sub">Complaint ayi — 24 ghante mein action. Koi grey area nahi.</div></div></div>
-      </div>
-    </div>
-  </section>
-
+  <!-- REGISTER -->
   <section class="register" id="register">
-    <div class="register-bg"></div>
     <div class="register-inner reveal">
-      <div class="sec-label">// Store Owners</div>
-      <h2>Apni Dukaan <span>List Karo</span></h2>
-      <p>Hygiene verified bano. Hazaron local customers tak pahuncho. Listing bilkul free hai — hamesha.</p>
-      <form class="register-form" id="storeForm">
-        <div class="form-row">
-          <input type="text" id="dukaan" name="dukaan" placeholder="Dukaan ka naam" required />
-          <input type="text" id="owner" name="owner" placeholder="Aapka naam" required />
-        </div>
-        <div class="form-row">
-          <input type="tel" id="phone" name="phone" placeholder="Phone number" required />
-          <input type="text" id="area" name="area" placeholder="Area / Locality" required />
-        </div>
-        <button type="submit">List Karo — Bilkul Free</button>
-      </form>
-      <div id="successMsg" class="success-msg">✅ Request mil gayi! Hum 24 ghante mein contact karenge.</div>
+      <div class="sec-label">// Join ThodaLocal</div>
+      <h2>Get Early Access</h2>
+      <p>Whether you're a customer or a store owner — be the first to experience ThodaLocal in your area.</p>
+
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab('store')">I'm a Store Owner</button>
+        <button class="tab" onclick="switchTab('customer')">I'm a Customer</button>
+      </div>
+
+      <!-- STORE FORM -->
+      <div class="tab-content active" id="storeTab">
+        <form class="register-form" id="storeForm">
+          <div class="form-row">
+            <input type="text" id="dukaan" placeholder="Store name" required />
+            <input type="text" id="owner" placeholder="Your name" required />
+          </div>
+          <div class="form-row">
+            <input type="tel" id="phone" placeholder="Phone number" required />
+            <input type="text" id="area" placeholder="Area / Locality" required />
+          </div>
+          <button type="submit">List My Store — It's Free</button>
+        </form>
+        <div id="storeSuccess" class="success-msg">✅ Request received! We'll contact you within 24 hours.</div>
+      </div>
+
+      <!-- CUSTOMER FORM -->
+      <div class="tab-content" id="customerTab" id="customerWaitlist">
+        <form class="register-form" id="customerForm">
+          <input type="text" id="cname" placeholder="Your name" required />
+          <input type="email" id="cemail" placeholder="Email address" required />
+          <input type="text" id="carea" placeholder="Your area / locality" required />
+          <button type="submit">Join Customer Waitlist</button>
+        </form>
+        <div id="customerSuccess" class="success-msg">✅ You're on the list! We'll notify you when ThodaLocal launches in your area.</div>
+      </div>
+
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <div class="footer-top">
       <div>
-        <div class="footer-brand">Thoda<span>Local</span></div>
+        <div class="footer-brand">
+          <img src="logo.png" alt="ThodaLocal" />
+          <span class="footer-brand-text">Thoda<span>Local</span></span>
+        </div>
         <div class="footer-tagline">Har dukaan ki awaaz — online.</div>
       </div>
       <div class="footer-links-group">
@@ -491,7 +664,12 @@
         <div class="footer-col">
           <div class="footer-col-label">Platform</div>
           <a href="#register">List Your Store</a>
-          <a href="#register">For Customers</a>
+          <a href="#customers">For Customers</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">Legal</div>
+          <a href="terms.html">Terms of Service</a>
+          <a href="privacy.html">Privacy Policy</a>
         </div>
         <div class="footer-col">
           <div class="footer-col-label">RYC Corp</div>
@@ -507,32 +685,20 @@
   </footer>
 
   <script>
-    // CURSOR
-    const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursorRing');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      cursor.style.transform = `translate(${mx - 4}px, ${my - 4}px)`;
-    });
-    function animRing() {
-      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-      ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
-      requestAnimationFrame(animRing);
+    // TABS
+    function switchTab(tab) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      if (tab === 'store') {
+        document.querySelectorAll('.tab')[0].classList.add('active');
+        document.getElementById('storeTab').classList.add('active');
+      } else {
+        document.querySelectorAll('.tab')[1].classList.add('active');
+        document.getElementById('customerTab').classList.add('active');
+      }
     }
-    animRing();
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => { ring.style.width = '56px'; ring.style.height = '56px'; ring.style.borderColor = 'rgba(212,168,67,0.7)'; });
-      el.addEventListener('mouseleave', () => { ring.style.width = '36px'; ring.style.height = '36px'; ring.style.borderColor = 'rgba(212,168,67,0.4)'; });
-    });
 
-    // SCROLL REVEAL
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
-
-    // FORM
+    // STORE FORM
     document.getElementById('storeForm').addEventListener('submit', function(e) {
       e.preventDefault();
       var data = {
@@ -542,23 +708,48 @@
         area: document.getElementById('area').value
       };
       var btn = this.querySelector('button');
-      btn.textContent = 'Bhej rahe hain...';
-      btn.disabled = true;
+      btn.textContent = 'Submitting...'; btn.disabled = true;
       fetch('https://script.google.com/macros/s/AKfycbweyWvWL5cxgaLh1zc8m9YgaWsUowlUxnCQrm4fBWiDSJ5UurfQxOMRSa45z7LaRlFR/exec', {
         method: 'POST', mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
-      })
-      .then(function() {
+      }).then(function() {
         document.getElementById('storeForm').style.display = 'none';
-        document.getElementById('successMsg').style.display = 'block';
-      })
-      .catch(function() {
-        btn.textContent = 'List Karo — Bilkul Free';
-        btn.disabled = false;
-        alert('Kuch error aaya — dobara try karo.');
+        document.getElementById('storeSuccess').style.display = 'block';
+      }).catch(function() {
+        btn.textContent = 'List My Store — It\'s Free'; btn.disabled = false;
       });
     });
+
+    // CUSTOMER FORM
+    document.getElementById('customerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var data = {
+        dukaan: document.getElementById('cname').value,
+        owner: document.getElementById('cemail').value,
+        phone: 'Customer',
+        area: document.getElementById('carea').value
+      };
+      var btn = this.querySelector('button');
+      btn.textContent = 'Submitting...'; btn.disabled = true;
+      fetch('https://script.google.com/macros/s/AKfycbweyWvWL5cxgaLh1zc8m9YgaWsUowlUxnCQrm4fBWiDSJ5UurfQxOMRSa45z7LaRlFR/exec', {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function() {
+        document.getElementById('customerForm').style.display = 'none';
+        document.getElementById('customerSuccess').style.display = 'block';
+      }).catch(function() {
+        btn.textContent = 'Join Customer Waitlist'; btn.disabled = false;
+      });
+    });
+
+    // SCROLL REVEAL
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
   </script>
+
 </body>
 </html>
