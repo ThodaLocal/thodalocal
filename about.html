@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — ThodaLocal</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #0a0a0a; color: #f0ede8; }
+
+    nav {
+      padding: 24px 10vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    .nav-logo { font-size: 22px; font-weight: 700; text-decoration: none; color: #f0ede8; }
+    .nav-logo span { color: #c9a84c; }
+    .nav-link { color: #666; text-decoration: none; font-size: 14px; }
+    .nav-link:hover { color: #c9a84c; }
+
+    .hero {
+      padding: 100px 10vw;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    .label { font-size: 11px; letter-spacing: 4px; color: #c9a84c; text-transform: uppercase; margin-bottom: 16px; }
+    .hero h1 { font-size: clamp(40px, 6vw, 80px); font-weight: 700; line-height: 1; margin-bottom: 32px; }
+    .hero h1 span { color: #444; }
+    .hero p { font-size: 18px; color: #888; max-width: 600px; line-height: 1.8; }
+
+    .section { padding: 80px 10vw; border-bottom: 1px solid #1a1a1a; }
+    .section h2 { font-size: 36px; font-weight: 700; margin-bottom: 24px; }
+    .section p { font-size: 16px; color: #888; line-height: 1.9; max-width: 680px; margin-bottom: 20px; }
+    .section p strong { color: #f0ede8; }
+
+    .ryc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2px; margin-top: 40px; }
+    .ryc-card { background: #1a1a1a; padding: 32px; }
+    .ryc-num { font-size: 40px; font-weight: 700; color: #1e1e1e; margin-bottom: 12px; }
+    .ryc-name { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .ryc-desc { font-size: 13px; color: #666; line-height: 1.6; }
+    .ryc-card.active .ryc-num { color: #c9a84c; }
+
+    .founder-block {
+      background: #141414;
+      border-left: 3px solid #c9a84c;
+      padding: 40px 48px;
+      max-width: 680px;
+      margin-top: 40px;
+    }
+    .founder-block p { font-size: 16px; color: #aaa; line-height: 1.9; margin-bottom: 16px; }
+    .founder-block p strong { color: #f0ede8; }
+    .founder-block p.sign { color: #c9a84c; font-style: italic; font-size: 18px; margin-bottom: 0; }
+
+    footer {
+      padding: 48px 10vw;
+      text-align: center;
+      border-top: 1px solid #1a1a1a;
+    }
+    footer a { color: #666; text-decoration: none; font-size: 13px; }
+    footer a:hover { color: #c9a84c; }
+    .footer-copy { font-size: 12px; color: #333; margin-top: 16px; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Thoda<span>Local</span></a>
+    <a href="index.html" class="nav-link">← Back to Home</a>
+  </nav>
+
+  <section class="hero">
+    <div class="label">// Our Story</div>
+    <h1>About <span>ThodaLocal</span></h1>
+    <p>Ek 18 saal ke ladke ne socha — agar har badi company online aa sakti hai, toh chhoti local dukaan kyun nahi? Aur phir ThodaLocal bana.</p>
+  </section>
+
+  <section class="section">
+    <div class="label">// The Problem</div>
+    <h2>Kya Problem Solve Kar Rahe Hain?</h2>
+    <p>India mein lakho chhote local stores hain — sabzi wale, halwai, kirana stores, salons. <strong>Par inki koi online presence nahi.</strong> Log inhe dhundh nahi sakte. Trust nahi kar sakte. Aur yeh stores slowly band ho rahe hain.</p>
+    <p>Doosri taraf — users ko nahi pata ki unke area mein kaun sa store <strong>hygienic hai, safe hai, genuine hai.</strong> Koi guarantee nahi. Koi transparency nahi.</p>
+    <p>ThodaLocal yahi fix karta hai.</p>
+  </section>
+
+  <section class="section">
+    <div class="label">// The Solution</div>
+    <h2>ThodaLocal Kya Karta Hai?</h2>
+    <p>Har local store — chahe kitna bhi chota ho — <strong>ThodaLocal pe list ho sakta hai.</strong> Par sirf list hona kaafi nahi. Har store ko hamare hygiene verification se guzarna padta hai. Sirf verified stores ko badge milta hai.</p>
+    <p>Users live camera feed se dekh sakte hain apna order pack hote hue. <strong>100% transparency.</strong> Aur hamare apne verified delivery network se order seedha ghar tak pahunchta hai.</p>
+  </section>
+
+  <section class="section">
+    <div class="label">// RYC Corporation</div>
+    <h2>Yeh Sirf Shuruat Hai</h2>
+    <p>ThodaLocal <strong>RYC Corporation</strong> ki pehli company hai — ek holding company jo multiple industry-defining ventures build kar rahi hai.</p>
+
+    <div class="ryc-grid">
+      <div class="ryc-card active">
+        <div class="ryc-num">01</div>
+        <div class="ryc-name">ThodaLocal</div>
+        <div class="ryc-desc">Hyperlocal verified store platform — Building Now</div>
+      </div>
+      <div class="ryc-card">
+        <div class="ryc-num">02</div>
+        <div class="ryc-name">Construction & Mining</div>
+        <div class="ryc-desc">Heavy industry vertical — Coming Soon</div>
+      </div>
+      <div class="ryc-card">
+        <div class="ryc-num">03</div>
+        <div class="ryc-name">Good Devil Production</div>
+        <div class="ryc-desc">Animation Studio — Coming Soon</div>
+      </div>
+      <div class="ryc-card">
+        <div class="ryc-num">04</div>
+        <div class="ryc-name">Gaming Studio</div>
+        <div class="ryc-desc">Game Development — Coming Soon</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="label">// The Founder</div>
+    <h2>Kaun Bana Raha Hai Yeh?</h2>
+    <div class="founder-block">
+      <p>Main <strong>18 saal ka hoon.</strong> Abhi 12th pass kiya hai. BTech shuru hone wala hai. Mere paas <strong>0 rupees the</strong> jab maine yeh shuru kiya. Koi co-founder nahi. Koi investor nahi. Koi family support nahi.</p>
+      <p>Par mere paas ek vision hai — <strong>RYC Corporation ko ek real empire banana.</strong> Ek holding company jiske andar multiple world-class companies hongi.</p>
+      <p>ThodaLocal sirf pehla kadam hai. Aur yeh kadam maine khud uthaya — ek laptop, internet, aur ek sapne ke saath.</p>
+      <p class="sign">— Founder, RYC Corporation</p>
+    </div>
+  </section>
+
+  <footer>
+    <a href="index.html">thodalocal.in</a>
+    <div class="footer-copy">© 2026 ThodaLocal — RYC Corporation</div>
+  </footer>
+
+</body>
+</html>
