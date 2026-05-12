@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThodaLocal — Apni Dukaan, Online</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0a0a0a;
+      color: #f0ede8;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .logo {
+      font-size: 52px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    .logo span { color: #c9a84c; }
+
+    .tagline {
+      font-size: 18px;
+      color: #888;
+      max-width: 480px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+
+    .badge {
+      background: #1e1e1e;
+      border: 1px solid #c9a84c;
+      color: #c9a84c;
+      padding: 8px 20px;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 60px;
+    }
+
+    .scroll-hint {
+      font-size: 12px;
+      color: #444;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* FEATURES */
+    .features {
+      padding: 100px 10vw;
+      background: #0f0f0f;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: #c9a84c;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 60px;
+      line-height: 1.1;
+    }
+
+    .section-title span { color: #444; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 2px;
+    }
+
+    .feature-card {
+      background: #1a1a1a;
+      padding: 36px 32px;
+      transition: background 0.2s;
+    }
+
+    .feature-card:hover { background: #222; }
+
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .feature-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #f0ede8;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.7;
+    }
+    /* REGISTER */
+    .register {
+      padding: 100px 10vw;
+      background: #0a0a0a;
+      text-align: center;
+    }
+
+    .register-desc {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 48px;
+      max-width: 460px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    .register-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .register-form input {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      color: #f0ede8;
+      padding: 16px 20px;
+      font-size: 15px;
+      outline: none;
+      transition: border 0.2s;
+    }
+
+    .register-form input:focus {
+      border-color: #c9a84c;
+    }
+
+    .register-form button {
+      background: #c9a84c;
+      color: #0a0a0a;
+      border: none;
+      padding: 18px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: background 0.2s;
+    }
+
+    .register-form button:hover {
+      background: #e8c97a;
+    }
+    /* FOOTER */
+    .footer {
+      background: #050505;
+      padding: 60px 10vw;
+      text-align: center;
+      border-top: 1px solid #1a1a1a;
+    }
+
+    .footer-logo {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .footer-logo span { color: #c9a84c; }
+
+    .footer-tagline {
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 32px;
+      font-style: italic;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+
+    .footer-links a {
+      color: #666;
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: #c9a84c; }
+
+    .footer-copy {
+      font-size: 12px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="logo">Thoda<span>Local</span></div>
+    <p class="tagline">Apne area ki verified, hygienic local stores — seedha aapke paas.</p>
+    <div class="badge">Coming Soon</div>
+    <div class="scroll-hint">↓ scroll</div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="section-label">// Why ThodaLocal</div>
+    <div class="section-title">Alag Kya Hai <span>Hamare Mein?</span></div>
+
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <div class="feature-icon">🧼</div>
+        <div class="feature-title">Hygiene Verified</div>
+        <div class="feature-desc">Har store physically inspect hota hai. Hygiene badge tabhi milta hai jab sab kuch sahi ho. Koi compromise nahi.</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📷</div>
+        <div class="feature-title">Live Camera Feed</div>
+        <div class="feature-desc">Store owner head-mounted camera pehenta hai. Aap live dekh sakte ho apna order kaise pack ho raha hai. 100% transparency.</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🏪</div>
+        <div class="feature-title">Har Dukaan Welcome</div>
+        <div class="feature-desc">Chhoti se chhoti dukaan bhi list ho sakti hai. Sabzi wala, halwai, kirana — sab. Sirf ek condition — hygiene pass karo.</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <div class="feature-title">AI Powered</div>
+        <div class="feature-desc">Smart search, hygiene scoring, fraud detection — AI andar se kaam karta hai taaki aapka experience hamesha safe aur smooth rahe.</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🚴</div>
+        <div class="feature-title">ThodaLocal Delivery</div>
+        <div class="feature-desc">Apna delivery network — verified riders, safe hands. Aapka order usi trust ke saath deliver hoga jis trust se order kiya tha.</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🚫</div>
+        <div class="feature-title">Zero Tolerance</div>
+        <div class="feature-desc">Scammers, rude sellers, toxic behavior — permanent ban. Yeh platform sirf genuine, safe aur honest logon ke liye hai.</div>
+      </div>
+
+    </div>
+  </section>
+  <!-- REGISTER SECTION -->
+  <section class="register">
+    <div class="section-label">// Store Owners</div>
+    <div class="section-title">Apni Dukaan <span>List Karo</span></div>
+    <p class="register-desc">Hygiene verified bano. Hazaron local customers tak pahuncho. Free mein shuru karo.</p>
+
+    <form class="register-form">
+      <input type="text" placeholder="Dukaan ka naam" />
+      <input type="text" placeholder="Aapka naam" />
+      <input type="tel" placeholder="Phone number" />
+      <input type="text" placeholder="Area / Locality" />
+      <button type="submit">List Karo — Free Mein</button>
+    </form>
+  </section>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">Thoda<span>Local</span></div>
+    <p class="footer-tagline">Har dukaan ki awaaz — online.</p>
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">List Your Store</a>
+    </div>
+    <p class="footer-copy">© 2026 ThodaLocal — RYC Corporation</p>
+  </footer>
+</body>
+</html>
