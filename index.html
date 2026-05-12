@@ -5,338 +5,547 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ThodaLocal — Apni Dukaan, Online</title>
   <meta name="description" content="ThodaLocal — Apne area ki hygiene verified local stores. Live camera transparency, AI powered, with our own delivery network. Gurugram, Delhi aur aas paas." />
-<meta name="keywords" content="local stores online, hyperlocal delivery, verified stores, hygiene verified, ThodaLocal, Gurugram, Delhi, local shopping" />
-<meta name="author" content="RYC Corporation" />
-
-<!-- Open Graph — WhatsApp/Facebook pe share hone pe dikhega -->
-<meta property="og:title" content="ThodaLocal — Verified Local. Trusted Quality." />
-<meta property="og:description" content="Apne area ki hygiene verified local stores — seedha aapke paas. Live camera, AI powered, safe delivery." />
-<meta property="og:url" content="https://thodalocal.in" />
-<meta property="og:type" content="website" />
+  <meta name="keywords" content="local stores online, hyperlocal delivery, verified stores, hygiene verified, ThodaLocal, Gurugram, Delhi, local shopping" />
+  <meta name="author" content="RYC Corporation" />
+  <meta property="og:title" content="ThodaLocal — Verified Local. Trusted Quality." />
+  <meta property="og:description" content="Apne area ki hygiene verified local stores — seedha aapke paas. Live camera, AI powered, safe delivery." />
+  <meta property="og:url" content="https://thodalocal.in" />
+  <meta property="og:type" content="website" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --black: #080808;
+      --white: #f5f2ed;
+      --gold: #d4a843;
+      --gold2: #f0c96a;
+      --green: #2d6a4f;
+      --muted: #666;
+      --border: rgba(255,255,255,0.06);
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #0a0a0a;
-      color: #f0ede8;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* CURSOR */
+    .cursor {
+      width: 8px; height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9999;
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(212,168,67,0.4);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9998;
+      transition: width 0.2s, height 0.2s, border-color 0.2s;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      padding: 24px 6vw;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      background: rgba(8,8,8,0.85);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px; font-weight: 800;
+      text-decoration: none; color: var(--white); letter-spacing: -0.5px;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 13px; font-weight: 500; letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      background: var(--gold) !important; color: var(--black) !important;
+      padding: 10px 20px !important; font-weight: 700 !important;
+      font-size: 11px !important; letter-spacing: 1.5px !important;
+      text-transform: uppercase;
     }
 
     /* HERO */
     .hero {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 40px 20px;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 120px 6vw 80px;
+      position: relative; overflow: hidden;
     }
 
-    .logo {
-      font-size: 52px;
-      font-weight: 700;
-      letter-spacing: -1px;
-      margin-bottom: 16px;
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 50%, rgba(45,106,79,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(212,168,67,0.06) 0%, transparent 60%);
+      pointer-events: none;
     }
 
-    .logo span { color: #c9a84c; }
-
-    .tagline {
-      font-size: 18px;
-      color: #888;
-      max-width: 480px;
-      line-height: 1.7;
-      margin-bottom: 40px;
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
     }
 
-    .badge {
-      background: #1e1e1e;
-      border: 1px solid #c9a84c;
-      color: #c9a84c;
-      padding: 8px 20px;
-      font-size: 12px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 60px;
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(212,168,67,0.08); border: 1px solid rgba(212,168,67,0.2);
+      color: var(--gold); padding: 8px 16px;
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600;
+      width: fit-content; margin-bottom: 40px;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-tag::before {
+      content: ''; width: 6px; height: 6px;
+      background: var(--gold); border-radius: 50%;
+      animation: pulse 2s infinite;
     }
 
-    .scroll-hint {
-      font-size: 12px;
-      color: #444;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(52px, 8vw, 120px);
+      font-weight: 800; line-height: 0.92;
+      letter-spacing: -3px; margin-bottom: 40px; max-width: 900px;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+    .hero h1 .gold { color: var(--gold); display: block; }
+    .hero h1 .dim { color: rgba(255,255,255,0.18); display: block; }
+
+    .hero-sub {
+      font-size: 17px; color: var(--muted); max-width: 480px;
+      line-height: 1.8; margin-bottom: 48px; font-weight: 300;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .hero-actions {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .btn-primary {
+      background: var(--gold); color: var(--black);
+      padding: 16px 32px; font-size: 12px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
+      border: none; cursor: none; transition: background 0.2s, transform 0.2s;
+      display: inline-block; font-family: 'Syne', sans-serif;
+    }
+    .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+
+    .btn-secondary {
+      background: transparent; color: var(--muted);
+      padding: 16px 32px; font-size: 13px; font-weight: 500;
+      text-decoration: none; border: 1px solid var(--border); cursor: none;
+      transition: color 0.2s, border-color 0.2s; display: inline-block;
+    }
+    .btn-secondary:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
+
+    .hero-stats {
+      position: absolute; right: 6vw; bottom: 80px;
+      display: flex; flex-direction: column; gap: 32px;
+      animation: fadeUp 0.8s 0.4s ease both;
+    }
+    .stat-item { text-align: right; }
+    .stat-num {
+      font-family: 'Syne', sans-serif; font-size: 36px;
+      font-weight: 800; color: var(--white); line-height: 1;
+    }
+    .stat-label { font-size: 10px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+
+    .hero-scroll {
+      position: absolute; bottom: 40px; left: 6vw;
+      display: flex; align-items: center; gap: 12px;
+      font-size: 10px; color: var(--muted); letter-spacing: 3px; text-transform: uppercase;
+      animation: fadeUp 0.8s 0.5s ease both;
+    }
+    .scroll-line {
+      width: 40px; height: 1px; background: var(--muted);
+      animation: scrollAnim 2s ease infinite;
+    }
+    @keyframes scrollAnim {
+      0% { width: 40px; } 50% { width: 64px; opacity: 0.5; } 100% { width: 40px; }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* MARQUEE */
+    .marquee-wrap {
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 18px 0; overflow: hidden; background: rgba(212,168,67,0.02);
+    }
+    .marquee-track {
+      display: flex; animation: marquee 22s linear infinite; white-space: nowrap;
+    }
+    .marquee-item {
+      display: flex; align-items: center; gap: 20px;
+      padding: 0 40px; font-size: 11px; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--muted); font-weight: 500;
+    }
+    .marquee-dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+    @keyframes marquee {
+      from { transform: translateX(0); } to { transform: translateX(-50%); }
     }
 
     /* FEATURES */
-    .features {
-      padding: 100px 10vw;
-      background: #0f0f0f;
+    .features { padding: 120px 6vw; }
+    .section-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 64px; flex-wrap: wrap; gap: 24px;
     }
-
-    .section-label {
-      font-size: 11px;
-      letter-spacing: 4px;
-      color: #c9a84c;
-      text-transform: uppercase;
-      margin-bottom: 16px;
+    .sec-label { font-size: 11px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; font-weight: 600; margin-bottom: 16px; }
+    .sec-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(32px, 4vw, 56px); font-weight: 800;
+      line-height: 1; letter-spacing: -2px;
     }
-
-    .section-title {
-      font-size: 42px;
-      font-weight: 700;
-      margin-bottom: 60px;
-      line-height: 1.1;
-    }
-
-    .section-title span { color: #444; }
+    .sec-title .dim { color: rgba(255,255,255,0.18); }
+    .sec-desc { font-size: 15px; color: var(--muted); max-width: 300px; line-height: 1.7; text-align: right; font-weight: 300; }
 
     .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 2px;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--border);
     }
-
     .feature-card {
-      background: #1a1a1a;
-      padding: 36px 32px;
-      transition: background 0.2s;
+      background: var(--black); padding: 48px 40px;
+      position: relative; overflow: hidden; transition: background 0.3s;
     }
-
-    .feature-card:hover { background: #222; }
-
-    .feature-icon {
-      font-size: 32px;
-      margin-bottom: 20px;
+    .feature-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: var(--gold);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s ease;
     }
+    .feature-card:hover { background: #0c0c0c; }
+    .feature-card:hover::after { transform: scaleX(1); }
 
-    .feature-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: #f0ede8;
+    .feature-num {
+      font-family: 'Syne', sans-serif; font-size: 80px; font-weight: 800;
+      color: rgba(255,255,255,0.025); position: absolute; top: 12px; right: 20px; line-height: 1;
     }
+    .feature-icon { font-size: 28px; margin-bottom: 24px; display: block; }
+    .feature-title { font-family: 'Syne', sans-serif; font-size: 19px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.5px; }
+    .feature-desc { font-size: 14px; color: var(--muted); line-height: 1.7; font-weight: 300; }
 
-    .feature-desc {
-      font-size: 14px;
-      color: #666;
-      line-height: 1.7;
+    /* TRUST */
+    .trust {
+      padding: 120px 6vw;
+      background: #050505;
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
     }
+    .trust-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .trust-left h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(36px, 4vw, 60px); font-weight: 800;
+      line-height: 1; letter-spacing: -2px; margin-bottom: 24px;
+    }
+    .trust-left h2 em { font-style: normal; color: var(--gold); }
+    .trust-left p { font-size: 16px; color: var(--muted); line-height: 1.8; font-weight: 300; }
+
+    .trust-right { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
+    .trust-item {
+      background: var(--black); padding: 28px 32px;
+      display: flex; align-items: center; gap: 20px; transition: background 0.2s;
+    }
+    .trust-item:hover { background: #0d0d0d; }
+    .trust-icon {
+      width: 44px; height: 44px;
+      background: rgba(212,168,67,0.08); border: 1px solid rgba(212,168,67,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .trust-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .trust-sub { font-size: 13px; color: var(--muted); font-weight: 300; }
 
     /* REGISTER */
-    .register {
-      padding: 100px 10vw;
-      background: #0a0a0a;
-      text-align: center;
+    .register { padding: 120px 6vw; position: relative; overflow: hidden; }
+    .register-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 50% 80% at 50% 100%, rgba(45,106,79,0.07) 0%, transparent 70%);
+      pointer-events: none;
     }
-
-    .register-desc {
-      font-size: 16px;
-      color: #666;
-      margin-bottom: 48px;
-      max-width: 460px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.7;
+    .register-inner { max-width: 600px; margin: 0 auto; text-align: center; }
+    .register-inner h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(36px, 4vw, 60px); font-weight: 800;
+      line-height: 1; letter-spacing: -2px; margin-bottom: 16px;
     }
+    .register-inner h2 span { color: var(--gold); }
+    .register-inner p { font-size: 16px; color: var(--muted); margin-bottom: 48px; line-height: 1.7; font-weight: 300; }
 
-    .register-form {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      max-width: 480px;
-      margin: 0 auto;
-    }
-
+    .register-form { display: flex; flex-direction: column; gap: 12px; text-align: left; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .register-form input {
-      background: #1a1a1a;
-      border: 1px solid #2a2a2a;
-      color: #f0ede8;
-      padding: 16px 20px;
-      font-size: 15px;
-      outline: none;
-      transition: border 0.2s;
+      background: #0d0d0d; border: 1px solid var(--border);
+      color: var(--white); padding: 16px 20px; font-size: 14px;
+      font-family: 'DM Sans', sans-serif; outline: none;
+      transition: border-color 0.2s, background 0.2s; width: 100%;
     }
-
-    .register-form input:focus {
-      border-color: #c9a84c;
-    }
-
+    .register-form input::placeholder { color: #3a3a3a; }
+    .register-form input:focus { border-color: rgba(212,168,67,0.4); background: #111; }
     .register-form button {
-      background: #c9a84c;
-      color: #0a0a0a;
-      border: none;
-      padding: 18px;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      letter-spacing: 1px;
-      transition: background 0.2s;
+      background: var(--gold); color: var(--black); border: none;
+      padding: 18px; font-size: 12px; font-weight: 700;
+      font-family: 'Syne', sans-serif; cursor: none;
+      letter-spacing: 2px; text-transform: uppercase;
+      transition: background 0.2s, transform 0.2s; margin-top: 8px;
     }
-
-    .register-form button:hover {
-      background: #e8c97a;
-    }
+    .register-form button:hover { background: var(--gold2); transform: translateY(-2px); }
 
     .success-msg {
-      color: #c9a84c;
-      font-size: 18px;
-      padding: 32px;
-      text-align: center;
+      color: var(--gold); font-size: 17px; padding: 40px;
+      display: none; background: rgba(212,168,67,0.05);
+      border: 1px solid rgba(212,168,67,0.15); margin-top: 16px;
     }
 
     /* FOOTER */
-    .footer {
-      background: #050505;
-      padding: 60px 10vw;
-      text-align: center;
-      border-top: 1px solid #1a1a1a;
+    footer {
+      background: #050505; border-top: 1px solid var(--border);
+      padding: 64px 6vw 40px;
     }
-
-    .footer-logo {
-      font-size: 32px;
-      font-weight: 700;
-      margin-bottom: 12px;
+    .footer-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 48px; flex-wrap: wrap; gap: 40px;
     }
-
-    .footer-logo span { color: #c9a84c; }
-
-    .footer-tagline {
-      font-size: 14px;
-      color: #444;
-      margin-bottom: 32px;
-      font-style: italic;
+    .footer-brand { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -1px; }
+    .footer-brand span { color: var(--gold); }
+    .footer-tagline { font-size: 13px; color: var(--muted); margin-top: 8px; font-style: italic; }
+    .footer-links-group { display: flex; gap: 48px; flex-wrap: wrap; }
+    .footer-col { display: flex; flex-direction: column; gap: 12px; }
+    .footer-col-label { font-size: 10px; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; margin-bottom: 4px; font-weight: 600; }
+    .footer-col a { color: #444; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 32px; border-top: 1px solid var(--border);
+      flex-wrap: wrap; gap: 16px;
     }
+    .footer-copy { font-size: 12px; color: #2a2a2a; }
+    .footer-ryc { font-size: 12px; color: #2a2a2a; }
+    .footer-ryc span { color: var(--gold); }
 
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      margin-bottom: 32px;
-    }
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    .footer-links a {
-      color: #666;
-      text-decoration: none;
-      font-size: 13px;
-      letter-spacing: 1px;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover { color: #c9a84c; }
-
-    .footer-copy {
-      font-size: 12px;
-      color: #333;
+    @media (max-width: 768px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .trust-inner { grid-template-columns: 1fr; gap: 48px; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-stats { display: none; }
+      .sec-desc { text-align: left; }
+      .section-header { flex-direction: column; align-items: flex-start; }
+      body { cursor: auto; }
+      .cursor, .cursor-ring { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HERO -->
-  <section class="hero">
-    <img src="logo.png" alt="ThodaLocal Logo" style="width: 120px; margin-bottom: 24px;" />
-    <div class="logo">Thoda<span>Local</span></div>
-    <p class="tagline">Apne area ki verified, hygienic local stores — seedha aapke paas.</p>
-    <div class="badge">Coming Soon</div>
-    <div class="scroll-hint">↓ scroll</div>
-  </section>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-  <!-- FEATURES -->
-  <section class="features">
-    <div class="section-label">// Why ThodaLocal</div>
-    <div class="section-title">Alag Kya Hai <span>Hamare Mein?</span></div>
-
-    <div class="features-grid">
-
-      <div class="feature-card">
-        <div class="feature-icon">🧼</div>
-        <div class="feature-title">Hygiene Verified</div>
-        <div class="feature-desc">Har store physically inspect hota hai. Hygiene badge tabhi milta hai jab sab kuch sahi ho. Koi compromise nahi.</div>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">📷</div>
-        <div class="feature-title">Live Camera Feed</div>
-        <div class="feature-desc">Store owner head-mounted camera pehenta hai. Aap live dekh sakte ho apna order kaise pack ho raha hai. 100% transparency.</div>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">🏪</div>
-        <div class="feature-title">Har Dukaan Welcome</div>
-        <div class="feature-desc">Chhoti se chhoti dukaan bhi list ho sakti hai. Sabzi wala, halwai, kirana — sab. Sirf ek condition — hygiene pass karo.</div>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">🤖</div>
-        <div class="feature-title">AI Powered</div>
-        <div class="feature-desc">Smart search, hygiene scoring, fraud detection — AI andar se kaam karta hai taaki aapka experience hamesha safe aur smooth rahe.</div>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">🚴</div>
-        <div class="feature-title">ThodaLocal Delivery</div>
-        <div class="feature-desc">Apna delivery network — verified riders, safe hands. Aapka order usi trust ke saath deliver hoga jis trust se order kiya tha.</div>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">🚫</div>
-        <div class="feature-title">Zero Tolerance</div>
-        <div class="feature-desc">Scammers, rude sellers, toxic behavior — permanent ban. Yeh platform sirf genuine, safe aur honest logon ke liye hai.</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- REGISTER SECTION -->
-  <section class="register">
-    <div class="section-label">// Store Owners</div>
-    <div class="section-title">Apni Dukaan <span>List Karo</span></div>
-    <p class="register-desc">Hygiene verified bano. Hazaron local customers tak pahuncho. Free mein shuru karo.</p>
-
-    <form class="register-form" id="storeForm">
-      <input type="text" id="dukaan" name="dukaan" placeholder="Dukaan ka naam" required />
-      <input type="text" id="owner" name="owner" placeholder="Aapka naam" required />
-      <input type="tel" id="phone" name="phone" placeholder="Phone number" required />
-      <input type="text" id="area" name="area" placeholder="Area / Locality" required />
-      <button type="submit">List Karo — Free Mein</button>
-    </form>
-
-    <div id="successMsg" class="success-msg" style="display:none;">
-      ✅ Request mil gayi! Hum jald contact karenge.
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-logo">Thoda<span>Local</span></div>
-    <p class="footer-tagline">Har dukaan ki awaaz — online.</p>
-    <div class="footer-links">
+  <nav>
+    <a href="index.html" class="nav-logo">Thoda<span>Local</span></a>
+    <div class="nav-links">
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
-      <a href="#">List Your Store</a>
+      <a href="#register" class="nav-cta">List Your Store</a>
     </div>
-    <p class="footer-copy">© 2026 ThodaLocal — RYC Corporation</p>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-tag">Now Onboarding Stores — Gurugram & Delhi</div>
+    <h1>
+      Apni Dukaan,
+      <span class="gold">Online Karo.</span>
+      <span class="dim">Verified. Trusted.</span>
+    </h1>
+    <p class="hero-sub">Har local store — chahe kitni bhi chhoti ho — ab online aa sakti hai. Hygiene verified. Live camera. Apna delivery network.</p>
+    <div class="hero-actions">
+      <a href="#register" class="btn-primary">Store List Karo — Free</a>
+      <a href="about.html" class="btn-secondary">Hamare Baare Mein →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Hygiene Verified</div></div>
+      <div class="stat-item"><div class="stat-num">Live</div><div class="stat-label">Camera Feed</div></div>
+      <div class="stat-item"><div class="stat-num">₹0</div><div class="stat-label">Listing Fee</div></div>
+    </div>
+    <div class="hero-scroll"><div class="scroll-line"></div>Scroll</div>
+  </section>
+
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <div class="marquee-item"><div class="marquee-dot"></div>Hygiene Verified</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Live Camera Feed</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>AI Powered</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Safe Delivery</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Zero Tolerance Policy</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Local First</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Trusted Quality</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>RYC Corporation</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Hygiene Verified</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Live Camera Feed</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>AI Powered</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Safe Delivery</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Zero Tolerance Policy</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Local First</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Trusted Quality</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>RYC Corporation</div>
+    </div>
+  </div>
+
+  <section class="features">
+    <div class="section-header reveal">
+      <div>
+        <div class="sec-label">// Why ThodaLocal</div>
+        <div class="sec-title">Alag Kya Hai <span class="dim">Hamare Mein?</span></div>
+      </div>
+      <p class="sec-desc">Sirf ek listing platform nahi — ek trust system. Har store verified. Har order transparent.</p>
+    </div>
+    <div class="features-grid reveal">
+      <div class="feature-card"><div class="feature-num">01</div><span class="feature-icon">🧼</span><div class="feature-title">Hygiene Verified</div><div class="feature-desc">Har store physically inspect hota hai. Hygiene badge tabhi milta hai jab sab kuch sahi ho. Koi shortcut nahi.</div></div>
+      <div class="feature-card"><div class="feature-num">02</div><span class="feature-icon">📷</span><div class="feature-title">Live Camera Feed</div><div class="feature-desc">Store owner head-mounted camera pehenta hai. Aap live dekh sakte ho apna order pack hote hue. 100% transparency.</div></div>
+      <div class="feature-card"><div class="feature-num">03</div><span class="feature-icon">🏪</span><div class="feature-title">Har Dukaan Welcome</div><div class="feature-desc">Chhoti se chhoti dukaan bhi list ho sakti hai. Sabzi wala, halwai, kirana — sab. Sirf ek condition — hygiene.</div></div>
+      <div class="feature-card"><div class="feature-num">04</div><span class="feature-icon">🤖</span><div class="feature-title">AI Powered</div><div class="feature-desc">Smart search, hygiene scoring, fraud detection — AI andar se kaam karta hai taaki experience hamesha safe rahe.</div></div>
+      <div class="feature-card"><div class="feature-num">05</div><span class="feature-icon">🚴</span><div class="feature-title">ThodaLocal Delivery</div><div class="feature-desc">Apna delivery network — verified riders, safe hands. Aapka order usi trust ke saath aayega jis trust se order kiya.</div></div>
+      <div class="feature-card"><div class="feature-num">06</div><span class="feature-icon">🚫</span><div class="feature-title">Zero Tolerance</div><div class="feature-desc">Scammers, rude sellers, toxic behavior — permanent ban. Yeh platform sirf genuine logon ke liye hai. Hamesha.</div></div>
+    </div>
+  </section>
+
+  <section class="trust">
+    <div class="trust-inner">
+      <div class="trust-left reveal">
+        <div class="sec-label">// The ThodaLocal Promise</div>
+        <h2>Trust Banana<br><em>Hamaara Kaam Hai</em></h2>
+        <p>India mein lakho chhote stores hain jo sirf isliye band ho rahe hain kyunki unhe online aane ka mauka nahi mila. ThodaLocal unhe woh mauka deta hai — aur users ko deta hai woh guarantee jo unhein chahiye thi.</p>
+      </div>
+      <div class="trust-right reveal">
+        <div class="trust-item"><div class="trust-icon">🔍</div><div><div class="trust-title">Physical Inspection</div><div class="trust-sub">Hamare agents khud jaate hain — har store personally verify hota hai.</div></div></div>
+        <div class="trust-item"><div class="trust-icon">🎖️</div><div><div class="trust-title">Hygiene Badge System</div><div class="trust-sub">Badge milta hai tabhi jab sab sahi ho. Renewable every 3 months.</div></div></div>
+        <div class="trust-item"><div class="trust-icon">📡</div><div><div class="trust-title">Live Transparency</div><div class="trust-sub">Head-cam se user khud dekh sakta hai — real time mein.</div></div></div>
+        <div class="trust-item"><div class="trust-icon">⚡</div><div><div class="trust-title">Instant Action</div><div class="trust-sub">Complaint ayi — 24 ghante mein action. Koi grey area nahi.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="register" id="register">
+    <div class="register-bg"></div>
+    <div class="register-inner reveal">
+      <div class="sec-label">// Store Owners</div>
+      <h2>Apni Dukaan <span>List Karo</span></h2>
+      <p>Hygiene verified bano. Hazaron local customers tak pahuncho. Listing bilkul free hai — hamesha.</p>
+      <form class="register-form" id="storeForm">
+        <div class="form-row">
+          <input type="text" id="dukaan" name="dukaan" placeholder="Dukaan ka naam" required />
+          <input type="text" id="owner" name="owner" placeholder="Aapka naam" required />
+        </div>
+        <div class="form-row">
+          <input type="tel" id="phone" name="phone" placeholder="Phone number" required />
+          <input type="text" id="area" name="area" placeholder="Area / Locality" required />
+        </div>
+        <button type="submit">List Karo — Bilkul Free</button>
+      </form>
+      <div id="successMsg" class="success-msg">✅ Request mil gayi! Hum 24 ghante mein contact karenge.</div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">Thoda<span>Local</span></div>
+        <div class="footer-tagline">Har dukaan ki awaaz — online.</div>
+      </div>
+      <div class="footer-links-group">
+        <div class="footer-col">
+          <div class="footer-col-label">Company</div>
+          <a href="about.html">About Us</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">Platform</div>
+          <a href="#register">List Your Store</a>
+          <a href="#register">For Customers</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">RYC Corp</div>
+          <a href="about.html">Our Vision</a>
+          <a href="contact.html">Partner With Us</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 ThodaLocal. All rights reserved.</div>
+      <div class="footer-ryc">A <span>RYC Corporation</span> Company</div>
+    </div>
   </footer>
 
   <script>
+    // CURSOR
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.transform = `translate(${mx - 4}px, ${my - 4}px)`;
+    });
+    function animRing() {
+      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+      ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
+      requestAnimationFrame(animRing);
+    }
+    animRing();
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => { ring.style.width = '56px'; ring.style.height = '56px'; ring.style.borderColor = 'rgba(212,168,67,0.7)'; });
+      el.addEventListener('mouseleave', () => { ring.style.width = '36px'; ring.style.height = '36px'; ring.style.borderColor = 'rgba(212,168,67,0.4)'; });
+    });
+
+    // SCROLL REVEAL
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
+
+    // FORM
     document.getElementById('storeForm').addEventListener('submit', function(e) {
       e.preventDefault();
-
       var data = {
         dukaan: document.getElementById('dukaan').value,
         owner: document.getElementById('owner').value,
         phone: document.getElementById('phone').value,
         area: document.getElementById('area').value
       };
-
       var btn = this.querySelector('button');
       btn.textContent = 'Bhej rahe hain...';
       btn.disabled = true;
-
       fetch('https://script.google.com/macros/s/AKfycbweyWvWL5cxgaLh1zc8m9YgaWsUowlUxnCQrm4fBWiDSJ5UurfQxOMRSa45z7LaRlFR/exec', {
-        method: 'POST',
-        mode: 'no-cors',
+        method: 'POST', mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       })
@@ -345,12 +554,11 @@
         document.getElementById('successMsg').style.display = 'block';
       })
       .catch(function() {
-        btn.textContent = 'List Karo — Free Mein';
+        btn.textContent = 'List Karo — Bilkul Free';
         btn.disabled = false;
         alert('Kuch error aaya — dobara try karo.');
       });
     });
   </script>
-
 </body>
 </html>
