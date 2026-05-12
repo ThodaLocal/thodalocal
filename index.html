@@ -113,6 +113,7 @@
       color: #666;
       line-height: 1.7;
     }
+
     /* REGISTER */
     .register {
       padding: 100px 10vw;
@@ -167,6 +168,14 @@
     .register-form button:hover {
       background: #e8c97a;
     }
+
+    .success-msg {
+      color: #c9a84c;
+      font-size: 18px;
+      padding: 32px;
+      text-align: center;
+    }
+
     /* FOOTER */
     .footer {
       background: #050505;
@@ -268,20 +277,26 @@
 
     </div>
   </section>
+
   <!-- REGISTER SECTION -->
   <section class="register">
     <div class="section-label">// Store Owners</div>
     <div class="section-title">Apni Dukaan <span>List Karo</span></div>
     <p class="register-desc">Hygiene verified bano. Hazaron local customers tak pahuncho. Free mein shuru karo.</p>
 
-    <form class="register-form">
-      <input type="text" placeholder="Dukaan ka naam" />
-      <input type="text" placeholder="Aapka naam" />
-      <input type="tel" placeholder="Phone number" />
-      <input type="text" placeholder="Area / Locality" />
+    <form class="register-form" id="storeForm">
+      <input type="text" id="dukaan" name="dukaan" placeholder="Dukaan ka naam" required />
+      <input type="text" id="owner" name="owner" placeholder="Aapka naam" required />
+      <input type="tel" id="phone" name="phone" placeholder="Phone number" required />
+      <input type="text" id="area" name="area" placeholder="Area / Locality" required />
       <button type="submit">List Karo — Free Mein</button>
     </form>
+
+    <div id="successMsg" class="success-msg" style="display:none;">
+      ✅ Request mil gayi! Hum jald contact karenge.
+    </div>
   </section>
+
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-logo">Thoda<span>Local</span></div>
@@ -293,5 +308,39 @@
     </div>
     <p class="footer-copy">© 2026 ThodaLocal — RYC Corporation</p>
   </footer>
+
+  <script>
+    document.getElementById('storeForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      var data = {
+        dukaan: document.getElementById('dukaan').value,
+        owner: document.getElementById('owner').value,
+        phone: document.getElementById('phone').value,
+        area: document.getElementById('area').value
+      };
+
+      var btn = this.querySelector('button');
+      btn.textContent = 'Bhej rahe hain...';
+      btn.disabled = true;
+
+      fetch('https://script.google.com/macros/s/AKfycbweyWvWL5cxgaLh1zc8m9YgaWsUowlUxnCQrm4fBWiDSJ5UurfQxOMRSa45z7LaRlFR/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(function() {
+        document.getElementById('storeForm').style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+      })
+      .catch(function() {
+        btn.textContent = 'List Karo — Free Mein';
+        btn.disabled = false;
+        alert('Kuch error aaya — dobara try karo.');
+      });
+    });
+  </script>
+
 </body>
 </html>
