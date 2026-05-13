@@ -2,12 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://thodalocal.in/</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://thodalocal.in/about.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thodalocal.in/contact.html</loc>
+    <lastmod>2026-05-13</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://thodalocal.in/terms.html</loc>
+    <lastmod>2026-05-13</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://thodalocal.in/privacy.html</loc>
+    <lastmod>2026-05-13</lastmod>
+    <priority>0.5</priority>
   </url>
 </urlset>
