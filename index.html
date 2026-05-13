@@ -37,13 +37,26 @@
       background: var(--white);
       color: var(--black);
       overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* CURSOR */
+    .cursor {
+      width: 8px; height: 8px; background: var(--green);
+      border-radius: 50%; position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9999;
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(30,92,58,0.4); border-radius: 50%;
+      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998;
+      transition: width 0.2s, height 0.2s, border-color 0.2s;
     }
 
     /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0;
-      padding: 0 6vw;
-      height: 68px;
+      padding: 0 6vw; height: 68px;
       display: flex; justify-content: space-between; align-items: center;
       z-index: 100;
       background: rgba(255,255,255,0.92);
@@ -55,24 +68,16 @@
       text-decoration: none; color: var(--black);
     }
     .nav-logo img { height: 36px; width: 36px; object-fit: contain; }
-    .nav-logo-text {
-      font-family: 'Syne', sans-serif;
-      font-size: 18px; font-weight: 800; letter-spacing: -0.5px;
-    }
+    .nav-logo-text { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; letter-spacing: -0.5px; }
     .nav-logo-text span { color: var(--green); }
     .nav-links { display: flex; gap: 8px; align-items: center; }
     .nav-links a {
       color: var(--muted2); text-decoration: none;
-      font-size: 13px; font-weight: 500;
-      padding: 8px 14px;
-      border-radius: 6px;
-      transition: background 0.2s, color 0.2s;
+      font-size: 13px; font-weight: 500; padding: 8px 14px;
+      border-radius: 6px; transition: background 0.2s, color 0.2s;
     }
     .nav-links a:hover { background: var(--off); color: var(--black); }
-    .nav-cta {
-      background: var(--green) !important; color: var(--white) !important;
-      font-weight: 600 !important; border-radius: 6px !important;
-    }
+    .nav-cta { background: var(--green) !important; color: var(--white) !important; font-weight: 600 !important; border-radius: 6px !important; }
     .nav-cta:hover { background: var(--green2) !important; color: var(--white) !important; }
 
     /* HERO */
@@ -83,7 +88,6 @@
       position: relative; overflow: hidden;
       background: var(--white);
     }
-
     .hero-bg {
       position: absolute; inset: 0;
       background:
@@ -91,7 +95,6 @@
         radial-gradient(ellipse 40% 50% at 0% 100%, rgba(193,127,36,0.04) 0%, transparent 60%);
       pointer-events: none;
     }
-
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 8px;
       background: var(--green3); border: 1px solid rgba(30,92,58,0.15);
@@ -105,9 +108,7 @@
       background: var(--green); border-radius: 50%;
       animation: pulse 2s infinite;
     }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
-    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
     .hero h1 {
       font-family: 'Syne', sans-serif;
@@ -124,27 +125,21 @@
       line-height: 1.8; margin-bottom: 48px; font-weight: 300;
       animation: fadeUp 0.7s 0.2s ease both;
     }
-
     .hero-actions {
       display: flex; gap: 12px; flex-wrap: wrap;
-      animation: fadeUp 0.7s 0.3s ease both;
-      margin-bottom: 72px;
+      animation: fadeUp 0.7s 0.3s ease both; margin-bottom: 56px;
     }
-
     .btn-green {
       background: var(--green); color: var(--white);
       padding: 15px 28px; font-size: 13px; font-weight: 600;
-      letter-spacing: 0.5px; text-decoration: none; border: none;
-      border-radius: 6px; cursor: pointer;
+      text-decoration: none; border: none; border-radius: 6px; cursor: none;
       transition: background 0.2s, transform 0.2s; display: inline-block;
     }
     .btn-green:hover { background: var(--green2); transform: translateY(-1px); }
-
     .btn-outline {
       background: transparent; color: var(--muted2);
       padding: 15px 28px; font-size: 13px; font-weight: 500;
-      text-decoration: none; border: 1px solid var(--border2);
-      border-radius: 6px; cursor: pointer;
+      text-decoration: none; border: 1px solid var(--border2); border-radius: 6px; cursor: none;
       transition: border-color 0.2s, color 0.2s; display: inline-block;
     }
     .btn-outline:hover { border-color: var(--black); color: var(--black); }
@@ -153,70 +148,10 @@
       display: flex; gap: 32px; flex-wrap: wrap;
       animation: fadeUp 0.7s 0.4s ease both;
     }
-    .trust-pill {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 13px; color: var(--muted2); font-weight: 400;
-    }
+    .trust-pill { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted2); }
     .trust-pill-icon {
-      width: 28px; height: 28px;
-      background: var(--green3); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 13px;
-    }
-
-    .hero-image {
-      position: absolute; right: 6vw; top: 50%; transform: translateY(-50%);
-      width: min(420px, 38vw);
-      animation: fadeUp 0.7s 0.3s ease both;
-    }
-
-    .hero-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
-    }
-
-    .card-header {
-      display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
-    }
-    .card-avatar {
-      width: 40px; height: 40px; border-radius: 8px;
-      background: var(--green3);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
-    }
-    .card-store-name { font-size: 15px; font-weight: 600; }
-    .card-store-area { font-size: 12px; color: var(--muted); }
-    .card-badge {
-      margin-left: auto;
-      background: var(--green3); color: var(--green);
-      padding: 4px 10px; border-radius: 20px;
-      font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
-      display: flex; align-items: center; gap: 4px;
-    }
-    .card-items { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-    .card-item {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 10px 14px; background: var(--off); border-radius: 8px;
-      font-size: 13px;
-    }
-    .card-item-price { font-weight: 600; color: var(--green); }
-    .card-live {
-      display: flex; align-items: center; gap: 8px;
-      padding: 10px 14px; background: #fff8f0;
-      border: 1px solid rgba(193,127,36,0.2); border-radius: 8px;
-      font-size: 12px; color: var(--gold);
-    }
-    .live-dot {
-      width: 6px; height: 6px; background: #e74c3c; border-radius: 50%;
-      animation: pulse 1.5s infinite;
-    }
-    .card-btn {
-      width: 100%; background: var(--green); color: var(--white);
-      padding: 12px; border: none; border-radius: 8px;
-      font-size: 13px; font-weight: 600; cursor: pointer; margin-top: 4px;
+      width: 28px; height: 28px; background: var(--green3); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 13px;
     }
 
     @keyframes fadeUp {
@@ -238,99 +173,47 @@
     .marquee-dot { width: 4px; height: 4px; background: var(--green); border-radius: 50%; flex-shrink: 0; }
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    /* SECTION COMMON */
+    /* SECTIONS */
     .section { padding: 100px 6vw; }
     .section-alt { padding: 100px 6vw; background: var(--off); }
     .sec-label { font-size: 11px; letter-spacing: 3px; color: var(--green); text-transform: uppercase; font-weight: 600; margin-bottom: 14px; }
-    .sec-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(30px, 3.5vw, 52px); font-weight: 800;
-      line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 16px;
-    }
+    .sec-title { font-family: 'Syne', sans-serif; font-size: clamp(30px, 3.5vw, 52px); font-weight: 800; line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 16px; }
     .sec-sub { font-size: 16px; color: var(--muted2); line-height: 1.8; max-width: 560px; font-weight: 300; }
 
-    /* FOR CUSTOMERS */
-    .audience-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
-      margin-top: 56px; background: var(--border);
-    }
-    .audience-panel {
-      background: var(--white); padding: 56px 48px;
-      position: relative; overflow: hidden;
-    }
+    /* AUDIENCE */
+    .audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 56px; background: var(--border); }
+    .audience-panel { background: var(--white); padding: 56px 48px; position: relative; overflow: hidden; }
     .audience-panel.green-panel { background: var(--green); color: var(--white); }
-
-    .audience-tag {
-      display: inline-block;
-      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-      font-weight: 700; margin-bottom: 24px; padding: 5px 12px;
-      border-radius: 4px;
-    }
+    .audience-tag { display: inline-block; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; margin-bottom: 24px; padding: 5px 12px; border-radius: 4px; }
     .audience-tag.customer { background: var(--green3); color: var(--green); }
     .audience-tag.store { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); }
-
-    .audience-panel h3 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(24px, 2.5vw, 36px); font-weight: 800;
-      letter-spacing: -1px; margin-bottom: 16px; line-height: 1.1;
-    }
+    .audience-panel h3 { font-family: 'Syne', sans-serif; font-size: clamp(24px, 2.5vw, 36px); font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; line-height: 1.1; }
     .audience-panel p { font-size: 15px; line-height: 1.8; margin-bottom: 32px; font-weight: 300; }
     .audience-panel.green-panel p { color: rgba(255,255,255,0.7); }
     .audience-panel:not(.green-panel) p { color: var(--muted2); }
-
     .audience-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
     .audience-list-item { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; }
-    .audience-list-item .check {
-      width: 20px; height: 20px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; margin-top: 1px; font-size: 10px;
-    }
+    .check { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; font-size: 10px; }
     .audience-panel.green-panel .check { background: rgba(255,255,255,0.2); color: var(--white); }
     .audience-panel:not(.green-panel) .check { background: var(--green3); color: var(--green); }
-
     .audience-panel.green-panel .audience-list-item { color: rgba(255,255,255,0.85); }
     .audience-panel:not(.green-panel) .audience-list-item { color: var(--muted2); }
-
-    .btn-white {
-      background: var(--white); color: var(--green);
-      padding: 14px 28px; font-size: 13px; font-weight: 700;
-      border: none; border-radius: 6px; cursor: pointer;
-      text-decoration: none; display: inline-block;
-      transition: background 0.2s;
-    }
+    .btn-white { background: var(--white); color: var(--green); padding: 14px 28px; font-size: 13px; font-weight: 700; border: none; border-radius: 6px; cursor: none; text-decoration: none; display: inline-block; transition: background 0.2s; }
     .btn-white:hover { background: var(--off); }
 
-    /* HOW IT WORKS */
+    /* STEPS */
     .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); margin-top: 56px; }
     .step { background: var(--white); padding: 40px 32px; position: relative; }
-    .step-num {
-      font-family: 'Syne', sans-serif; font-size: 56px; font-weight: 800;
-      color: var(--green3); line-height: 1; margin-bottom: 20px;
-    }
+    .step-num { font-family: 'Syne', sans-serif; font-size: 56px; font-weight: 800; color: var(--green3); line-height: 1; margin-bottom: 20px; }
     .step-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.5px; }
     .step-desc { font-size: 14px; color: var(--muted2); line-height: 1.7; font-weight: 300; }
-    .step-arrow {
-      position: absolute; right: -12px; top: 40px;
-      width: 24px; height: 24px; background: var(--green);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      color: white; font-size: 11px; z-index: 1;
-    }
+    .step-arrow { position: absolute; right: -12px; top: 40px; width: 24px; height: 24px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 11px; z-index: 1; }
     .step:last-child .step-arrow { display: none; }
 
     /* FEATURES */
-    .features-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1px; background: var(--border); margin-top: 56px;
-    }
-    .feature-card {
-      background: var(--white); padding: 40px 36px;
-      transition: background 0.2s; position: relative; overflow: hidden;
-    }
-    .feature-card::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 2px; background: var(--green);
-      transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
-    }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 56px; }
+    .feature-card { background: var(--white); padding: 40px 36px; transition: background 0.2s; position: relative; overflow: hidden; }
+    .feature-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--green); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
     .feature-card:hover { background: var(--off); }
     .feature-card:hover::after { transform: scaleX(1); }
     .feature-icon { font-size: 26px; margin-bottom: 20px; display: block; }
@@ -341,58 +224,25 @@
     .register { padding: 100px 6vw; background: var(--green); color: var(--white); }
     .register-inner { max-width: 640px; margin: 0 auto; text-align: center; }
     .register-inner .sec-label { color: rgba(255,255,255,0.5); }
-    .register-inner h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(32px, 4vw, 56px); font-weight: 800;
-      line-height: 1; letter-spacing: -2px; margin-bottom: 16px;
-    }
+    .register-inner h2 { font-family: 'Syne', sans-serif; font-size: clamp(32px, 4vw, 56px); font-weight: 800; line-height: 1; letter-spacing: -2px; margin-bottom: 16px; }
     .register-inner p { font-size: 16px; color: rgba(255,255,255,0.65); margin-bottom: 48px; line-height: 1.7; font-weight: 300; }
-
-    .tabs {
-      display: flex; gap: 0; margin-bottom: 32px;
-      background: rgba(255,255,255,0.1); border-radius: 8px; padding: 4px;
-    }
-    .tab {
-      flex: 1; padding: 10px; font-size: 13px; font-weight: 600;
-      border: none; background: transparent; color: rgba(255,255,255,0.5);
-      cursor: pointer; border-radius: 6px; transition: all 0.2s;
-      font-family: 'DM Sans', sans-serif;
-    }
+    .tabs { display: flex; gap: 0; margin-bottom: 32px; background: rgba(255,255,255,0.1); border-radius: 8px; padding: 4px; }
+    .tab { flex: 1; padding: 10px; font-size: 13px; font-weight: 600; border: none; background: transparent; color: rgba(255,255,255,0.5); cursor: pointer; border-radius: 6px; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
     .tab.active { background: var(--white); color: var(--green); }
-
     .tab-content { display: none; }
     .tab-content.active { display: block; }
-
     .register-form { display: flex; flex-direction: column; gap: 12px; text-align: left; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .register-form input {
-      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
-      color: var(--white); padding: 14px 18px; font-size: 14px;
-      font-family: 'DM Sans', sans-serif; outline: none; border-radius: 6px;
-      transition: border-color 0.2s, background 0.2s; width: 100%;
-    }
+    .register-form input { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); color: var(--white); padding: 14px 18px; font-size: 14px; font-family: 'DM Sans', sans-serif; outline: none; border-radius: 6px; transition: border-color 0.2s, background 0.2s; width: 100%; }
     .register-form input::placeholder { color: rgba(255,255,255,0.3); }
     .register-form input:focus { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.15); }
-    .register-form button {
-      background: var(--white); color: var(--green); border: none;
-      padding: 16px; font-size: 14px; font-weight: 700;
-      font-family: 'Syne', sans-serif; cursor: pointer; border-radius: 6px;
-      transition: background 0.2s; margin-top: 8px;
-    }
+    .register-form button { background: var(--white); color: var(--green); border: none; padding: 16px; font-size: 14px; font-weight: 700; font-family: 'Syne', sans-serif; cursor: pointer; border-radius: 6px; transition: background 0.2s; margin-top: 8px; }
     .register-form button:hover { background: var(--off); }
-
-    .success-msg {
-      color: var(--white); font-size: 16px; padding: 32px;
-      display: none; background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; margin-top: 16px;
-    }
+    .success-msg { color: var(--white); font-size: 16px; padding: 32px; display: none; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; margin-top: 16px; }
 
     /* FOOTER */
     footer { background: var(--black); padding: 64px 6vw 40px; }
-    .footer-top {
-      display: flex; justify-content: space-between; align-items: flex-start;
-      margin-bottom: 48px; flex-wrap: wrap; gap: 40px;
-    }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 48px; flex-wrap: wrap; gap: 40px; }
     .footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
     .footer-brand img { height: 32px; width: 32px; object-fit: contain; }
     .footer-brand-text { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: -0.5px; }
@@ -403,11 +253,7 @@
     .footer-col-label { font-size: 10px; letter-spacing: 3px; color: #444; text-transform: uppercase; font-weight: 600; margin-bottom: 4px; }
     .footer-col a { color: #555; text-decoration: none; font-size: 14px; transition: color 0.2s; }
     .footer-col a:hover { color: var(--white); }
-    .footer-bottom {
-      display: flex; justify-content: space-between; align-items: center;
-      padding-top: 32px; border-top: 1px solid #1a1a1a;
-      flex-wrap: wrap; gap: 16px;
-    }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 32px; border-top: 1px solid #1a1a1a; flex-wrap: wrap; gap: 16px; }
     .footer-copy { font-size: 12px; color: #333; }
     .footer-ryc { font-size: 12px; color: #333; }
     .footer-ryc span { color: var(--gold2); }
@@ -417,7 +263,6 @@
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     @media (max-width: 900px) {
-      .hero-image { display: none; }
       .audience-grid { grid-template-columns: 1fr; }
       .steps { grid-template-columns: 1fr 1fr; }
       .features-grid { grid-template-columns: 1fr 1fr; }
@@ -428,12 +273,16 @@
       .form-row { grid-template-columns: 1fr; }
       .hero-trust { flex-direction: column; gap: 16px; }
       .nav-links a:not(.nav-cta) { display: none; }
+      body { cursor: auto; }
+      .cursor, .cursor-ring { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
   <nav>
     <a href="index.html" class="nav-logo">
       <img src="logo.png" alt="ThodaLocal" />
@@ -446,10 +295,9 @@
     </div>
   </nav>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
-    <div class="hero-eyebrow">Now Live — Gurugram & Delhi</div>
+    <div class="hero-eyebrow">Now Live — Gurugram &amp; Delhi</div>
     <h1>
       Your Local Stores,
       <span class="green">Verified &amp; Online.</span>
@@ -466,33 +314,8 @@
       <div class="trust-pill"><div class="trust-pill-icon">🚴</div>Safe Delivery</div>
       <div class="trust-pill"><div class="trust-pill-icon">🤖</div>AI Powered</div>
     </div>
-
-    <!-- FLOATING CARD -->
-    <div class="hero-image">
-      <div class="hero-card">
-        <div class="card-header">
-          <div class="card-avatar">🥬</div>
-          <div>
-            <div class="card-store-name">Sharma Kirana Store</div>
-            <div class="card-store-area">Sector 14, Gurugram</div>
-          </div>
-          <div class="card-badge">✓ Verified</div>
-        </div>
-        <div class="card-items">
-          <div class="card-item"><span>Fresh Tomatoes (1kg)</span><span class="card-item-price">₹40</span></div>
-          <div class="card-item"><span>Atta — Aashirvaad 5kg</span><span class="card-item-price">₹285</span></div>
-          <div class="card-item"><span>Toned Milk (1L)</span><span class="card-item-price">₹62</span></div>
-        </div>
-        <div class="card-live">
-          <div class="live-dot"></div>
-          Live camera active — watch your order being packed
-        </div>
-        <button class="card-btn">Order Now — Delivery in 30 min</button>
-      </div>
-    </div>
   </section>
 
-  <!-- MARQUEE -->
   <div class="marquee-wrap">
     <div class="marquee-track">
       <div class="marquee-item"><div class="marquee-dot"></div>Hygiene Verified</div>
@@ -514,14 +337,12 @@
     </div>
   </div>
 
-  <!-- FOR CUSTOMERS & STORES -->
   <section class="section" id="customers">
     <div class="reveal">
       <div class="sec-label">// Who Is ThodaLocal For?</div>
       <div class="sec-title">Built for Everyone<br>in Your Neighbourhood</div>
     </div>
     <div class="audience-grid reveal">
-
       <div class="audience-panel">
         <div class="audience-tag customer">For Customers</div>
         <h3>Shop Local,<br>Shop Safe.</h3>
@@ -533,9 +354,8 @@
           <div class="audience-list-item"><div class="check">✓</div>AI-powered smart recommendations</div>
           <div class="audience-list-item"><div class="check">✓</div>Zero scammers, zero toxic sellers</div>
         </div>
-        <a href="#customerWaitlist" class="btn-green">Join Customer Waitlist</a>
+        <a href="#register" class="btn-green">Join Customer Waitlist</a>
       </div>
-
       <div class="audience-panel green-panel">
         <div class="audience-tag store">For Store Owners</div>
         <h3>Take Your Store<br>Online — Free.</h3>
@@ -549,11 +369,9 @@
         </div>
         <a href="#register" class="btn-white">List My Store Now</a>
       </div>
-
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
   <section class="section-alt">
     <div class="reveal">
       <div class="sec-label">// How It Works</div>
@@ -587,35 +405,30 @@
     </div>
   </section>
 
-  <!-- FEATURES -->
   <section class="section">
     <div class="reveal">
       <div class="sec-label">// Platform Features</div>
-      <div class="sec-title">What Makes Us<br>Different</div>
+      <div class="sec-title">What Makes Us Different</div>
     </div>
     <div class="features-grid reveal">
       <div class="feature-card"><span class="feature-icon">🧼</span><div class="feature-title">Hygiene Verification</div><div class="feature-desc">Every store is physically inspected by our team. The hygiene badge is earned — not bought. Renewed every 3 months.</div></div>
       <div class="feature-card"><span class="feature-icon">📷</span><div class="feature-title">Live Camera Feed</div><div class="feature-desc">Store owners wear head-mounted cameras. Watch your order being packed in real time. No surprises, ever.</div></div>
-      <div class="feature-card"><span class="feature-icon">🤖</span><div class="feature-title">AI-Powered Platform</div><div class="feature-desc">Smart search, fraud detection, hygiene scoring automation — AI works silently in the background to keep you safe.</div></div>
-      <div class="feature-card"><span class="feature-icon">🚴</span><div class="feature-title">ThodaLocal Delivery</div><div class="feature-desc">Our own verified delivery network. Every rider is background-checked. Your order arrives exactly as you saw it packed.</div></div>
+      <div class="feature-card"><span class="feature-icon">🤖</span><div class="feature-title">AI-Powered Platform</div><div class="feature-desc">Smart search, fraud detection, hygiene scoring — AI works silently in the background to keep you safe.</div></div>
+      <div class="feature-card"><span class="feature-icon">🚴</span><div class="feature-title">ThodaLocal Delivery</div><div class="feature-desc">Our own verified delivery network. Every rider is background-checked. Your order arrives exactly as packed.</div></div>
       <div class="feature-card"><span class="feature-icon">🏪</span><div class="feature-title">Every Store Welcome</div><div class="feature-desc">Kirana stores, vegetable vendors, halwai, salons — any store can list. Size doesn't matter. Hygiene does.</div></div>
-      <div class="feature-card"><span class="feature-icon">🛡️</span><div class="feature-title">Zero Tolerance Policy</div><div class="feature-desc">Scammers, rude sellers, or any toxic behaviour means a permanent ban. This platform is built on mutual respect.</div></div>
+      <div class="feature-card"><span class="feature-icon">🛡️</span><div class="feature-title">Zero Tolerance Policy</div><div class="feature-desc">Scammers, rude sellers, or toxic behaviour means a permanent ban. This platform is built on mutual respect.</div></div>
     </div>
   </section>
 
-  <!-- REGISTER -->
   <section class="register" id="register">
     <div class="register-inner reveal">
       <div class="sec-label">// Join ThodaLocal</div>
       <h2>Get Early Access</h2>
       <p>Whether you're a customer or a store owner — be the first to experience ThodaLocal in your area.</p>
-
       <div class="tabs">
         <button class="tab active" onclick="switchTab('store')">I'm a Store Owner</button>
         <button class="tab" onclick="switchTab('customer')">I'm a Customer</button>
       </div>
-
-      <!-- STORE FORM -->
       <div class="tab-content active" id="storeTab">
         <form class="register-form" id="storeForm">
           <div class="form-row">
@@ -630,9 +443,7 @@
         </form>
         <div id="storeSuccess" class="success-msg">✅ Request received! We'll contact you within 24 hours.</div>
       </div>
-
-      <!-- CUSTOMER FORM -->
-      <div class="tab-content" id="customerTab" id="customerWaitlist">
+      <div class="tab-content" id="customerTab">
         <form class="register-form" id="customerForm">
           <input type="text" id="cname" placeholder="Your name" required />
           <input type="email" id="cemail" placeholder="Email address" required />
@@ -641,11 +452,9 @@
         </form>
         <div id="customerSuccess" class="success-msg">✅ You're on the list! We'll notify you when ThodaLocal launches in your area.</div>
       </div>
-
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-top">
       <div>
@@ -685,6 +494,25 @@
   </footer>
 
   <script>
+    // CURSOR
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.transform = `translate(${mx - 4}px, ${my - 4}px)`;
+    });
+    function animRing() {
+      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+      ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
+      requestAnimationFrame(animRing);
+    }
+    animRing();
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => { ring.style.width = '52px'; ring.style.height = '52px'; ring.style.borderColor = 'rgba(30,92,58,0.7)'; });
+      el.addEventListener('mouseleave', () => { ring.style.width = '36px'; ring.style.height = '36px'; ring.style.borderColor = 'rgba(30,92,58,0.4)'; });
+    });
+
     // TABS
     function switchTab(tab) {
       document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -701,47 +529,21 @@
     // STORE FORM
     document.getElementById('storeForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      var data = {
-        dukaan: document.getElementById('dukaan').value,
-        owner: document.getElementById('owner').value,
-        phone: document.getElementById('phone').value,
-        area: document.getElementById('area').value
-      };
-      var btn = this.querySelector('button');
-      btn.textContent = 'Submitting...'; btn.disabled = true;
-      fetch('https://script.google.com/macros/s/AKfycbweyWvWL5cxgaLh1zc8m9YgaWsUowlUxnCQrm4fBWiDSJ5UurfQxOMRSa45z7LaRlFR/exec', {
-        method: 'POST', mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      }).then(function() {
-        document.getElementById('storeForm').style.display = 'none';
-        document.getElementById('storeSuccess').style.display = 'block';
-      }).catch(function() {
-        btn.textContent = 'List My Store — It\'s Free'; btn.disabled = false;
-      });
+      var data = { dukaan: document.getElementById('dukaan').value, owner: document.getElementById('owner').value, phone: document.getElementById('phone').value, area: document.getElementById('area').value };
+      var btn = this.querySelector('button'); btn.textContent = 'Submitting...'; btn.disabled = true;
+      fetch('https://script.google.com/macros/s/AKfycbweyWvWL5cxgaLh1zc8m9YgaWsUowlUxnCQrm4fBWiDSJ5UurfQxOMRSa45z7LaRlFR/exec', { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+      .then(function() { document.getElementById('storeForm').style.display = 'none'; document.getElementById('storeSuccess').style.display = 'block'; })
+      .catch(function() { btn.textContent = "List My Store — It's Free"; btn.disabled = false; });
     });
 
     // CUSTOMER FORM
     document.getElementById('customerForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      var data = {
-        dukaan: document.getElementById('cname').value,
-        owner: document.getElementById('cemail').value,
-        phone: 'Customer',
-        area: document.getElementById('carea').value
-      };
-      var btn = this.querySelector('button');
-      btn.textContent = 'Submitting...'; btn.disabled = true;
-      fetch('https://script.google.com/macros/s/AKfycbweyWvWL5cxgaLh1zc8m9YgaWsUowlUxnCQrm4fBWiDSJ5UurfQxOMRSa45z7LaRlFR/exec', {
-        method: 'POST', mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      }).then(function() {
-        document.getElementById('customerForm').style.display = 'none';
-        document.getElementById('customerSuccess').style.display = 'block';
-      }).catch(function() {
-        btn.textContent = 'Join Customer Waitlist'; btn.disabled = false;
-      });
+      var data = { dukaan: document.getElementById('cname').value, owner: document.getElementById('cemail').value, phone: 'Customer', area: document.getElementById('carea').value };
+      var btn = this.querySelector('button'); btn.textContent = 'Submitting...'; btn.disabled = true;
+      fetch('https://script.google.com/macros/s/AKfycbweyWvWL5cxgaLh1zc8m9YgaWsUowlUxnCQrm4fBWiDSJ5UurfQxOMRSa45z7LaRlFR/exec', { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+      .then(function() { document.getElementById('customerForm').style.display = 'none'; document.getElementById('customerSuccess').style.display = 'block'; })
+      .catch(function() { btn.textContent = 'Join Customer Waitlist'; btn.disabled = false; });
     });
 
     // SCROLL REVEAL
@@ -750,6 +552,5 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
   </script>
-
 </body>
 </html>
