@@ -17,21 +17,20 @@
   <meta property="og:type" content="website" />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --white: #ffffff;
-      --off: #f7f5f0;
-      --off2: #f0ede6;
-      --black: #111110;
-      --green: #1e5c3a;
-      --green2: #2d7a52;
-      --green3: #e8f4ee;
-      --gold: #c17f24;
-      --gold2: #e09a35;
-      --muted: #888;
-      --muted2: #555;
-      --border: #e8e4dc;
-      --border2: #d4cfc6;
-    }
+:root{
+  --off: #FAF6ED;
+  --off2: #F1E9D6;
+  --black: #14140F;
+  --green: #0F3D26;
+  --green2: #2E7D53;
+  --green3: #E7F2E9;
+  --gold: #A9762E;
+  --gold2: #D9A94D;
+  --muted: #726F63;
+  --muted2: #4A473D;
+  --border: #E6DEC9;
+  --border2: #D8CCA9;
+}
 
 
 
@@ -54,18 +53,18 @@
     }
 
     /* CURSOR */
-    .cursor {
-      width: 8px; height: 8px; background: var(--green);
-      border-radius: 50%; position: fixed; top: 0; left: 0;
-      pointer-events: none; z-index: 9999;
-    }
-    .cursor-ring {
-      width: 36px; height: 36px;
-      border: 1px solid rgba(30,92,58,0.4); border-radius: 50%;
-      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998;
-      transition: width 0.2s, height 0.2s, border-color 0.2s;
-    }
-
+    .cursor, .cursor-ring{
+  position:fixed; top:0; left:0; pointer-events:none; z-index:9999;
+  transform:translate(-50%,-50%);
+}
+.cursor{ width:8px; height:8px; border-radius:50%; background:var(--gold); }
+.cursor-ring{
+  width:36px; height:36px; border-radius:50%;
+  border:1px solid rgba(15,61,38,.35);
+  transition:width .25s ease, height .25s ease, border-color .25s ease, background .25s ease;
+}
+.cursor-ring.is-active{ width:58px; height:58px; border-color:var(--gold); background:rgba(169,118,46,.08); }
+@media (hover:none), (pointer:coarse){ .cursor, .cursor-ring{ display:none; } body{ cursor:auto; } }
     /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0;
@@ -149,20 +148,16 @@
       display: flex; gap: 12px; flex-wrap: wrap;
       animation: fadeUp 0.7s 0.3s ease both; margin-bottom: 56px;
     }
-    .btn-green {
-      background: var(--green); color: var(--white);
-      padding: 15px 28px; font-size: 13px; font-weight: 600;
-      text-decoration: none; border: none; border-radius: 6px; cursor: none;
-      transition: background 0.2s, transform 0.2s; display: inline-block;
-    }
-    .btn-green:hover { background: var(--green2); transform: translateY(-1px); }
-    .btn-outline {
-      background: transparent; color: var(--muted2);
-      padding: 15px 28px; font-size: 13px; font-weight: 500;
-      text-decoration: none; border: 1px solid var(--border2); border-radius: 6px; cursor: none;
-      transition: border-color 0.2s, color 0.2s; display: inline-block;
-    }
-    .btn-outline:hover { border-color: var(--black); color: var(--black); }
+   .btn{ position:relative; overflow:hidden; z-index:1; border-radius:4px; }
+.btn-primary{ background:var(--green); color:var(--off); border:1px solid var(--green); }
+.btn-primary::before{
+  content:''; position:absolute; inset:0; background:var(--gold);
+  transform:translateX(-102%); transition:transform .35s ease; z-index:-1;
+}
+.btn-primary:hover::before{ transform:translateX(0); }
+.btn-primary:hover{ color:var(--black); }
+.btn-outline{ background:transparent; border:1px solid var(--border2); color:var(--black); }
+.btn-outline:hover{ border-color:var(--gold); color:var(--gold); }
 
     .hero-trust {
       display: flex; gap: 32px; flex-wrap: wrap;
@@ -675,7 +670,27 @@
       .catch(function() { btn.textContent = 'Join Customer Waitlist'; btn.disabled = false; });
     });
 
+(function(){
+  const dot = document.querySelector('.cursor');
+  const ring = document.querySelector('.cursor-ring');
+  if(!dot || !ring) return;
+  if(window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
 
+  let mx=0, my=0, rx=0, ry=0;
+  window.addEventListener('mousemove', e=>{
+    mx=e.clientX; my=e.clientY;
+    dot.style.left=mx+'px'; dot.style.top=my+'px';
+  });
+  (function loop(){
+    rx += (mx-rx)*0.15; ry += (my-ry)*0.15;
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a, button, .btn').forEach(el=>{
+    el.addEventListener('mouseenter', ()=>ring.classList.add('is-active'));
+    el.addEventListener('mouseleave', ()=>ring.classList.remove('is-active'));
+  });
+})();
 
 
 
