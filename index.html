@@ -1,443 +1,693 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ThodaLocal — Verified Local. Trusted Quality.</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --ink:#14110d;
-    --ink-2:#1c1712;
-    --ink-3:#241d16;
-    --cream:#f4ecdc;
-    --cream-dim:#b6ab96;
-    --cream-faint:#8a806e;
-    --brass:#cda43e;
-    --brass-soft:rgba(205,164,62,.35);
-    --green:#41603f;
-    --line:rgba(244,236,220,.12);
-    --display:'Fraunces', ui-serif, Georgia, serif;
-    --body:'Inter', ui-sans-serif, system-ui, sans-serif;
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:
-      radial-gradient(ellipse 900px 500px at 85% -10%, rgba(205,164,62,.08), transparent 60%),
-      radial-gradient(ellipse 700px 500px at -10% 20%, rgba(65,96,63,.10), transparent 60%),
-      var(--ink);
-    color:var(--cream);
-    font-family:var(--body);
-    line-height:1.5;
-    -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:1160px; margin:0 auto; padding:0 32px;}
-  a{color:inherit; text-decoration:none;}
-  img{max-width:100%; display:block;}
-  ::selection{background:var(--brass-soft); color:var(--cream);}
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThodaLocal — Verified Local. Trusted Quality.</title>
+  <meta name="description" content="ThodaLocal connects you with hygiene-verified local stores in your area. Live camera transparency, AI-powered, with our own delivery network. Gurugram & Delhi." />
+  <meta name="keywords" content="local stores online, hyperlocal delivery, verified stores, hygiene verified, ThodaLocal, Gurugram, Delhi, local shopping" />
+  <meta name="author" content="RYC Corporation" />
+  <meta property="og:title" content="ThodaLocal — Verified Local. Trusted Quality." />
+  <meta property="og:description" content="Hygiene-verified local stores, live camera transparency, AI-powered, safe delivery." />
+  <meta property="og:url" content="https://thodalocal.in" />
+  <meta property="og:type" content="website" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --white: #ffffff;
+      --off: #f7f5f0;
+      --off2: #f0ede6;
+      --black: #111110;
+      --green: #1e5c3a;
+      --green2: #2d7a52;
+      --green3: #e8f4ee;
+      --gold: #c17f24;
+      --gold2: #e09a35;
+      --muted: #888;
+      --muted2: #555;
+      --border: #e8e4dc;
+      --border2: #d4cfc6;
+    }
 
-  .eyebrow{
-    font-family:var(--body); font-size:11.5px; letter-spacing:.22em; text-transform:uppercase;
-    color:var(--brass); font-weight:600; display:inline-flex; align-items:center; gap:9px;
-  }
-  .eyebrow::before{content:''; width:14px; height:1px; background:var(--brass);}
 
-  h1,h2,h3{font-family:var(--display); font-weight:500; letter-spacing:-.01em; color:var(--cream);}
 
-  .btn{
-    display:inline-flex; align-items:center; gap:8px; padding:14px 26px; font-size:14.5px; font-weight:600;
-    border-radius:2px; cursor:pointer; border:1px solid transparent; font-family:var(--body);
-    transition:transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
-  }
-  .btn-primary{background:var(--brass); color:var(--ink);}
-  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 30px -8px rgba(205,164,62,.5);}
-  .btn-outline{border-color:var(--line); color:var(--cream); background:transparent;}
-  .btn-outline:hover{border-color:var(--brass); color:var(--brass);}
 
-  /* NAV */
-  header{
-    position:sticky; top:0; z-index:50; background:rgba(20,17,13,.82); backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  nav{display:flex; align-items:center; justify-content:space-between; padding:20px 32px;}
-  .logo{display:flex; align-items:center; gap:10px; font-family:var(--display); font-style:italic; font-size:22px; color:var(--cream);}
-  .logo .dot{width:7px; height:7px; border-radius:50%; background:var(--brass);}
-  .nav-links{display:flex; align-items:center; gap:34px; font-size:14.5px; color:var(--cream-dim);}
-  .nav-links a:hover{color:var(--brass);}
-  .nav-cta{display:none;}
-  @media(min-width:760px){.nav-cta{display:inline-flex;}}
-  .nav-links .mobile-hide{display:none;}
-  @media(min-width:760px){.nav-links .mobile-hide{display:inline;}}
 
-  /* HERO */
-  .hero{padding:90px 0 60px; position:relative;}
-  .hero-grid{display:grid; grid-template-columns:1fr; gap:56px; align-items:center;}
-  @media(min-width:940px){.hero-grid{grid-template-columns:1.15fr .85fr;}}
-  .hero h1{font-size:clamp(38px,5.4vw,60px); line-height:1.06; margin:22px 0 22px;}
-  .hero h1 em{font-style:italic; color:var(--brass);}
-  .hero p{color:var(--cream-dim); font-size:17px; max-width:480px; margin-bottom:34px;}
-  .hero-actions{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:38px;}
-  .hero-note{display:flex; align-items:center; gap:10px; font-size:13px; color:var(--cream-faint);}
-  .hero-note svg{flex-shrink:0;}
 
-  /* SEAL */
-  .seal-wrap{display:flex; justify-content:center; align-items:center; position:relative;}
-  .seal{
-    width:min(300px,80vw); aspect-ratio:1/1; position:relative; display:flex; align-items:center; justify-content:center;
-  }
-  .seal svg.ring{position:absolute; inset:0; width:100%; height:100%; animation:spin 40s linear infinite;}
-  @media(prefers-reduced-motion:reduce){.seal svg.ring{animation:none;}}
-  .seal-core{
-    width:64%; height:64%; border-radius:50%; border:1px solid var(--brass-soft);
-    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
-    background:radial-gradient(circle at 35% 30%, rgba(205,164,62,.10), transparent 65%);
-  }
-  .seal-core .tl{font-family:var(--display); font-style:italic; font-size:15px; letter-spacing:.02em; color:var(--brass); margin-bottom:6px;}
-  .seal-core .verified{font-size:26px; font-family:var(--display); color:var(--cream);}
-  .seal-core .est{font-size:10px; letter-spacing:.18em; color:var(--cream-faint); margin-top:8px;}
-  @keyframes spin{to{transform:rotate(360deg);}}
 
-  /* TRUST STRIP */
-  .trust-strip{border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:26px 0;}
-  .trust-strip .wrap{display:flex; flex-wrap:wrap; justify-content:space-between; gap:20px;}
-  .trust-item{display:flex; align-items:center; gap:10px; font-size:13.5px; color:var(--cream-dim); flex:1 1 200px;}
-  .trust-item svg{color:var(--brass); flex-shrink:0;}
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-  /* SECTION shared */
-  .section{padding:100px 0;}
-  .section-head{max-width:600px; margin-bottom:56px;}
-  .section-head h2{font-size:clamp(30px,3.6vw,42px); margin-top:16px; line-height:1.15;}
-  .section-head p{color:var(--cream-dim); margin-top:16px; font-size:16px;}
 
-  /* SPLIT (customers / owners) */
-  .split{display:grid; grid-template-columns:1fr; gap:1px; background:var(--line); border:1px solid var(--line);}
-  @media(min-width:840px){.split{grid-template-columns:1fr 1fr;}}
-  .split-panel{background:var(--ink); padding:48px 40px;}
-  .split-panel h3{font-size:26px; margin:14px 0 14px;}
-  .split-panel > p{color:var(--cream-dim); font-size:15px; margin-bottom:26px;}
-  .check-list{list-style:none; margin-bottom:30px;}
-  .check-list li{display:flex; gap:12px; padding:10px 0; border-top:1px solid var(--line); font-size:14.5px; color:var(--cream-dim);}
-  .check-list li:first-child{border-top:none;}
-  .check-list svg{color:var(--brass); flex-shrink:0; margin-top:2px;}
 
-  /* HOW IT WORKS */
-  .steps{display:grid; grid-template-columns:1fr; gap:0;}
-  @media(min-width:760px){.steps{grid-template-columns:repeat(4,1fr);}}
-  .step{padding:28px 24px 28px 0; border-top:1px solid var(--line); position:relative;}
-  @media(min-width:760px){.step{border-top:none; border-left:1px solid var(--line); padding:4px 24px;}}
-  .step:first-child{border:none; padding-left:0;}
-  .step .num{font-family:var(--display); font-style:italic; font-size:15px; color:var(--brass);}
-  .step h4{font-family:var(--body); font-weight:600; font-size:16.5px; color:var(--cream); margin:14px 0 10px;}
-  .step p{font-size:14px; color:var(--cream-dim); line-height:1.55;}
 
-  /* FEATURES */
-  .feat-grid{display:grid; grid-template-columns:1fr; gap:1px; background:var(--line); border:1px solid var(--line);}
-  @media(min-width:640px){.feat-grid{grid-template-columns:1fr 1fr;}}
-  @media(min-width:980px){.feat-grid{grid-template-columns:repeat(3,1fr);}}
-  .feat{background:var(--ink); padding:34px 30px; transition:background .3s ease;}
-  .feat:hover{background:var(--ink-2);}
-  .feat svg{color:var(--brass); margin-bottom:18px;}
-  .feat h4{font-family:var(--body); font-weight:600; font-size:16px; color:var(--cream); margin-bottom:10px;}
-  .feat p{font-size:14px; color:var(--cream-dim); line-height:1.6;}
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+      cursor: none;
+    }
 
-  /* COMING SOON */
-  .soon-grid{display:grid; grid-template-columns:1fr; gap:18px;}
-  @media(min-width:820px){.soon-grid{grid-template-columns:repeat(3,1fr);}}
-  .soon-card{border:1px dashed var(--line); padding:30px 26px; position:relative;}
-  .soon-tag{position:absolute; top:-11px; left:24px; background:var(--ink); padding:0 10px; font-size:10.5px; letter-spacing:.16em; color:var(--brass); text-transform:uppercase;}
-  .soon-card svg{color:var(--brass); margin-bottom:16px;}
-  .soon-card h4{font-family:var(--body); font-weight:600; font-size:15.5px; margin-bottom:10px;}
-  .soon-card p{font-size:13.5px; color:var(--cream-dim); line-height:1.6;}
+    /* CURSOR */
+    .cursor {
+      width: 8px; height: 8px; background: var(--green);
+      border-radius: 50%; position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9999;
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(30,92,58,0.4); border-radius: 50%;
+      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998;
+      transition: width 0.2s, height 0.2s, border-color 0.2s;
+    }
 
-  /* CTA / WAITLIST */
-  .cta-section{background:var(--ink-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
-  .cta-inner{text-align:center; max-width:640px; margin:0 auto;}
-  .cta-inner h2{font-size:clamp(30px,4vw,44px); margin:18px 0 16px;}
-  .cta-inner > p{color:var(--cream-dim); font-size:16px; margin-bottom:44px;}
-  .toggle{display:inline-flex; border:1px solid var(--line); margin-bottom:36px;}
-  .toggle button{background:none; border:none; color:var(--cream-dim); font-family:var(--body); font-size:14px; font-weight:600; padding:12px 26px; cursor:pointer; transition:.25s;}
-  .toggle button.active{background:var(--brass); color:var(--ink);}
-  .form-row{display:flex; flex-wrap:wrap; gap:12px; justify-content:center;}
-  .form-row input{
-    flex:1 1 240px; background:var(--ink); border:1px solid var(--line); color:var(--cream); padding:14px 16px;
-    font-family:var(--body); font-size:14.5px; border-radius:2px;
-  }
-  .form-row input:focus{outline:none; border-color:var(--brass);}
-  .form-success{display:none; color:var(--brass); font-size:14px; margin-top:18px;}
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      padding: 0 6vw; height: 68px;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--black);
+    }
+    .nav-logo img { height: 36px; width: 36px; object-fit: contain; }
+    .nav-logo-text { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; letter-spacing: -0.5px; }
+    .nav-logo-text span { color: var(--green); }
+    .nav-links { display: flex; gap: 8px; align-items: center; }
+    .nav-links a {
+      color: var(--muted2); text-decoration: none;
+      font-size: 13px; font-weight: 500; padding: 8px 14px;
+      border-radius: 6px; transition: background 0.2s, color 0.2s;
+    }
+    .nav-links a:hover { background: var(--off); color: var(--black); }
+    .nav-cta { background: var(--green) !important; color: var(--white) !important; font-weight: 600 !important; border-radius: 6px !important; }
+    .nav-cta:hover { background: var(--green2) !important; color: var(--white) !important; }
 
-  /* FOOTER */
-  footer{background:var(--ink); padding:70px 0 30px;}
-  .foot-grid{display:grid; grid-template-columns:1fr; gap:40px; padding-bottom:50px; border-bottom:1px solid var(--line);}
-  @media(min-width:760px){.foot-grid{grid-template-columns:1.4fr repeat(3,1fr);}}
-  .foot-brand p{color:var(--cream-faint); font-size:14px; margin-top:14px; max-width:260px;}
-  .foot-col h5{font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--brass); margin-bottom:16px;}
-  .foot-col a{display:block; color:var(--cream-dim); font-size:14px; margin-bottom:10px;}
-  .foot-col a:hover{color:var(--brass);}
-  .foot-bottom{display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px; padding-top:26px; font-size:12.5px; color:var(--cream-faint);}
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      padding: 120px 6vw 80px;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; overflow: hidden;
+      background: var(--white);
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 100% 50%, rgba(30,92,58,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 0% 100%, rgba(193,127,36,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green3); border: 1px solid rgba(30,92,58,0.15);
+      color: var(--green); padding: 6px 14px;
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
+      width: fit-content; margin-bottom: 32px; border-radius: 4px;
+      animation: fadeUp 0.7s ease both;
+    }
+    .hero-eyebrow::before {
+      content: ''; width: 6px; height: 6px;
+      background: var(--green); border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
-  .reveal.in{opacity:1; transform:none;}
-  @media(prefers-reduced-motion:reduce){.reveal{opacity:1; transform:none; transition:none;}}
-</style>
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(48px, 7vw, 108px);
+      font-weight: 800; line-height: 0.92;
+      letter-spacing: -3px; margin-bottom: 32px; max-width: 860px;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    .hero h1 .green { color: var(--green); display: block; }
+    .hero h1 .light { color: var(--border2); display: block; }
+
+
+
+
+
+
+
+
+    .hero-sub {
+      font-size: 17px; color: var(--muted2); max-width: 520px;
+      line-height: 1.8; margin-bottom: 48px; font-weight: 300;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+    .hero-actions {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.3s ease both; margin-bottom: 56px;
+    }
+    .btn-green {
+      background: var(--green); color: var(--white);
+      padding: 15px 28px; font-size: 13px; font-weight: 600;
+      text-decoration: none; border: none; border-radius: 6px; cursor: none;
+      transition: background 0.2s, transform 0.2s; display: inline-block;
+    }
+    .btn-green:hover { background: var(--green2); transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent; color: var(--muted2);
+      padding: 15px 28px; font-size: 13px; font-weight: 500;
+      text-decoration: none; border: 1px solid var(--border2); border-radius: 6px; cursor: none;
+      transition: border-color 0.2s, color 0.2s; display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--black); color: var(--black); }
+
+    .hero-trust {
+      display: flex; gap: 32px; flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.4s ease both;
+    }
+    .trust-pill { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted2); }
+    .trust-pill-icon {
+      width: 28px; height: 28px; background: var(--green3); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 13px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+
+
+
+
+
+
+    /* MARQUEE */
+    .marquee-wrap {
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 16px 0; overflow: hidden; background: var(--off);
+    }
+    .marquee-track { display: flex; animation: marquee 24s linear infinite; white-space: nowrap; }
+    .marquee-item {
+      display: flex; align-items: center; gap: 16px;
+      padding: 0 36px; font-size: 11px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--muted); font-weight: 500;
+    }
+    .marquee-dot { width: 4px; height: 4px; background: var(--green); border-radius: 50%; flex-shrink: 0; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* SECTIONS */
+    .section { padding: 100px 6vw; }
+    .section-alt { padding: 100px 6vw; background: var(--off); }
+    .sec-label { font-size: 11px; letter-spacing: 3px; color: var(--green); text-transform: uppercase; font-weight: 600; margin-bottom: 14px; }
+    .sec-title { font-family: 'Syne', sans-serif; font-size: clamp(30px, 3.5vw, 52px); font-weight: 800; line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 16px; }
+    .sec-sub { font-size: 16px; color: var(--muted2); line-height: 1.8; max-width: 560px; font-weight: 300; }
+
+
+
+
+    /* AUDIENCE */
+    .audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 56px; background: var(--border); }
+    .audience-panel { background: var(--white); padding: 56px 48px; position: relative; overflow: hidden; }
+    .audience-panel.green-panel { background: var(--green); color: var(--white); }
+    .audience-tag { display: inline-block; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; margin-bottom: 24px; padding: 5px 12px; border-radius: 4px; }
+    .audience-tag.customer { background: var(--green3); color: var(--green); }
+    .audience-tag.store { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); }
+    .audience-panel h3 { font-family: 'Syne', sans-serif; font-size: clamp(24px, 2.5vw, 36px); font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; line-height: 1.1; }
+    .audience-panel p { font-size: 15px; line-height: 1.8; margin-bottom: 32px; font-weight: 300; }
+    .audience-panel.green-panel p { color: rgba(255,255,255,0.7); }
+    .audience-panel:not(.green-panel) p { color: var(--muted2); }
+    .audience-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
+    .audience-list-item { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; }
+    .check { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; font-size: 10px; }
+    .audience-panel.green-panel .check { background: rgba(255,255,255,0.2); color: var(--white); }
+    .audience-panel:not(.green-panel) .check { background: var(--green3); color: var(--green); }
+    .audience-panel.green-panel .audience-list-item { color: rgba(255,255,255,0.85); }
+    .audience-panel:not(.green-panel) .audience-list-item { color: var(--muted2); }
+    .btn-white { background: var(--white); color: var(--green); padding: 14px 28px; font-size: 13px; font-weight: 700; border: none; border-radius: 6px; cursor: none; text-decoration: none; display: inline-block; transition: background 0.2s; }
+    .btn-white:hover { background: var(--off); }
+
+    /* STEPS */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); margin-top: 56px; }
+    .step { background: var(--white); padding: 40px 32px; position: relative; }
+    .step-num { font-family: 'Syne', sans-serif; font-size: 56px; font-weight: 800; color: var(--green3); line-height: 1; margin-bottom: 20px; }
+    .step-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.5px; }
+    .step-desc { font-size: 14px; color: var(--muted2); line-height: 1.7; font-weight: 300; }
+    .step-arrow { position: absolute; right: -12px; top: 40px; width: 24px; height: 24px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 11px; z-index: 1; }
+    .step:last-child .step-arrow { display: none; }
+
+
+
+
+
+
+
+
+    /* FEATURES */
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 56px; }
+    .feature-card { background: var(--white); padding: 40px 36px; transition: background 0.2s; position: relative; overflow: hidden; }
+    .feature-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--green); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+    .feature-card:hover { background: var(--off); }
+    .feature-card:hover::after { transform: scaleX(1); }
+    .feature-icon { font-size: 26px; margin-bottom: 20px; display: block; }
+    .feature-title { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.3px; }
+    .feature-desc { font-size: 14px; color: var(--muted2); line-height: 1.7; font-weight: 300; }
+
+    /* REGISTER */
+    .register { padding: 100px 6vw; background: var(--green); color: var(--white); }
+    .register-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+    .register-inner .sec-label { color: rgba(255,255,255,0.5); }
+    .register-inner h2 { font-family: 'Syne', sans-serif; font-size: clamp(32px, 4vw, 56px); font-weight: 800; line-height: 1; letter-spacing: -2px; margin-bottom: 16px; }
+    .register-inner p { font-size: 16px; color: rgba(255,255,255,0.65); margin-bottom: 48px; line-height: 1.7; font-weight: 300; }
+    .tabs { display: flex; gap: 0; margin-bottom: 32px; background: rgba(255,255,255,0.1); border-radius: 8px; padding: 4px; }
+    .tab { flex: 1; padding: 10px; font-size: 13px; font-weight: 600; border: none; background: transparent; color: rgba(255,255,255,0.5); cursor: pointer; border-radius: 6px; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+    .tab.active { background: var(--white); color: var(--green); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .register-form { display: flex; flex-direction: column; gap: 12px; text-align: left; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .register-form input { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); color: var(--white); padding: 14px 18px; font-size: 14px; font-family: 'DM Sans', sans-serif; outline: none; border-radius: 6px; transition: border-color 0.2s, background 0.2s; width: 100%; }
+    .register-form input::placeholder { color: rgba(255,255,255,0.3); }
+    .register-form input:focus { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.15); }
+    .register-form button { background: var(--white); color: var(--green); border: none; padding: 16px; font-size: 14px; font-weight: 700; font-family: 'Syne', sans-serif; cursor: pointer; border-radius: 6px; transition: background 0.2s; margin-top: 8px; }
+    .register-form button:hover { background: var(--off); }
+    .success-msg { color: var(--white); font-size: 16px; padding: 32px; display: none; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; margin-top: 16px; }
+
+    /* FOOTER */
+    footer { background: var(--black); padding: 64px 6vw 40px; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 48px; flex-wrap: wrap; gap: 40px; }
+    .footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .footer-brand img { height: 32px; width: 32px; object-fit: contain; }
+    .footer-brand-text { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: -0.5px; }
+    .footer-brand-text span { color: var(--gold2); }
+    .footer-tagline { font-size: 13px; color: #555; font-style: italic; }
+    .footer-links-group { display: flex; gap: 48px; flex-wrap: wrap; }
+    .footer-col { display: flex; flex-direction: column; gap: 12px; }
+    .footer-col-label { font-size: 10px; letter-spacing: 3px; color: #444; text-transform: uppercase; font-weight: 600; margin-bottom: 4px; }
+    .footer-col a { color: #555; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 32px; border-top: 1px solid #1a1a1a; flex-wrap: wrap; gap: 16px; }
+    .footer-copy { font-size: 12px; color: #333; }
+    .footer-ryc { font-size: 12px; color: #333; }
+    .footer-ryc span { color: var(--gold2); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      .audience-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-trust { flex-direction: column; gap: 16px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      body { cursor: auto; }
+      .cursor, .cursor-ring { display: none; }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <nav class="wrap">
-    <div class="logo"><span class="dot"></span>ThodaLocal</div>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="ThodaLocal" />
+      <span class="nav-logo-text">Thoda<span>Local</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#about" class="mobile-hide">About</a>
-      <a href="#contact" class="mobile-hide">Contact</a>
-      <a href="#register" class="mobile-hide">List Your Store</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="#register" class="nav-cta">List Your Store</a>
     </div>
-    <a href="#register" class="btn btn-primary nav-cta">Get Early Access</a>
+
   </nav>
-</header>
 
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <span class="eyebrow">Now Live — Gurugram &amp; Delhi</span>
-      <h1>Your local dukaan,<br><em>verified.</em> Online.</h1>
-      <p>ThodaLocal brings every local store in your area online — hygiene verified, with live camera transparency and our own delivery network.</p>
-      <div class="hero-actions">
-        <a href="#customers" class="btn btn-primary">Find Stores Near Me</a>
-        <a href="#register" class="btn btn-outline">List Your Store — Free</a>
-      </div>
-      <div class="hero-note">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l2.5 5.5L20 9l-5 4.2L16.5 20 12 16.5 7.5 20 9 13.2 4 9l5.5-1.5z"/></svg>
-        Every listed store is physically inspected before it earns the badge.
-      </div>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-eyebrow">Now Live — Gurugram &amp; Delhi</div>
+    <h1>
+      Your Local Stores,
+      <span class="green">Verified &amp; Online.</span>
+      <span class="light">Safe. Transparent. Trusted.</span>
+    </h1>
+    <p class="hero-sub">ThodaLocal brings every local store in your area online — hygiene verified, with live camera transparency and our own delivery network.</p>
+    <div class="hero-actions">
+      <a href="#customers" class="btn-green">Find Stores Near Me</a>
+      <a href="#register" class="btn-outline">List Your Store — Free</a>
+
+
     </div>
-    <div class="seal-wrap">
-      <div class="seal">
-        <svg class="ring" viewBox="0 0 200 200">
-          <defs><path id="circlePath" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs>
-          <text font-family="Inter" font-size="8.4" letter-spacing="3.5" fill="#cda43e" font-weight="600">
-            <textPath href="#circlePath">HYGIENE VERIFIED &#8226; LIVE CAMERA &#8226; SAFE DELIVERY &#8226; AI POWERED &#8226; </textPath>
-          </text>
-        </svg>
-        <div class="seal-core">
-          <div class="tl">ThodaLocal</div>
-          <div class="verified">Verified</div>
-          <div class="est">GURUGRAM &amp; DELHI &#8226; EST. 2026</div>
-        </div>
-      </div>
+    <div class="hero-trust">
+      <div class="trust-pill"><div class="trust-pill-icon">🧼</div>Hygiene Verified</div>
+      <div class="trust-pill"><div class="trust-pill-icon">📷</div>Live Camera Feed</div>
+      <div class="trust-pill"><div class="trust-pill-icon">🚴</div>Safe Delivery</div>
+      <div class="trust-pill"><div class="trust-pill-icon">🤖</div>AI Powered</div>
+
+
+
+
+
+
+
+
+
+    </div>
+  </section>
+
+
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <div class="marquee-item"><div class="marquee-dot"></div>Hygiene Verified</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Live Camera Feed</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>AI Powered</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Safe Delivery</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Zero Tolerance Policy</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Local First</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Trusted Quality</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>RYC Corporation</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Hygiene Verified</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Live Camera Feed</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>AI Powered</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Safe Delivery</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Zero Tolerance Policy</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Local First</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Trusted Quality</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>RYC Corporation</div>
     </div>
   </div>
-</section>
 
-<div class="trust-strip">
-  <div class="wrap">
-    <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l7 3v6c0 5-3 8-7 11-4-3-7-6-7-11V5z"/></svg>Hygiene Verified</div>
-    <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="14" height="10" rx="1.5"/><path d="M17 10l4-2v8l-4-2"/></svg>Live Camera Feed</div>
-    <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="18" r="2.2"/><circle cx="17" cy="18" r="2.2"/><path d="M6 18h6l2-9h4M12 18l3-6h4l1 4"/></svg>Safe Delivery</div>
-    <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/><circle cx="12" cy="12" r="4"/></svg>AI Powered</div>
-  </div>
-</div>
 
-<section class="section" id="who">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Who It's For</span>
-      <h2>Built for everyone in the mohalla.</h2>
+  <section class="section" id="customers">
+    <div class="reveal">
+      <div class="sec-label">// Who Is ThodaLocal For?</div>
+      <div class="sec-title">Built for Everyone<br>in Your Neighbourhood</div>
+
     </div>
-    <div class="split reveal">
-      <div class="split-panel" id="customers">
-        <span class="eyebrow" style="color:var(--cream-faint)">For Customers</span>
-        <h3>Shop local, shop safe.</h3>
+    <div class="audience-grid reveal">
+      <div class="audience-panel">
+        <div class="audience-tag customer">For Customers</div>
+        <h3>Shop Local,<br>Shop Safe.</h3>
         <p>Discover hygiene-verified stores in your area. Watch your order being packed live. Get it delivered by our trusted delivery team.</p>
-        <ul class="check-list">
-          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12l5 5L20 6"/></svg>Browse verified stores near you</li>
-          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12l5 5L20 6"/></svg>Watch live camera before ordering</li>
-          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12l5 5L20 6"/></svg>Safe, fast hyperlocal delivery</li>
-          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12l5 5L20 6"/></svg>AI-powered smart recommendations</li>
-          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12l5 5L20 6"/></svg>Zero scammers, zero toxic sellers</li>
-        </ul>
-        <a href="#register" class="btn btn-outline">Join Customer Waitlist</a>
+        <div class="audience-list">
+          <div class="audience-list-item"><div class="check">✓</div>Browse verified stores near you</div>
+          <div class="audience-list-item"><div class="check">✓</div>Watch live camera before ordering</div>
+          <div class="audience-list-item"><div class="check">✓</div>Safe, fast hyperlocal delivery</div>
+          <div class="audience-list-item"><div class="check">✓</div>AI-powered smart recommendations</div>
+          <div class="audience-list-item"><div class="check">✓</div>Zero scammers, zero toxic sellers</div>
+        </div>
+        <a href="#register" class="btn-green">Join Customer Waitlist</a>
       </div>
-      <div class="split-panel">
-        <span class="eyebrow" style="color:var(--cream-faint)">For Store Owners</span>
-        <h3>Take your store online — free.</h3>
+      <div class="audience-panel green-panel">
+        <div class="audience-tag store">For Store Owners</div>
+        <h3>Take Your Store<br>Online — Free.</h3>
         <p>No matter how small your store is, ThodaLocal gives you a digital presence, hygiene certification, and thousands of local customers.</p>
-        <ul class="check-list">
-          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12l5 5L20 6"/></svg>Free store listing — always</li>
-          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12l5 5L20 6"/></svg>Hygiene badge — builds trust fast</li>
-          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12l5 5L20 6"/></svg>Reach thousands of local customers</li>
-          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12l5 5L20 6"/></svg>We handle delivery for you</li>
-          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12l5 5L20 6"/></svg>Simple dashboard — easy to manage</li>
-        </ul>
-        <a href="#register" class="btn btn-primary">List My Store Now</a>
+        <div class="audience-list">
+          <div class="audience-list-item"><div class="check">✓</div>Free store listing — always</div>
+          <div class="audience-list-item"><div class="check">✓</div>Hygiene badge — builds trust fast</div>
+          <div class="audience-list-item"><div class="check">✓</div>Reach thousands of local customers</div>
+          <div class="audience-list-item"><div class="check">✓</div>We handle delivery for you</div>
+          <div class="audience-list-item"><div class="check">✓</div>Simple dashboard — easy to manage</div>
+        </div>
+        <a href="#register" class="btn-white">List My Store Now</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section" style="padding-top:0;">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">How It Works</span>
-      <h2>Simple. Fast. Trusted.</h2>
-      <p>From store discovery to doorstep delivery — every step is designed around trust and transparency.</p>
+
+  <section class="section-alt">
+    <div class="reveal">
+      <div class="sec-label">// How It Works</div>
+      <div class="sec-title">Simple. Fast. Trusted.</div>
+      <p class="sec-sub">From store discovery to doorstep delivery — every step is designed around trust and transparency.</p>
+
     </div>
     <div class="steps reveal">
       <div class="step">
-        <div class="num">01</div>
-        <h4>Discover</h4>
-        <p>Browse hygiene-verified local stores in your area. Filter by category, distance, or rating.</p>
+        <div class="step-arrow">→</div>
+        <div class="step-num">01</div>
+        <div class="step-title">Discover</div>
+        <div class="step-desc">Browse hygiene-verified local stores in your area. Filter by category, distance, or rating.</div>
       </div>
       <div class="step">
-        <div class="num">02</div>
-        <h4>Verify</h4>
-        <p>Check the hygiene badge. Watch the live camera feed to see your items before ordering.</p>
+        <div class="step-arrow">→</div>
+        <div class="step-num">02</div>
+        <div class="step-title">Verify</div>
+        <div class="step-desc">Check the hygiene badge. Watch the live camera feed to see your items before ordering.</div>
       </div>
       <div class="step">
-        <div class="num">03</div>
-        <h4>Order</h4>
-        <p>Place your order directly. Watch it being packed live. Real-time updates throughout.</p>
+        <div class="step-arrow">→</div>
+        <div class="step-num">03</div>
+        <div class="step-title">Order</div>
+        <div class="step-desc">Place your order directly. Watch it being packed live. Real-time updates throughout.</div>
       </div>
       <div class="step">
-        <div class="num">04</div>
-        <h4>Receive</h4>
-        <p>Our verified delivery team brings it to your door. Safe, fast, and reliable — every time.</p>
+        <div class="step-num">04</div>
+        <div class="step-title">Receive</div>
+        <div class="step-desc">Our verified delivery team brings it to your door. Safe, fast, and reliable — every time.</div>
       </div>
     </div>
+  </section>
+
+
+  <section class="section">
+    <div class="reveal">
+      <div class="sec-label">// Platform Features</div>
+      <div class="sec-title">What Makes Us Different</div>
+
+    </div>
+    <div class="features-grid reveal">
+      <div class="feature-card"><span class="feature-icon">🧼</span><div class="feature-title">Hygiene Verification</div><div class="feature-desc">Every store is physically inspected by our team. The hygiene badge is earned — not bought. Renewed every 3 months.</div></div>
+      <div class="feature-card"><span class="feature-icon">🤖</span><div class="feature-title">AI-Powered Platform</div><div class="feature-desc">Smart search, fraud detection, hygiene scoring — AI works silently in the background to keep you safe.</div></div>
+      <div class="feature-card"><span class="feature-icon">🚴</span><div class="feature-title">ThodaLocal Delivery</div><div class="feature-desc">Our own verified delivery network. Every rider is background-checked. Your order arrives exactly as packed.</div></div>
+      <div class="feature-card"><span class="feature-icon">🏪</span><div class="feature-title">Every Store Welcome</div><div class="feature-desc">Kirana stores, vegetable vendors, halwai, salons — any store can list. Size doesn't matter. Hygiene does.</div></div>
+      <div class="feature-card"><span class="feature-icon">🛡️</span><div class="feature-title">Zero Tolerance Policy</div><div class="feature-desc">Scammers, rude sellers, or toxic behaviour means a permanent ban. This platform is built on mutual respect.</div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </section>
+<section class="section-alt">
+  <div class="reveal">
+    <div class="sec-label">// Coming Soon</div>
+    <div class="sec-title">What's Next</div>
+    <p class="sec-sub">We're building the future of local commerce — here's what's coming.</p>
+  </div>
+  <div class="features-grid reveal" style="margin-top:56px;">
+    <div class="feature-card">
+      <span class="feature-icon">📷</span>
+      <div class="feature-title">Live Head-Mounted Camera</div>
+      <div class="feature-desc">Watch your order being packed in real time. Store owners wear head-mounted cameras — 100% transparency, zero surprises.</div>
+
+
+
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">📱</span>
+      <div class="feature-title">ThodaLocal App</div>
+      <div class="feature-desc">Full mobile app — browse stores, place orders, track delivery — all in one place. Android & iOS coming soon.</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">📊</span>
+      <div class="feature-title">Store Dashboard</div>
+      <div class="feature-desc">Dedicated dashboard for store owners — manage orders, track earnings, view customer feedback in real time.</div>
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
   </div>
 </section>
+  <section class="register" id="register">
+    <div class="register-inner reveal">
+      <div class="sec-label">// Join ThodaLocal</div>
+      <h2>Get Early Access</h2>
+      <p>Whether you're a customer or a store owner — be the first to experience ThodaLocal in your area.</p>
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab('store')">I'm a Store Owner</button>
+        <button class="tab" onclick="switchTab('customer')">I'm a Customer</button>
+      </div>
+      <div class="tab-content active" id="storeTab">
+        <form class="register-form" id="storeForm">
+          <div class="form-row">
+            <input type="text" id="dukaan" placeholder="Store name" required />
+            <input type="text" id="owner" placeholder="Your name" required />
+          </div>
+          <div class="form-row">
+            <input type="tel" id="phone" placeholder="Phone number" required />
+            <input type="text" id="area" placeholder="Area / Locality" required />
+          </div>
+          <button type="submit">List My Store — It's Free</button>
+        </form>
+        <div id="storeSuccess" class="success-msg">✅ Request received! We'll contact you within 24 hours.</div>
+      </div>
+      <div class="tab-content" id="customerTab">
+        <form class="register-form" id="customerForm">
+          <input type="text" id="cname" placeholder="Your name" required />
+          <input type="email" id="cemail" placeholder="Email address" required />
+          <input type="text" id="carea" placeholder="Your area / locality" required />
+          <button type="submit">Join Customer Waitlist</button>
+        </form>
+        <div id="customerSuccess" class="success-msg">✅ You're on the list! We'll notify you when ThodaLocal launches in your area.</div>
+      </div>
+    </div>
+  </section>
 
-<section class="section" style="background:var(--ink-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Platform Features</span>
-      <h2>What makes us different.</h2>
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <img src="logo.png" alt="ThodaLocal" />
+          <span class="footer-brand-text">Thoda<span>Local</span></span>
+        </div>
+        <div class="footer-tagline">Har dukaan ki awaaz — online.</div>
+      </div>
+      <div class="footer-links-group">
+        <div class="footer-col">
+          <div class="footer-col-label">Company</div>
+          <a href="about.html">About Us</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">Platform</div>
+          <a href="#register">List Your Store</a>
+          <a href="#customers">For Customers</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">Legal</div>
+          <a href="terms.html">Terms of Service</a>
+          <a href="privacy.html">Privacy Policy</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">RYC Corp</div>
+          <a href="about.html">Our Vision</a>
+          <a href="contact.html">Partner With Us</a>
+        </div>
+      </div>
     </div>
-    <div class="feat-grid reveal">
-      <div class="feat">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l7 3v6c0 5-3 8-7 11-4-3-7-6-7-11V5z"/></svg>
-        <h4>Hygiene Verification</h4>
-        <p>Every store is physically inspected by our team. The hygiene badge is earned — not bought. Renewed every 3 months.</p>
-      </div>
-      <div class="feat">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/><circle cx="12" cy="12" r="4"/></svg>
-        <h4>AI-Powered Platform</h4>
-        <p>Smart search, fraud detection, hygiene scoring — AI works silently in the background to keep you safe.</p>
-      </div>
-      <div class="feat">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="18" r="2.2"/><circle cx="17" cy="18" r="2.2"/><path d="M6 18h6l2-9h4M12 18l3-6h4l1 4"/></svg>
-        <h4>ThodaLocal Delivery</h4>
-        <p>Our own verified delivery network. Every rider is background-checked. Your order arrives exactly as packed.</p>
-      </div>
-      <div class="feat">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1z"/></svg>
-        <h4>Every Store Welcome</h4>
-        <p>Kirana stores, vegetable vendors, halwai, salons — any store can list. Size doesn't matter. Hygiene does.</p>
-      </div>
-      <div class="feat">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l8 4v6c0 5.2-3.4 9-8 10-4.6-1-8-4.8-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
-        <h4>Zero Tolerance Policy</h4>
-        <p>Scammers, rude sellers, or toxic behaviour means a permanent ban. This platform is built on mutual respect.</p>
-      </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 ThodaLocal. All rights reserved.</div>
+      <div class="footer-ryc">A <span>RYC Corporation</span> Company</div>
     </div>
-  </div>
-</section>
+  </footer>
 
-<section class="section">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Coming Soon</span>
-      <h2>What's next.</h2>
-      <p>We're building the future of local commerce — here's what's coming.</p>
-    </div>
-    <div class="soon-grid reveal">
-      <div class="soon-card">
-        <span class="soon-tag">In Progress</span>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="14" height="10" rx="1.5"/><path d="M17 10l4-2v8l-4-2"/></svg>
-        <h4>Live Head-Mounted Camera</h4>
-        <p>Watch your order being packed in real time. Store owners wear head-mounted cameras — 100% transparency, zero surprises.</p>
-      </div>
-      <div class="soon-card">
-        <span class="soon-tag">In Progress</span>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M10 18h4"/></svg>
-        <h4>ThodaLocal App</h4>
-        <p>Full mobile app — browse stores, place orders, track delivery — all in one place. Android &amp; iOS coming soon.</p>
-      </div>
-      <div class="soon-card">
-        <span class="soon-tag">In Progress</span>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19V10M12 19V5M20 19v-7"/></svg>
-        <h4>Store Dashboard</h4>
-        <p>Dedicated dashboard for store owners — manage orders, track earnings, view customer feedback in real time.</p>
-      </div>
-    </div>
-  </div>
-</section>
+  <script>
+    // CURSOR
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.transform = `translate(${mx - 4}px, ${my - 4}px)`;
+    });
+    function animRing() {
+      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+      ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
+      requestAnimationFrame(animRing);
+    }
+    animRing();
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => { ring.style.width = '52px'; ring.style.height = '52px'; ring.style.borderColor = 'rgba(30,92,58,0.7)'; });
+      el.addEventListener('mouseleave', () => { ring.style.width = '36px'; ring.style.height = '36px'; ring.style.borderColor = 'rgba(30,92,58,0.4)'; });
+    });
 
-<section class="cta-section section" id="register">
-  <div class="wrap cta-inner reveal">
-    <span class="eyebrow">Join ThodaLocal</span>
-    <h2>Get early access.</h2>
-    <p>Whether you're a customer or a store owner — be the first to experience ThodaLocal in your area.</p>
-    <div class="toggle">
-      <button class="active" onclick="setMode('owner', this)">I'm a Store Owner</button>
-      <button onclick="setMode('customer', this)">I'm a Customer</button>
-    </div>
-    <form class="form-row" id="waitlistForm" onsubmit="return handleSubmit(event)">
-      <input type="text" placeholder="Your name" required>
-      <input type="tel" placeholder="Phone number" required>
-      <button type="submit" class="btn btn-primary" id="submitBtn">List My Store — It's Free</button>
-    </form>
-    <p class="form-success" id="formSuccess">✅ Request received! We'll contact you within 24 hours.</p>
-  </div>
-</section>
+    // TABS
+    function switchTab(tab) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      if (tab === 'store') {
+        document.querySelectorAll('.tab')[0].classList.add('active');
+        document.getElementById('storeTab').classList.add('active');
+      } else {
+        document.querySelectorAll('.tab')[1].classList.add('active');
+        document.getElementById('customerTab').classList.add('active');
+      }
+    }
 
-<footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div class="foot-brand">
-        <div class="logo"><span class="dot"></span>ThodaLocal</div>
-        <p>Har dukaan ki awaaz — online.</p>
-      </div>
-      <div class="foot-col">
-        <h5>Company</h5>
-        <a href="#about">About Us</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <div class="foot-col">
-        <h5>Platform</h5>
-        <a href="#register">List Your Store</a>
-        <a href="#customers">For Customers</a>
-      </div>
-      <div class="foot-col">
-        <h5>Legal</h5>
-        <a href="#terms">Terms of Service</a>
-        <a href="#privacy">Privacy Policy</a>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <span>© 2026 ThodaLocal. All rights reserved.</span>
-      <span>A RYC Corporation Company</span>
-    </div>
-  </div>
-</footer>
+    // STORE FORM
+    document.getElementById('storeForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var data = { dukaan: document.getElementById('dukaan').value, owner: document.getElementById('owner').value, phone: document.getElementById('phone').value, area: document.getElementById('area').value };
+      var btn = this.querySelector('button'); btn.textContent = 'Submitting...'; btn.disabled = true;
+      fetch('https://script.google.com/macros/s/AKfycbweyWvWL5cxgaLh1zc8m9YgaWsUowlUxnCQrm4fBWiDSJ5UurfQxOMRSa45z7LaRlFR/exec', { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+      .then(function() { document.getElementById('storeForm').style.display = 'none'; document.getElementById('storeSuccess').style.display = 'block'; })
+      .catch(function() { btn.textContent = "List My Store — It's Free"; btn.disabled = false; });
+    });
 
-<script>
-  function setMode(mode, btn){
-    document.querySelectorAll('.toggle button').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('submitBtn').textContent = mode === 'owner' ? "List My Store — It's Free" : "Join Customer Waitlist";
-  }
-  function handleSubmit(e){
-    e.preventDefault();
-    document.getElementById('waitlistForm').style.display='none';
-    document.getElementById('formSuccess').style.display='block';
-    return false;
-  }
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); } });
-  }, {threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-</script>
+    // CUSTOMER FORM
+    document.getElementById('customerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var data = { dukaan: document.getElementById('cname').value, owner: document.getElementById('cemail').value, phone: 'Customer', area: document.getElementById('carea').value };
+      var btn = this.querySelector('button'); btn.textContent = 'Submitting...'; btn.disabled = true;
+      fetch('https://script.google.com/macros/s/AKfycbweyWvWL5cxgaLh1zc8m9YgaWsUowlUxnCQrm4fBWiDSJ5UurfQxOMRSa45z7LaRlFR/exec', { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+      .then(function() { document.getElementById('customerForm').style.display = 'none'; document.getElementById('customerSuccess').style.display = 'block'; })
+      .catch(function() { btn.textContent = 'Join Customer Waitlist'; btn.disabled = false; });
+    });
 
+
+
+
+
+
+
+
+
+    // SCROLL REVEAL
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
+  </script>
 </body>
 </html>
