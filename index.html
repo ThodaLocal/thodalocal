@@ -92,7 +92,6 @@ background:
 radial-gradient(ellipse 70% 60% at 100% 50%, rgba(30,92,58,0.06) 0%, transparent 70%),
 radial-gradient(ellipse 40% 50% at 0% 100%, rgba(193,127,36,0.04) 0%, transparent 60%);
 pointer-events: none;
-transition: transform 0.3s ease-out;
 }
 .hero-eyebrow {
 display: inline-flex; align-items: center; gap: 8px;
@@ -130,14 +129,14 @@ animation: fadeUp 0.7s 0.3s ease both; margin-bottom: 56px;
 background: var(--green); color: var(--white);
 padding: 15px 28px; font-size: 13px; font-weight: 600;
 text-decoration: none; border: none; border-radius: 6px; cursor: none;
-transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s ease-out, box-shadow 0.25s ease; display: inline-block;
+transition: background 0.2s, transform 0.2s; display: inline-block;
 }
-.btn-green:hover { background: var(--green2); box-shadow: 0 10px 26px -10px rgba(30,92,58,0.5); }
+.btn-green:hover { background: var(--green2); }
 .btn-outline {
 background: transparent; color: var(--muted2);
 padding: 15px 28px; font-size: 13px; font-weight: 500;
 text-decoration: none; border: 1px solid var(--border2); border-radius: 6px; cursor: none;
-transition: border-color 0.2s, color 0.2s, transform 0.15s ease-out, box-shadow 0.25s ease; display: inline-block;
+transition: border-color 0.2s, color 0.2s; display: inline-block;
 }
 .btn-outline:hover { border-color: var(--black); color: var(--black); }
 .hero-trust {
@@ -157,10 +156,7 @@ to { opacity: 1; transform: translateY(0); }
 .marquee-wrap {
 border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
 padding: 16px 0; overflow: hidden; background: var(--off);
-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
--webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
-.marquee-wrap:hover .marquee-track { animation-play-state: paused; }
 .marquee-track { display: flex; animation: marquee 24s linear infinite; white-space: nowrap; }
 .marquee-item {
 display: flex; align-items: center; gap: 16px;
@@ -193,7 +189,7 @@ text-transform: uppercase; color: var(--muted); font-weight: 500;
 .audience-panel:not(.green-panel) .check { background: var(--green3); color: var(--green); }
 .audience-panel.green-panel .audience-list-item { color: rgba(255,255,255,0.85); }
 .audience-panel:not(.green-panel) .audience-list-item { color: var(--muted2); }
-.btn-white { background: var(--white); color: var(--green); padding: 14px 28px; font-size: 13px; font-weight: 700; border: none; border-radius: 6px; cursor: none; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.15s ease-out, box-shadow 0.25s ease; }
+.btn-white { background: var(--white); color: var(--green); padding: 14px 28px; font-size: 13px; font-weight: 700; border: none; border-radius: 6px; cursor: none; text-decoration: none; display: inline-block; transition: background 0.2s; }
 .btn-white:hover { background: var(--off); }
 /* STEPS */
 .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); margin-top: 56px; }
@@ -257,6 +253,22 @@ footer { background: var(--black); padding: 64px 6vw 40px; }
 .reveal:nth-child(3) { transition-delay: .2s; }
 .reveal:nth-child(4) { transition-delay: .3s; }
 .reveal:nth-child(5) { transition-delay: .4s; }
+
+/* HERO PARALLAX */
+.hero-bg { transition: transform 0.3s ease-out; }
+
+/* MARQUEE POLISH */
+.marquee-wrap {
+mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+-webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+
+/* MAGNETIC BUTTONS */
+.btn-green, .btn-outline, .btn-white, .nav-cta {
+transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s ease-out, box-shadow 0.25s ease;
+}
+.btn-green:hover, .nav-cta:hover { box-shadow: 0 10px 26px -10px rgba(30,92,58,0.5); }
 @media (max-width: 900px) {
 .audience-grid { grid-template-columns: 1fr; }
 .steps { grid-template-columns: 1fr 1fr; }
