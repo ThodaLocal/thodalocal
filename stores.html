@@ -211,4 +211,165 @@ bindHoverTargets();
 
 // ====== CONFIG ======
 // Same Apps Script URL as your register form — doGet reads the "Stores" sheet tab.
-const SHEET_API = 'https://script.google.com/macros/s/AKfycbweyWvWL5cxgaLh1zc8m9YgaWsUowlU
+const SHEET_API = 'https://script.google.com/macros/s/AKfycbyeSXnyo4A5ez7sdeZE74kt5qcmDetRgp4VBXW-EvfrWyZoaSvnoUCxJJ2PGJ3IdF2P4A/exec';
+
+const DEMO_STORES = [
+{ name: "Sharma Kirana Store", category: "Kirana", area: "Sector 14, Gurugram", hygiene: "yes", description: "Daily essentials, groceries, and household items. Serving the neighbourhood for 12 years.", phone: "9999900001" },
+{ name: "Fresh Basket Sabzi Mandi", category: "Vegetables & Fruits", area: "DLF Phase 3, Gurugram", hygiene: "yes", description: "Farm-fresh vegetables and fruits, sourced daily from local mandis.", phone: "9999900002" },
+{ name: "Annapurna Sweets & Namkeen", category: "Sweets & Bakery", area: "Sushant Lok, Gurugram", hygiene: "yes", description: "Traditional Indian sweets and namkeen, made fresh every morning.", phone: "9999900003" },
+{ name: "Glow Salon & Spa", category: "Salon & Grooming", area: "Sector 29, Gurugram", hygiene: "pending", description: "Hair, skin, and grooming services for men and women.", phone: "9999900004" },
+{ name: "Mother Dairy Booth", category: "Dairy", area: "Sector 22, Gurugram", hygiene: "yes", description: "Milk, curd, paneer, and dairy essentials — fresh twice daily.", phone: "9999900005" },
+{ name: "Punjabi Tadka Kirana", category: "Kirana", area: "Malviya Nagar, Delhi", hygiene: "yes", description: "Family-run kirana store known for quality atta, masalas, and dry fruits.", phone: "9999900006" }
+];
+
+let ALL_STORES = [];
+let activeCategory = 'All';
+let isDemo = false;
+
+async function loadStores() {
+try {
+const res = await fetch(SHEET_API);
+if (!res.ok) throw new Error('bad response');
+const data = await res.json();
+ALL_STORES = (Array.isArray(data) && data.length > 0) ? data : DEMO_STORES;
+isDemo = !(Array.isArray(data) && data.length > 0);
+} catch (err) {
+ALL_STORES = DEMO_STORES;
+isDemo = true;
+}
+buildCategoryChips();
+render();
+document.getElementById('skeleton').style.display = 'none';
+document.getElementById('storesGrid').style.display = 'grid';
+document.getElementById('demoNotice').style.display = isDemo ? 'flex' : 'none';
+}
+
+function buildCategoryChips() {
+const cats = ['All', ...new Set(ALL_STORES.map(s => s.category).filter(Boolean))];
+const wrap = document.getElementById('categoryChips');
+wrap.innerHTML = cats.map(c => `<button class="chip${c === 'All' ? ' active' : ''}" data-cat="${c}">${c}</button>`).join('');
+wrap.querySelectorAll('.chip').forEach(chip => {
+chip.addEventListener('click', () => {
+wrap.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+chip.classList.add('active');
+activeCategory = chip.dataset.cat;
+render();
+});
+});
+}
+
+function render() {
+const q = document.getElementById('searchInput').value.trim().toLowerCase();
+const filtered = ALL_STORES.filter(s => {
+const matchesCat = activeCategory === 'All' || s.category === activeCategory;
+const matchesSearch = !q || (s.name || '').toLowerCase().includes(q) || (s.category || '').toLowerCase().includes(q) || (s.area || '').toLowerCase().includes(q);
+return matchesCat && matchesSearch;
+});
+
+const grid = document.getElementById('storesGrid');
+const empty = document.getElementById('emptyState');
+document.getElementById('resultCount').textContent = filtered.length + (filtered.length === 1 ? ' store found' : ' stores found');
+
+if (filtered.length === 0) {
+grid.style.display = 'none';
+empty.style.display = 'block';
+return;
+}
+empty.style.display = 'none';
+grid.style.display = 'grid';
+
+grid.innerHTML = filtered.map((s, i) => {
+const verified = String(s.hygiene).toLowerCase() === 'yes' || String(s.hygiene).toLowerCase() === 'true';
+return `
+<div class="store-card" style="animation-delay:${Math.min(i, 8) * 0.05}s">
+<div class="store-top">
+<span class="store-cat">${s.category || 'Store'}</span>
+<span class="hygiene-badge${verified ? '' : ' pending'}">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2l7 3v6c0 5-3 8-7 11-4-3-7-6-7-11V5z"/></svg>
+${verified ? 'Verified' : 'Pending'}
+</span>
+</div>
+<div class="store-name">${s.name || 'Unnamed Store'}</div>
+<div class="store-area">
+<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+${s.area || ''}
+</div>
+${s.description ? `<div class="store-desc">${s.description}</div>` : ''}
+<div class="card-actions">
+${s.phone ? `<a class="store-call" href="tel:${s.phone}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg>Call Store</a>` : ''}
+<button class="order-btn" data-idx="${i}" type="button">Order Now</button>
+</div>
+</div>`;
+}).join('');
+grid.querySelectorAll('.order-btn').forEach(btn => {
+btn.addEventListener('click', () => {
+const idx = parseInt(btn.dataset.idx, 10);
+openOrderModal(filtered[idx]);
+});
+});
+bindHoverTargets();
+}
+
+// ORDER MODAL
+let selectedStore = null;
+
+function openOrderModal(store) {
+selectedStore = store;
+document.getElementById('modalStoreName').textContent = store.name + (store.area ? ' — ' + store.area : '');
+document.getElementById('orderForm').reset();
+document.getElementById('orderForm').style.display = 'flex';
+document.getElementById('orderForm').style.flexDirection = 'column';
+document.getElementById('orderMsg').style.display = 'none';
+document.getElementById('orderModal').classList.add('open');
+}
+function closeOrderModal() {
+document.getElementById('orderModal').classList.remove('open');
+}
+document.getElementById('orderModal').addEventListener('click', e => {
+if (e.target.id === 'orderModal') closeOrderModal();
+});
+
+document.getElementById('orderForm').addEventListener('submit', async function(e) {
+e.preventDefault();
+const btn = document.getElementById('orderSubmitBtn');
+const msg = document.getElementById('orderMsg');
+btn.disabled = true;
+btn.textContent = 'Sending...';
+
+const payload = {
+action: 'placeOrder',
+store: selectedStore.name,
+items: document.getElementById('orderItems').value,
+customerName: document.getElementById('orderName').value,
+phone: document.getElementById('orderPhone').value,
+address: document.getElementById('orderAddress').value
+};
+
+try {
+const res = await fetch(SHEET_API, {
+method: 'POST',
+headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+body: JSON.stringify(payload)
+});
+const data = await res.json();
+if (data.status === 'success') {
+document.getElementById('orderForm').style.display = 'none';
+msg.textContent = '✅ Order sent! ' + selectedStore.name + ' will call you shortly to confirm.';
+msg.className = 'modal-msg ok';
+} else {
+msg.textContent = '❌ Something went wrong. Please call the store directly instead.';
+msg.className = 'modal-msg err';
+}
+} catch (err) {
+msg.textContent = '❌ Network error. Please call the store directly instead.';
+msg.className = 'modal-msg err';
+}
+btn.disabled = false;
+btn.textContent = 'Send Order';
+});
+
+document.getElementById('searchInput').addEventListener('input', render);
+loadStores();
+</script>
+</body>
+</html>
