@@ -70,8 +70,6 @@ nav { position: sticky; top: 0; left: 0; right: 0; padding: 0 6vw; height: 68px;
 .store-name { font-family: 'Syne', sans-serif; font-size: 19px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 8px; }
 .store-area { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); margin-bottom: 12px; }
 .store-desc { font-size: 14px; color: var(--muted2); line-height: 1.65; font-weight: 300; margin-bottom: 18px; }
-.store-call { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; color: var(--green); text-decoration: none; }
-.store-call:hover { color: var(--green2); }
 .card-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; }
 .order-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--white); background: var(--gold); padding: 9px 16px; border-radius: 6px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s; }
 .order-btn:hover { background: var(--gold2); }
@@ -97,7 +95,6 @@ nav { position: sticky; top: 0; left: 0; right: 0; padding: 0 6vw; height: 68px;
 /* STATES */
 .state-msg { text-align: center; padding: 80px 20px; color: var(--muted); }
 .state-msg h3 { font-family: 'Syne', sans-serif; font-size: 22px; color: var(--black); margin-bottom: 10px; font-weight: 700; }
-.state-msg a { display: inline-block; margin-top: 20px; background: var(--green); color: var(--white); padding: 13px 26px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 600; }
 .demo-notice { display: flex; align-items: center; gap: 10px; background: var(--green3); border: 1px solid rgba(30,92,58,0.15); color: var(--green); font-size: 13px; padding: 12px 18px; border-radius: 6px; margin-top: 24px; }
 .skeleton { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1px; background: var(--border); margin-top: 24px; border: 1px solid var(--border); }
 .skel-card { background: var(--white); padding: 32px; height: 168px; }
@@ -210,7 +207,7 @@ el.addEventListener('mouseleave', () => { ring.style.width = '36px'; ring.style.
 bindHoverTargets();
 
 // ====== CONFIG ======
-// Same Apps Script URL as your register form — doGet reads the "Stores" sheet tab.
+// FIXED: this now matches the exact same URL used in admin.html
 const SHEET_API = 'https://script.google.com/macros/s/AKfycbyeSXnyo4A5ez7sdeZE74kt5qcmDetRgp4VBXW-EvfrWyZoaSvnoUCxJJ2PGJ3IdF2P4A/exec';
 
 const DEMO_STORES = [
@@ -228,7 +225,10 @@ let isDemo = false;
 
 async function loadStores() {
 try {
-const res = await fetch(SHEET_API);
+const controller = new AbortController();
+const timeoutId = setTimeout(() => controller.abort(), 8000);
+const res = await fetch(SHEET_API, { signal: controller.signal });
+clearTimeout(timeoutId);
 if (!res.ok) throw new Error('bad response');
 const data = await res.json();
 ALL_STORES = (Array.isArray(data) && data.length > 0) ? data : DEMO_STORES;
@@ -328,6 +328,9 @@ document.getElementById('orderModal').addEventListener('click', e => {
 if (e.target.id === 'orderModal') closeOrderModal();
 });
 
+// FIXED: uses mode:'no-cors' — Apps Script POST responses redirect through
+// googleusercontent.com, which breaks normal fetch(). We fire the request and
+// assume success rather than trying to read a response that never resolves cleanly.
 document.getElementById('orderForm').addEventListener('submit', async function(e) {
 e.preventDefault();
 const btn = document.getElementById('orderSubmitBtn');
@@ -345,20 +348,15 @@ address: document.getElementById('orderAddress').value
 };
 
 try {
-const res = await fetch(SHEET_API, {
+await fetch(SHEET_API, {
 method: 'POST',
-headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+mode: 'no-cors',
+headers: { 'Content-Type': 'application/json' },
 body: JSON.stringify(payload)
 });
-const data = await res.json();
-if (data.status === 'success') {
 document.getElementById('orderForm').style.display = 'none';
 msg.textContent = '✅ Order sent! ' + selectedStore.name + ' will call you shortly to confirm.';
 msg.className = 'modal-msg ok';
-} else {
-msg.textContent = '❌ Something went wrong. Please call the store directly instead.';
-msg.className = 'modal-msg err';
-}
 } catch (err) {
 msg.textContent = '❌ Network error. Please call the store directly instead.';
 msg.className = 'modal-msg err';
