@@ -10,6 +10,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
 <style>
+  body{cursor:none}
+.cursor,.cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+.cursor{width:8px;height:8px;border-radius:50%;background:var(--gold)}
+.cursor-ring{width:34px;height:34px;border-radius:50%;border:1px solid rgba(23,100,62,.35);transition:width .25s ease,height .25s ease,border-color .25s ease,background .25s ease}
+.cursor-ring.is-active{width:56px;height:56px;border-color:var(--gold);background:rgba(185,120,33,.08)}
+@media (hover:none),(pointer:coarse){.cursor,.cursor-ring{display:none}body{cursor:auto}}
 :root{
   --bg:#f7f7f3; --surface:#fff; --ink:#131613; --muted:#697069;
   --line:#e7e9e4; --green:#17633e; --green2:#237a4f; --green-soft:#e8f4ee;
@@ -60,6 +66,20 @@ footer{background:#111613;color:#a8b0aa;padding:38px 0}.footer-inner{display:fle
 <footer><div class="container footer-inner"><div><div class="footer-logo">Thoda<span>Local</span></div><div class="footer-copy">Local commerce, built with trust. © 2026 ThodaLocal.</div></div><div class="footer-copy">A RYC Corporation company</div></div></footer>
 <div class="modal" id="infoModal"><div class="modalbox"><button class="close" onclick="closeModal()">×</button><h3 id="modalTitle">Preview only</h3><p id="modalText">This is a demo listing. Ordering, checkout, and delivery are not live yet.</p><div class="modal-actions"><a href="index.html#register">Join Early Access</a><button onclick="closeModal()">Close</button></div></div></div>
 <script>
+(function(){
+  if(window.matchMedia('(hover:none),(pointer:coarse)').matches) return;
+  const dot=document.createElement('div');dot.className='cursor';
+  const ring=document.createElement('div');ring.className='cursor-ring';
+  document.body.append(dot,ring);
+  let mx=0,my=0,rx=0,ry=0;
+  window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+  (function loop(){rx+=(mx-rx)*.15;ry+=(my-ry)*.15;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+  document.querySelectorAll('a,button,.chip,.tab,input,textarea,.card').forEach(el=>{
+    el.addEventListener('mouseenter',()=>ring.classList.add('is-active'));
+    el.addEventListener('mouseleave',()=>ring.classList.remove('is-active'));
+  });
+})();
+  
 // Set this to false only after real stores are onboarded and you intentionally want live listings/order actions.
 const PREVIEW_MODE = true;
 const SHEET_API = 'https://script.google.com/macros/s/AKfycbyeSXnyo4A5ez7sdeZE74kt5qcmDetRgp4VBXW-EvfrWyZoaSvnoUCxJJ2PGJ3IdF2P4A/exec';
