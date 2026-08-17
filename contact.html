@@ -364,71 +364,9 @@
       .cta{padding:28px 24px}
     }
   </style>
-
-/* CUSTOM CURSOR — shared across ThodaLocal pages */
-@media (min-width: 801px) and (pointer: fine) {
-  body.tl-cursor-enabled { cursor: none; }
-  body.tl-cursor-enabled a,
-  body.tl-cursor-enabled button,
-  body.tl-cursor-enabled input,
-  body.tl-cursor-enabled textarea,
-  body.tl-cursor-enabled select { cursor: none; }
-
-  .tl-cursor-dot {
-    position: fixed;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #165c3b;
-    pointer-events: none;
-    z-index: 99999;
-    transform: translate(-50%, -50%);
-    transition: transform .12s ease, width .18s ease, height .18s ease, background .18s ease;
-    will-change: transform;
-  }
-
-  .tl-cursor-ring {
-    position: fixed;
-    width: 34px;
-    height: 34px;
-    border: 1px solid rgba(22,92,59,.42);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 99998;
-    transform: translate(-50%, -50%);
-    transition:
-      width .18s ease,
-      height .18s ease,
-      border-color .18s ease,
-      background .18s ease,
-      opacity .18s ease;
-    will-change: transform;
-  }
-
-  .tl-cursor-ring.hover {
-    width: 52px;
-    height: 52px;
-    border-color: rgba(22,92,59,.7);
-    background: rgba(22,92,59,.045);
-  }
-
-  .tl-cursor-dot.hover {
-    width: 9px;
-    height: 9px;
-    background: #bf8a32;
-  }
-
-  .tl-cursor-ring.hidden,
-  .tl-cursor-dot.hidden { opacity: 0; }
-}
-
 </head>
 
 <body>
-
-<div class="tl-cursor-dot hidden" id="tlCursorDot" aria-hidden="true"></div>
-<div class="tl-cursor-ring hidden" id="tlCursorRing" aria-hidden="true"></div>
-
   <nav>
     <a href="index.html" class="nav-logo">Thoda<span>Local</span></a>
     <a href="index.html" class="nav-back">← Back to Home</a>
@@ -600,66 +538,5 @@
       });
     });
   </script>
-
-<script>
-(function () {
-  const dot = document.getElementById('tlCursorDot');
-  const ring = document.getElementById('tlCursorRing');
-
-  if (!dot || !ring || !window.matchMedia('(min-width: 801px) and (pointer: fine)').matches) return;
-
-  document.body.classList.add('tl-cursor-enabled');
-
-  let x = window.innerWidth / 2;
-  let y = window.innerHeight / 2;
-  let ringX = x;
-  let ringY = y;
-  let visible = false;
-
-  function moveDot() {
-    dot.style.left = x + 'px';
-    dot.style.top = y + 'px';
-    ringX += (x - ringX) * 0.16;
-    ringY += (y - ringY) * 0.16;
-    ring.style.left = ringX + 'px';
-    ring.style.top = ringY + 'px';
-    requestAnimationFrame(moveDot);
-  }
-  moveDot();
-
-  window.addEventListener('mousemove', function (e) {
-    x = e.clientX;
-    y = e.clientY;
-    if (!visible) {
-      visible = true;
-      dot.classList.remove('hidden');
-      ring.classList.remove('hidden');
-    }
-  }, { passive: true });
-
-  window.addEventListener('mouseleave', function () {
-    dot.classList.add('hidden');
-    ring.classList.add('hidden');
-    visible = false;
-  });
-
-  document.addEventListener('mouseover', function (e) {
-    const target = e.target.closest('a, button, input, textarea, select, [role="button"], .chip, .card, .store-card, .category-card, .searchbox, .nav-back');
-    if (target) {
-      dot.classList.add('hover');
-      ring.classList.add('hover');
-    }
-  });
-
-  document.addEventListener('mouseout', function (e) {
-    const target = e.target.closest('a, button, input, textarea, select, [role="button"], .chip, .card, .store-card, .category-card, .searchbox, .nav-back');
-    if (target) {
-      dot.classList.remove('hover');
-      ring.classList.remove('hover');
-    }
-  });
-})();
-</script>
-
 </body>
 </html>
