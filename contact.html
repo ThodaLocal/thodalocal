@@ -1,3 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact ThodaLocal — questions, store partnerships, feedback and early access.">
+  <meta name="robots" content="index, follow">
+  <title>Contact — ThodaLocal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#f7f8f6;
+      --surface:#ffffff;
+      --surface-2:#eef3ee;
+      --text:#101512;
+      --muted:#68716b;
+      --line:#dfe5df;
+      --green:#165c3b;
+      --green-2:#287a55;
+      --green-3:#e8f3ec;
+      --gold:#bf8a32;
+      --danger:#b42318;
+      --shadow:0 24px 70px rgba(16,21,18,.08);
+      --radius:22px;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"DM Sans",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+    a{color:inherit}
+    button,input,textarea{font:inherit}
+
+    /* NAV */
+    nav{
+      position:sticky;
+      top:0;
+      z-index:50;
+      height:74px;
+      padding:0 6vw;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      background:rgba(255,255,255,.88);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(223,229,223,.85);
+    }
+    .nav-logo{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      text-decoration:none;
+      font-family:"Manrope",sans-serif;
+      font-size:20px;
+      font-weight:800;
+      letter-spacing:-.6px;
+    }
+    .nav-logo span{color:var(--green)}
+    .nav-back{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      text-decoration:none;
+      color:var(--muted);
+      font-size:14px;
+      font-weight:600;
+      padding:10px 14px;
+      border-radius:12px;
+      transition:.2s ease;
+    }
+    .nav-back:hover{background:var(--surface-2);color:var(--text)}
+
+    /* HERO */
+    .hero{
+      position:relative;
+      padding:92px 6vw 80px;
+      background:
+        radial-gradient(circle at 84% 18%, rgba(22,92,59,.10), transparent 28%),
+        radial-gradient(circle at 8% 80%, rgba(191,138,50,.07), transparent 22%),
+        var(--bg);
+      border-bottom:1px solid var(--line);
+      overflow:hidden;
+    }
+    .hero-inner{max-width:1060px;margin:0 auto}
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      color:var(--green);
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:2.6px;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+    .eyebrow::before{
+      content:"";
+      width:7px;height:7px;
+      border-radius:50%;
+      background:var(--green);
+      box-shadow:0 0 0 6px rgba(22,92,59,.10);
+    }
+    .hero h1{
+      max-width:900px;
+      font-family:"Manrope",sans-serif;
+      font-size:clamp(46px,7vw,88px);
+      line-height:.97;
+      letter-spacing:-4px;
+      margin-bottom:24px;
+    }
+    .hero h1 span{color:var(--green)}
+    .hero p{
+      max-width:650px;
+      color:var(--muted);
+      font-size:17px;
+      line-height:1.8;
+    }
+
+    /* CONTENT */
+    .contact-section{
+      max-width:1160px;
+      margin:0 auto;
+      padding:70px 6vw 100px;
+      display:grid;
+      grid-template-columns:.82fr 1.18fr;
+      gap:30px;
+    }
+
+    .info-card,.form-card{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .info-card{padding:38px}
+    .form-card{padding:38px}
+
+    .card-kicker{
+      color:var(--green);
+      font-size:11px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:2.4px;
+      margin-bottom:12px;
+    }
+    .card-title{
+      font-family:"Manrope",sans-serif;
+      font-size:30px;
+      line-height:1.08;
+      letter-spacing:-1.2px;
+      margin-bottom:10px;
+    }
+    .card-sub{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.7;
+      margin-bottom:30px;
+    }
+
+    .contact-list{display:grid;gap:18px}
+    .contact-item{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      padding:15px 0;
+      border-top:1px solid var(--line);
+    }
+    .contact-item:first-child{border-top:0;padding-top:0}
+    .contact-icon{
+      width:38px;height:38px;
+      display:grid;place-items:center;
+      flex:0 0 38px;
+      border-radius:12px;
+      background:var(--green-3);
+      color:var(--green);
+      font-size:16px;
+    }
+    .contact-label{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:1.8px;
+      color:var(--muted);
+      font-weight:800;
+      margin-bottom:4px;
+    }
+    .contact-value{
+      font-size:15px;
+      color:var(--text);
+      font-weight:600;
+      line-height:1.5;
+    }
+    .contact-value a{text-decoration:none}
+    .contact-value a:hover{color:var(--green)}
+
+    .status-note{
+      margin-top:28px;
+      padding:15px 16px;
+      border-radius:14px;
+      background:var(--green-3);
+      color:var(--green);
+      font-size:13px;
+      line-height:1.6;
+      border:1px solid rgba(22,92,59,.11);
+    }
+    .status-note strong{font-weight:800}
+
+    /* FORM */
+    .contact-form{display:flex;flex-direction:column;gap:14px}
+    .form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:7px;
+    }
+    .field.full{grid-column:1/-1}
+    .field label{
+      font-size:12px;
+      color:#4f5952;
+      font-weight:700;
+    }
+    .field input,
+    .field textarea{
+      width:100%;
+      border:1px solid var(--line);
+      background:#fbfcfb;
+      color:var(--text);
+      border-radius:14px;
+      padding:14px 15px;
+      outline:none;
+      transition:.2s ease;
+    }
+    .field textarea{min-height:150px;resize:vertical}
+    .field input:focus,
+    .field textarea:focus{
+      background:#fff;
+      border-color:var(--green);
+      box-shadow:0 0 0 4px rgba(22,92,59,.08);
+    }
+    .submit-btn{
+      margin-top:3px;
+      width:100%;
+      border:0;
+      border-radius:14px;
+      padding:15px 18px;
+      background:var(--green);
+      color:#fff;
+      font-weight:800;
+      font-size:14px;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .submit-btn:hover{
+      background:var(--green-2);
+      transform:translateY(-1px);
+      box-shadow:0 12px 28px rgba(22,92,59,.18);
+    }
+    .submit-btn:disabled{opacity:.65;cursor:wait;transform:none;box-shadow:none}
+
+    .success-msg,.error-msg{
+      display:none;
+      margin-top:12px;
+      padding:14px 15px;
+      border-radius:14px;
+      font-size:13px;
+      line-height:1.55;
+    }
+    .success-msg{
+      background:var(--green-3);
+      color:var(--green);
+      border:1px solid rgba(22,92,59,.12);
+    }
+    .error-msg{
+      background:#fff1f0;
+      color:var(--danger);
+      border:1px solid #f1c4c0;
+    }
 
     /* BOTTOM CTA */
     .bottom-cta{
@@ -75,9 +364,71 @@
       .cta{padding:28px 24px}
     }
   </style>
+
+/* CUSTOM CURSOR — shared across ThodaLocal pages */
+@media (min-width: 801px) and (pointer: fine) {
+  body.tl-cursor-enabled { cursor: none; }
+  body.tl-cursor-enabled a,
+  body.tl-cursor-enabled button,
+  body.tl-cursor-enabled input,
+  body.tl-cursor-enabled textarea,
+  body.tl-cursor-enabled select { cursor: none; }
+
+  .tl-cursor-dot {
+    position: fixed;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #165c3b;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: transform .12s ease, width .18s ease, height .18s ease, background .18s ease;
+    will-change: transform;
+  }
+
+  .tl-cursor-ring {
+    position: fixed;
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(22,92,59,.42);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    transform: translate(-50%, -50%);
+    transition:
+      width .18s ease,
+      height .18s ease,
+      border-color .18s ease,
+      background .18s ease,
+      opacity .18s ease;
+    will-change: transform;
+  }
+
+  .tl-cursor-ring.hover {
+    width: 52px;
+    height: 52px;
+    border-color: rgba(22,92,59,.7);
+    background: rgba(22,92,59,.045);
+  }
+
+  .tl-cursor-dot.hover {
+    width: 9px;
+    height: 9px;
+    background: #bf8a32;
+  }
+
+  .tl-cursor-ring.hidden,
+  .tl-cursor-dot.hidden { opacity: 0; }
+}
+
 </head>
 
 <body>
+
+<div class="tl-cursor-dot hidden" id="tlCursorDot" aria-hidden="true"></div>
+<div class="tl-cursor-ring hidden" id="tlCursorRing" aria-hidden="true"></div>
+
   <nav>
     <a href="index.html" class="nav-logo">Thoda<span>Local</span></a>
     <a href="index.html" class="nav-back">← Back to Home</a>
@@ -249,5 +600,66 @@
       });
     });
   </script>
+
+<script>
+(function () {
+  const dot = document.getElementById('tlCursorDot');
+  const ring = document.getElementById('tlCursorRing');
+
+  if (!dot || !ring || !window.matchMedia('(min-width: 801px) and (pointer: fine)').matches) return;
+
+  document.body.classList.add('tl-cursor-enabled');
+
+  let x = window.innerWidth / 2;
+  let y = window.innerHeight / 2;
+  let ringX = x;
+  let ringY = y;
+  let visible = false;
+
+  function moveDot() {
+    dot.style.left = x + 'px';
+    dot.style.top = y + 'px';
+    ringX += (x - ringX) * 0.16;
+    ringY += (y - ringY) * 0.16;
+    ring.style.left = ringX + 'px';
+    ring.style.top = ringY + 'px';
+    requestAnimationFrame(moveDot);
+  }
+  moveDot();
+
+  window.addEventListener('mousemove', function (e) {
+    x = e.clientX;
+    y = e.clientY;
+    if (!visible) {
+      visible = true;
+      dot.classList.remove('hidden');
+      ring.classList.remove('hidden');
+    }
+  }, { passive: true });
+
+  window.addEventListener('mouseleave', function () {
+    dot.classList.add('hidden');
+    ring.classList.add('hidden');
+    visible = false;
+  });
+
+  document.addEventListener('mouseover', function (e) {
+    const target = e.target.closest('a, button, input, textarea, select, [role="button"], .chip, .card, .store-card, .category-card, .searchbox, .nav-back');
+    if (target) {
+      dot.classList.add('hover');
+      ring.classList.add('hover');
+    }
+  });
+
+  document.addEventListener('mouseout', function (e) {
+    const target = e.target.closest('a, button, input, textarea, select, [role="button"], .chip, .card, .store-card, .category-card, .searchbox, .nav-back');
+    if (target) {
+      dot.classList.remove('hover');
+      ring.classList.remove('hover');
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
