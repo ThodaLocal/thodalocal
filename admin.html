@@ -83,8 +83,11 @@ button:disabled { opacity: 0.6; }
 </div>
 
 <script>
-const SHEET_API = 'https://script.google.com/macros/s/AKfycbweyWvWL5cxgaLh1zc8m9YgaWsUowlUxnCQrm4fBWiDSJ5UurfQxOMRSa45z7LaRlFR/exec';
+const SHEET_API = 'https://script.google.com/macros/s/AKfycbyeSXnyo4A5ez7sdeZE74kt5qcmDetRgp4VBXW-EvfrWyZoaSvnoUCxJJ2PGJ3IdF2P4A/exec';
 
+// FIXED: uses mode:'no-cors' now. Apps Script POST responses redirect through
+// googleusercontent.com, which breaks normal fetch()+res.json(). We can no longer
+// read whether the passcode was right from the response — check the Sheet directly.
 document.getElementById('storeForm').addEventListener('submit', async function(e) {
 e.preventDefault();
 const btn = document.getElementById('submitBtn');
@@ -107,24 +110,15 @@ btn.disabled = true;
 btn.textContent = 'Adding...';
 
 try {
-const res = await fetch(SHEET_API, {
+await fetch(SHEET_API, {
 method: 'POST',
-headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+mode: 'no-cors',
+headers: { 'Content-Type': 'application/json' },
 body: JSON.stringify(payload)
 });
-const data = await res.json();
-
-if (data.status === 'success') {
-msg.textContent = '✅ Store added — it will now appear on the live Browse Stores page.';
+msg.textContent = '✅ Sent. Check the "Stores" sheet tab in 5–10 seconds to confirm it landed (a wrong passcode won\'t show an error here — check the Sheet either way).';
 msg.classList.add('ok');
 document.getElementById('storeForm').reset();
-} else if (data.error === 'unauthorized') {
-msg.textContent = '❌ Wrong passcode.';
-msg.classList.add('err');
-} else {
-msg.textContent = '❌ Something went wrong. Try again.';
-msg.classList.add('err');
-}
 } catch (err) {
 msg.textContent = '❌ Network error. Check your connection and try again.';
 msg.classList.add('err');
