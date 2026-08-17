@@ -3,369 +3,109 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Browse Stores — ThodaLocal</title>
-<meta name="description" content="Find hygiene-verified local stores near you on ThodaLocal — kirana, vegetables, sweets, salons, and more." />
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&display=swap" rel="stylesheet">
+<title>Explore Stores — ThodaLocal</title>
+<meta name="description" content="Explore ThodaLocal's local commerce preview. ThodaLocal is currently in development and is not live yet.">
+<meta name="robots" content="index,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
 <style>
-:root {
---white: #ffffff;
---off: #f7f5f0;
---off2: #f0ede6;
---black: #111110;
---green: #1e5c3a;
---green2: #2d7a52;
---green3: #e8f4ee;
---gold: #c17f24;
---gold2: #e09a35;
---muted: #888;
---muted2: #555;
---border: #e8e4dc;
---border2: #d4cfc6;
+:root{
+  --bg:#f7f7f3; --surface:#fff; --ink:#131613; --muted:#697069;
+  --line:#e7e9e4; --green:#17633e; --green2:#237a4f; --green-soft:#e8f4ee;
+  --amber:#a86b1b; --amber-soft:#fbf2e5; --danger:#8d3a32;
+  --shadow:0 18px 50px rgba(19,22,19,.07); --radius:20px;
 }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--black); overflow-x: hidden; cursor: none; }
-@media (max-width: 600px) { body { cursor: auto; } .cursor, .cursor-ring { display: none; } }
-/* CURSOR */
-.cursor { width: 8px; height: 8px; background: var(--green); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; }
-.cursor-ring { width: 36px; height: 36px; border: 1px solid rgba(30,92,58,0.4); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transition: width 0.2s, height 0.2s, border-color 0.2s; }
-/* NAV */
-nav { position: sticky; top: 0; left: 0; right: 0; padding: 0 6vw; height: 68px; display: flex; justify-content: space-between; align-items: center; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
-.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--black); font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; letter-spacing: -0.5px; }
-.nav-logo span { color: var(--green); }
-.nav-links { display: flex; gap: 8px; align-items: center; }
-.nav-links a { color: var(--muted2); text-decoration: none; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 6px; transition: background 0.2s, color 0.2s; }
-.nav-links a:hover { background: var(--off); color: var(--black); }
-.nav-cta { background: var(--green) !important; color: var(--white) !important; font-weight: 600 !important; border-radius: 6px !important; }
-.nav-cta:hover { background: var(--green2) !important; }
-/* HEADER */
-.browse-hero { padding: 64px 6vw 40px; background: var(--off); border-bottom: 1px solid var(--border); }
-.sec-label { font-size: 11px; letter-spacing: 3px; color: var(--green); text-transform: uppercase; font-weight: 600; margin-bottom: 14px; }
-.browse-hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(32px, 4.5vw, 56px); font-weight: 800; letter-spacing: -2px; line-height: 1.02; margin-bottom: 14px; }
-.browse-hero h1 em { font-family: 'Fraunces', serif; font-style: italic; font-weight: 500; color: var(--green); letter-spacing: -1px; }
-.browse-hero p { font-size: 16px; color: var(--muted2); max-width: 520px; font-weight: 300; margin-bottom: 32px; }
-/* SEARCH + FILTERS */
-.search-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
-.search-box { flex: 1 1 320px; position: relative; }
-.search-box input { width: 100%; padding: 15px 18px 15px 46px; font-size: 14px; font-family: 'DM Sans', sans-serif; border: 1px solid var(--border2); border-radius: 8px; background: var(--white); color: var(--black); outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
-.search-box input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(30,92,58,0.08); }
-.search-box svg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
-.chips { display: flex; gap: 8px; flex-wrap: wrap; }
-.chip { padding: 9px 18px; font-size: 13px; font-weight: 600; border-radius: 20px; border: 1px solid var(--border2); background: var(--white); color: var(--muted2); cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
-.chip:hover { border-color: var(--green); color: var(--green); }
-.chip.active { background: var(--green); border-color: var(--green); color: var(--white); }
-.result-count { font-size: 13px; color: var(--muted); margin-top: 18px; }
-/* GRID */
-.stores-section { padding: 40px 6vw 100px; }
-.stores-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1px; background: var(--border); margin-top: 24px; border: 1px solid var(--border); }
-.store-card { background: var(--white); padding: 32px; position: relative; overflow: hidden; transition: background 0.2s; opacity: 0; transform: translateY(16px); animation: cardIn 0.5s ease forwards; }
-@keyframes cardIn { to { opacity: 1; transform: translateY(0); } }
-.store-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--green); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
-.store-card:hover { background: var(--off); }
-.store-card:hover::after { transform: scaleX(1); }
-.store-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; gap: 10px; }
-.store-cat { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; color: var(--gold); background: rgba(193,127,36,0.1); padding: 5px 10px; border-radius: 4px; white-space: nowrap; }
-.hygiene-badge { display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; color: var(--green); background: var(--green3); padding: 5px 10px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; }
-.hygiene-badge.pending { color: var(--muted2); background: var(--off2); }
-.store-name { font-family: 'Syne', sans-serif; font-size: 19px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 8px; }
-.store-area { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); margin-bottom: 12px; }
-.store-desc { font-size: 14px; color: var(--muted2); line-height: 1.65; font-weight: 300; margin-bottom: 18px; }
-.card-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; }
-.order-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--white); background: var(--gold); padding: 9px 16px; border-radius: 6px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s; }
-.order-btn:hover { background: var(--gold2); }
-/* ORDER MODAL */
-.modal-overlay { position: fixed; inset: 0; background: rgba(17,17,16,0.55); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
-.modal-overlay.open { display: flex; }
-.modal-box { background: var(--white); border-radius: 12px; max-width: 440px; width: 100%; padding: 32px 28px; max-height: 88vh; overflow-y: auto; position: relative; }
-.modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; cursor: pointer; color: var(--muted); padding: 4px; }
-.modal-box h3 { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; margin-bottom: 4px; }
-.modal-store-name { font-size: 13px; color: var(--green); font-weight: 600; margin-bottom: 8px; }
-.modal-note { font-size: 12px; color: var(--muted); margin-bottom: 20px; line-height: 1.5; }
-.modal-box label { display: block; font-size: 12px; font-weight: 600; color: var(--muted2); margin-bottom: 6px; margin-top: 14px; }
-.modal-box label:first-of-type { margin-top: 0; }
-.modal-box input, .modal-box textarea { width: 100%; padding: 12px 14px; font-size: 14px; font-family: 'DM Sans', sans-serif; border: 1px solid var(--border2); border-radius: 6px; background: var(--off); outline: none; }
-.modal-box input:focus, .modal-box textarea:focus { border-color: var(--green); background: var(--white); }
-.modal-box textarea { resize: vertical; min-height: 64px; }
-.modal-submit { width: 100%; margin-top: 20px; background: var(--green); color: var(--white); border: none; padding: 14px; font-size: 14px; font-weight: 700; font-family: 'Syne', sans-serif; border-radius: 6px; cursor: pointer; }
-.modal-submit:hover { background: var(--green2); }
-.modal-submit:disabled { opacity: .6; }
-.modal-msg { margin-top: 14px; padding: 12px 14px; border-radius: 6px; font-size: 13px; display: none; }
-.modal-msg.ok { background: var(--green3); color: var(--green); display: block; }
-.modal-msg.err { background: #fdeaea; color: #b3261e; display: block; }
-/* STATES */
-.state-msg { text-align: center; padding: 80px 20px; color: var(--muted); }
-.state-msg h3 { font-family: 'Syne', sans-serif; font-size: 22px; color: var(--black); margin-bottom: 10px; font-weight: 700; }
-.demo-notice { display: flex; align-items: center; gap: 10px; background: var(--green3); border: 1px solid rgba(30,92,58,0.15); color: var(--green); font-size: 13px; padding: 12px 18px; border-radius: 6px; margin-top: 24px; }
-.skeleton { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1px; background: var(--border); margin-top: 24px; border: 1px solid var(--border); }
-.skel-card { background: var(--white); padding: 32px; height: 168px; }
-.skel-line { background: linear-gradient(90deg, var(--off) 25%, var(--off2) 50%, var(--off) 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; border-radius: 4px; margin-bottom: 12px; }
-@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-/* FOOTER */
-footer { background: var(--black); padding: 40px 6vw; text-align: center; }
-footer a { color: #666; text-decoration: none; font-size: 13px; }
-footer a:hover { color: var(--gold2); }
-.footer-copy { font-size: 12px; color: #333; margin-top: 14px; }
-@media (max-width: 600px) {
-.stores-grid, .skeleton { grid-template-columns: 1fr; }
-.nav-links a:not(.nav-cta) { display: none; }
-}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+a{color:inherit;text-decoration:none}
+.container{width:min(1180px,92vw);margin:auto}
+.topbar{background:#102219;color:#eaf3ed;padding:10px 0;font-size:12px}
+.topbar-inner{display:flex;justify-content:center;gap:10px;align-items:center;text-align:center}
+.dot{width:7px;height:7px;border-radius:50%;background:#d6a24e;box-shadow:0 0 0 5px rgba(214,162,78,.12)}
+nav{position:sticky;top:0;z-index:50;background:rgba(247,247,243,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav-inner{height:72px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:Manrope,sans-serif;font-size:21px;font-weight:800;letter-spacing:-.7px}.logo span{color:var(--green)}
+.navlinks{display:flex;gap:8px;align-items:center}.navlinks a{padding:10px 14px;border-radius:12px;color:#59605a;font-size:13px;font-weight:600}.navlinks a:hover{background:#fff;color:var(--ink)}
+.navcta{background:var(--green)!important;color:#fff!important}
+.hero{padding:68px 0 42px;background:linear-gradient(180deg,#fbfbf8 0%,#f4f6f1 100%);border-bottom:1px solid var(--line)}
+.kicker{display:inline-flex;gap:8px;align-items:center;border:1px solid #cfe5d7;background:#eff8f2;color:var(--green);padding:7px 11px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.hero h1{font-family:Manrope,sans-serif;font-size:clamp(40px,6vw,72px);line-height:1.02;letter-spacing:-2.8px;max-width:900px;margin:22px 0 16px}.hero h1 em{font-family:'Playfair Display',serif;color:var(--green);font-weight:600}
+.hero p{max-width:650px;color:var(--muted);font-size:16px}
+.notice{margin-top:28px;padding:14px 16px;border:1px solid #ead7b6;background:#fff9ef;border-radius:14px;display:flex;gap:11px;align-items:flex-start;color:#6c532d;font-size:13px}
+.notice strong{color:#5b461f}
+.controls{padding:30px 0 4px}.searchline{display:flex;gap:12px;align-items:center}.searchbox{flex:1;position:relative}.searchbox input{width:100%;height:52px;border:1px solid var(--line);border-radius:14px;padding:0 18px 0 46px;font:500 14px 'DM Sans',sans-serif;outline:none;background:#fff;box-shadow:0 6px 20px rgba(19,22,19,.03)}.searchbox input:focus{border-color:#b9d9c7;box-shadow:0 0 0 4px rgba(23,99,62,.08)}.searchicon{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:#7c847d}
+.locationbtn{height:52px;border:1px solid var(--line);background:#fff;padding:0 16px;border-radius:14px;font:700 13px 'DM Sans',sans-serif;color:var(--ink);cursor:pointer}.locationbtn:hover{border-color:#c8d9ce;color:var(--green)}
+.chips{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.chip{border:1px solid var(--line);background:#fff;color:#616961;padding:9px 14px;border-radius:999px;font:600 12px 'DM Sans',sans-serif;cursor:pointer}.chip:hover{border-color:#bdd7c7;color:var(--green)}.chip.active{background:var(--green);color:#fff;border-color:var(--green)}
+.section{padding:34px 0 88px}.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:20px}.sectionhead h2{font-family:Manrope,sans-serif;font-size:30px;letter-spacing:-1.1px}.count{font-size:13px;color:#7d857e}
+.preview-banner{padding:18px 20px;border:1px solid #dbe5de;background:#f1f7f3;border-radius:16px;margin-bottom:22px;color:#506158;font-size:13px}.preview-banner strong{color:var(--green)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:0 8px 28px rgba(19,22,19,.04);transition:transform .2s,box-shadow .2s}.card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.visual{height:144px;border-radius:16px;background:linear-gradient(135deg,#eef3ee,#f6f0e7);display:flex;align-items:flex-end;justify-content:space-between;padding:14px;margin-bottom:17px;overflow:hidden}.visual .tag{background:#fff;border:1px solid rgba(255,255,255,.9);padding:6px 9px;border-radius:999px;font-size:10px;font-weight:800;color:#626a63;letter-spacing:.04em}.demo-tag{background:#fff7e8!important;color:#8b5d1e!important;border-color:#f0d7a9!important}
+.title{font-family:Manrope,sans-serif;font-size:18px;font-weight:800;letter-spacing:-.4px;margin-bottom:6px}.meta{display:flex;gap:7px;align-items:center;color:#7a817b;font-size:12px;margin-bottom:12px}.desc{font-size:13px;color:#666f68;line-height:1.65;min-height:64px}.actions{margin-top:17px;display:flex;gap:10px}.btn{flex:1;height:42px;border-radius:12px;border:1px solid var(--line);font:700 12px 'DM Sans',sans-serif;cursor:pointer}.btn.primary{background:var(--green);color:#fff;border-color:var(--green)}.btn.secondary{background:#fff;color:#59605a}.btn[disabled]{cursor:not-allowed;opacity:.6}
+.empty{text-align:center;padding:70px 20px;border:1px dashed #cfd5cf;border-radius:20px;background:#fff;color:#707770}.empty h3{font-family:Manrope,sans-serif;margin-bottom:7px;font-size:21px;color:var(--ink)}
+footer{background:#111613;color:#a8b0aa;padding:38px 0}.footer-inner{display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap}.footer-logo{font-family:Manrope,sans-serif;color:#fff;font-size:18px;font-weight:800}.footer-logo span{color:#66a681}.footer-copy{font-size:12px}
+.modal{position:fixed;inset:0;background:rgba(10,14,11,.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}.modal.open{display:flex}.modalbox{width:min(500px,100%);background:#fff;border-radius:22px;padding:28px;box-shadow:0 24px 80px rgba(0,0,0,.22)}.modalbox h3{font-family:Manrope,sans-serif;font-size:24px;letter-spacing:-.8px;margin-bottom:8px}.modalbox p{color:#6b736c;font-size:13px;line-height:1.7}.close{border:0;background:#f2f4f0;border-radius:50%;width:34px;height:34px;float:right;cursor:pointer;font-size:18px}.modal-actions{display:flex;gap:10px;margin-top:22px}.modal-actions a,.modal-actions button{flex:1;height:44px;border-radius:12px;border:1px solid var(--line);font:700 13px 'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center}.modal-actions a:first-child{background:var(--green);color:#fff;border-color:var(--green)}
+@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.navlinks a:not(.navcta){display:none}.hero{padding-top:46px}.searchline{flex-direction:column}.searchbox,.locationbtn{width:100%}.grid{grid-template-columns:1fr}.sectionhead{align-items:start;flex-direction:column;gap:7px}.topbar{font-size:11px}}
 </style>
 </head>
 <body>
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
-<nav>
-<a href="index.html" class="nav-logo">Thoda<span>Local</span></a>
-<div class="nav-links">
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="index.html#register" class="nav-cta">List Your Store</a>
-</div>
-</nav>
-
-<section class="browse-hero">
-<div class="sec-label">// Browse Stores</div>
-<h1>Find stores <em>verified</em> near you.</h1>
-<p>Every store here has passed our hygiene check. Search by name, or filter by what you're looking for.</p>
-
-<div class="search-row">
-<div class="search-box">
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-<input type="text" id="searchInput" placeholder="Search store name..." />
-</div>
-</div>
-<div class="chips" id="categoryChips"></div>
-<div class="result-count" id="resultCount"></div>
-</section>
-
-<section class="stores-section">
-<div class="skeleton" id="skeleton">
-<div class="skel-card"><div class="skel-line" style="width:40%;height:18px;"></div><div class="skel-line" style="width:70%;height:22px;"></div><div class="skel-line" style="width:50%;height:14px;"></div></div>
-<div class="skel-card"><div class="skel-line" style="width:40%;height:18px;"></div><div class="skel-line" style="width:70%;height:22px;"></div><div class="skel-line" style="width:50%;height:14px;"></div></div>
-<div class="skel-card"><div class="skel-line" style="width:40%;height:18px;"></div><div class="skel-line" style="width:70%;height:22px;"></div><div class="skel-line" style="width:50%;height:14px;"></div></div>
-</div>
-<div class="stores-grid" id="storesGrid" style="display:none;"></div>
-<div class="state-msg" id="emptyState" style="display:none;">
-<h3>No stores match yet</h3>
-<p>Try a different search or filter.</p>
-</div>
-<div class="demo-notice" id="demoNotice" style="display:none;">
-<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-Showing sample stores — real listings will appear here as stores get verified.
-</div>
-</section>
-
-<footer>
-<a href="index.html">thodalocal.in</a>
-<div class="footer-copy">© 2026 ThodaLocal — A RYC Corporation Company</div>
-</footer>
-
-<div class="modal-overlay" id="orderModal">
-<div class="modal-box">
-<button class="modal-close" type="button" onclick="closeOrderModal()">
-<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-</button>
-<h3>Place an Order</h3>
-<div class="modal-store-name" id="modalStoreName"></div>
-<div class="modal-note">Pay cash on delivery. The store will call to confirm your order and final price.</div>
-<form id="orderForm">
-<label>What do you need?</label>
-<textarea id="orderItems" placeholder="e.g. 2kg atta, 1kg onions, 1 packet Colgate" required></textarea>
-<label>Your Name</label>
-<input type="text" id="orderName" required />
-<label>Phone Number</label>
-<input type="tel" id="orderPhone" required />
-<label>Delivery Address</label>
-<textarea id="orderAddress" placeholder="Full address for delivery" required></textarea>
-<button type="submit" class="modal-submit" id="orderSubmitBtn">Send Order</button>
-</form>
-<div class="modal-msg" id="orderMsg"></div>
-</div>
-</div>
-
+<div class="topbar"><div class="container topbar-inner"><span class="dot"></span><span><strong>Preview mode:</strong> ThodaLocal is currently in development. Listings shown below are examples, not live businesses.</span></div></div>
+<nav><div class="container nav-inner"><a href="index.html" class="logo">Thoda<span>Local</span></a><div class="navlinks"><a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a><a class="navcta" href="index.html#register">Join Early Access</a></div></div></nav>
+<section class="hero"><div class="container"><div class="kicker">Not live yet · Preview</div><h1>See how your local marketplace will feel — <em>before launch.</em></h1><p>We are building ThodaLocal as a trusted layer for neighbourhood commerce. This page is a product preview, so the businesses below are sample listings only.</p><div class="notice"><div>ⓘ</div><div><strong>No live orders are being accepted here.</strong><br>Any store name, address, phone number, rating, or product shown on this page is placeholder/demo content until ThodaLocal officially launches.</div></div></div></section>
+<section class="controls"><div class="container"><div class="searchline"><div class="searchbox"><div class="searchicon">⌕</div><input id="searchInput" type="search" placeholder="Search sample stores, categories or areas…" autocomplete="off"></div><button class="locationbtn" type="button" onclick="openLocationNotice()">⌖ Select location</button></div><div class="chips" id="categoryChips"></div></div></section>
+<section class="section"><div class="container"><div class="preview-banner"><strong>Design preview only.</strong> We are using sample listings to demonstrate the future shopping experience. Real businesses will appear here only after onboarding and verification.</div><div class="sectionhead"><h2>Explore the preview</h2><div class="count" id="resultCount">0 sample stores</div></div><div class="grid" id="storesGrid"></div><div class="empty" id="emptyState" style="display:none"><h3>No sample matches</h3><p>Try another category or search term.</p></div></div></section>
+<footer><div class="container footer-inner"><div><div class="footer-logo">Thoda<span>Local</span></div><div class="footer-copy">Local commerce, built with trust. © 2026 ThodaLocal.</div></div><div class="footer-copy">A RYC Corporation company</div></div></footer>
+<div class="modal" id="infoModal"><div class="modalbox"><button class="close" onclick="closeModal()">×</button><h3 id="modalTitle">Preview only</h3><p id="modalText">This is a demo listing. Ordering, checkout, and delivery are not live yet.</p><div class="modal-actions"><a href="index.html#register">Join Early Access</a><button onclick="closeModal()">Close</button></div></div></div>
 <script>
-// CURSOR
-const cursor = document.getElementById('cursor');
-const ring = document.getElementById('cursorRing');
-let mx = 0, my = 0, rx = 0, ry = 0;
-document.addEventListener('mousemove', e => {
-mx = e.clientX; my = e.clientY;
-cursor.style.transform = `translate(${mx - 4}px, ${my - 4}px)`;
-});
-(function animRing() {
-rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
-requestAnimationFrame(animRing);
-})();
-function bindHoverTargets() {
-document.querySelectorAll('a, button, input, .chip, .store-card').forEach(el => {
-el.addEventListener('mouseenter', () => { ring.style.width = '52px'; ring.style.height = '52px'; ring.style.borderColor = 'rgba(30,92,58,0.7)'; });
-el.addEventListener('mouseleave', () => { ring.style.width = '36px'; ring.style.height = '36px'; ring.style.borderColor = 'rgba(30,92,58,0.4)'; });
-});
-}
-bindHoverTargets();
-
-// ====== CONFIG ======
-// FIXED: this now matches the exact same URL used in admin.html
+// Set this to false only after real stores are onboarded and you intentionally want live listings/order actions.
+const PREVIEW_MODE = true;
 const SHEET_API = 'https://script.google.com/macros/s/AKfycbyeSXnyo4A5ez7sdeZE74kt5qcmDetRgp4VBXW-EvfrWyZoaSvnoUCxJJ2PGJ3IdF2P4A/exec';
-
 const DEMO_STORES = [
-{ name: "Sharma Kirana Store", category: "Kirana", area: "Sector 14, Gurugram", hygiene: "yes", description: "Daily essentials, groceries, and household items. Serving the neighbourhood for 12 years.", phone: "9999900001" },
-{ name: "Fresh Basket Sabzi Mandi", category: "Vegetables & Fruits", area: "DLF Phase 3, Gurugram", hygiene: "yes", description: "Farm-fresh vegetables and fruits, sourced daily from local mandis.", phone: "9999900002" },
-{ name: "Annapurna Sweets & Namkeen", category: "Sweets & Bakery", area: "Sushant Lok, Gurugram", hygiene: "yes", description: "Traditional Indian sweets and namkeen, made fresh every morning.", phone: "9999900003" },
-{ name: "Glow Salon & Spa", category: "Salon & Grooming", area: "Sector 29, Gurugram", hygiene: "pending", description: "Hair, skin, and grooming services for men and women.", phone: "9999900004" },
-{ name: "Mother Dairy Booth", category: "Dairy", area: "Sector 22, Gurugram", hygiene: "yes", description: "Milk, curd, paneer, and dairy essentials — fresh twice daily.", phone: "9999900005" },
-{ name: "Punjabi Tadka Kirana", category: "Kirana", area: "Malviya Nagar, Delhi", hygiene: "yes", description: "Family-run kirana store known for quality atta, masalas, and dry fruits.", phone: "9999900006" }
+  {name:'Example Grocery Store',category:'Grocery',area:'Your Local Area',hygiene:'demo',description:'Sample grocery listing used to preview the future ThodaLocal experience.'},
+  {name:'Example Fresh Market',category:'Fresh Produce',area:'Your Local Area',hygiene:'demo',description:'Sample fresh-produce listing. This is not a live merchant.'},
+  {name:'Example Local Bakery',category:'Bakery',area:'Your Local Area',hygiene:'demo',description:'Sample neighbourhood bakery profile for design preview.'},
+  {name:'Example Chai Corner',category:'Food & Drinks',area:'Your Local Area',hygiene:'demo',description:'Sample food listing used to test categories and discovery.'},
+  {name:'Example Family Salon',category:'Salon & Grooming',area:'Your Local Area',hygiene:'demo',description:'Sample service business shown for product preview only.'},
+  {name:'Example Daily Needs',category:'Essentials',area:'Your Local Area',hygiene:'demo',description:'Sample everyday-essentials store for the demo environment.'}
 ];
-
-let ALL_STORES = [];
-let activeCategory = 'All';
-let isDemo = false;
-
-async function loadStores() {
-try {
-const controller = new AbortController();
-const timeoutId = setTimeout(() => controller.abort(), 8000);
-const res = await fetch(SHEET_API, { signal: controller.signal });
-clearTimeout(timeoutId);
-if (!res.ok) throw new Error('bad response');
-const data = await res.json();
-ALL_STORES = (Array.isArray(data) && data.length > 0) ? data : DEMO_STORES;
-isDemo = !(Array.isArray(data) && data.length > 0);
-} catch (err) {
-ALL_STORES = DEMO_STORES;
-isDemo = true;
+let ALL_STORES=[]; let activeCategory='All';
+async function loadStores(){
+  // During pre-launch, deliberately use sample data so accidental sheet records are never presented as live.
+  if(PREVIEW_MODE){ALL_STORES=DEMO_STORES; render(); return;}
+  try{const res=await fetch(SHEET_API); if(!res.ok) throw new Error('bad response'); const data=await res.json(); ALL_STORES=Array.isArray(data)?data:[]; render();}
+  catch(e){ALL_STORES=[]; render();}
 }
-buildCategoryChips();
-render();
-document.getElementById('skeleton').style.display = 'none';
-document.getElementById('storesGrid').style.display = 'grid';
-document.getElementById('demoNotice').style.display = isDemo ? 'flex' : 'none';
+function buildCategoryChips(){
+  const cats=['All',...new Set(ALL_STORES.map(s=>s.category).filter(Boolean))];
+  const wrap=document.getElementById('categoryChips');
+  wrap.innerHTML=cats.map(c=>`<button class="chip ${c==='All'?'active':''}" data-cat="${escapeHtml(c)}">${escapeHtml(c)}</button>`).join('');
+  wrap.querySelectorAll('.chip').forEach(btn=>btn.addEventListener('click',()=>{wrap.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));btn.classList.add('active');activeCategory=btn.dataset.cat;render();}));
 }
-
-function buildCategoryChips() {
-const cats = ['All', ...new Set(ALL_STORES.map(s => s.category).filter(Boolean))];
-const wrap = document.getElementById('categoryChips');
-wrap.innerHTML = cats.map(c => `<button class="chip${c === 'All' ? ' active' : ''}" data-cat="${c}">${c}</button>`).join('');
-wrap.querySelectorAll('.chip').forEach(chip => {
-chip.addEventListener('click', () => {
-wrap.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-chip.classList.add('active');
-activeCategory = chip.dataset.cat;
-render();
-});
-});
+function render(){
+  buildCategoryChips();
+  const q=document.getElementById('searchInput').value.trim().toLowerCase();
+  const filtered=ALL_STORES.filter(s=>(activeCategory==='All'||s.category===activeCategory)&&(!q||[s.name,s.category,s.area].some(v=>String(v||'').toLowerCase().includes(q))));
+  document.getElementById('resultCount').textContent=`${filtered.length} sample ${filtered.length===1?'store':'stores'}`;
+  const grid=document.getElementById('storesGrid'), empty=document.getElementById('emptyState');
+  if(!filtered.length){grid.innerHTML='';empty.style.display='block';return} empty.style.display='none';
+  grid.innerHTML=filtered.map((s,i)=>`<article class="card">
+    <div class="visual"><span class="tag">${escapeHtml(s.category||'Local business')}</span><span class="tag demo-tag">DEMO · NOT LIVE</span></div>
+    <div class="title">${escapeHtml(s.name||'Example Store')}</div>
+    <div class="meta">⌖ ${escapeHtml(s.area||'Sample area')} · <span style="color:var(--amber)">Preview</span></div>
+    <div class="desc">${escapeHtml(s.description||'Sample listing for product preview.')}</div>
+    <div class="actions"><button class="btn primary" onclick="showPreview('${encodeURIComponent(s.name||'Example Store')}')">View preview</button><button class="btn secondary" onclick="openLocationNotice()">Notify me</button></div>
+  </article>`).join('');
 }
-
-function render() {
-const q = document.getElementById('searchInput').value.trim().toLowerCase();
-const filtered = ALL_STORES.filter(s => {
-const matchesCat = activeCategory === 'All' || s.category === activeCategory;
-const matchesSearch = !q || (s.name || '').toLowerCase().includes(q) || (s.category || '').toLowerCase().includes(q) || (s.area || '').toLowerCase().includes(q);
-return matchesCat && matchesSearch;
-});
-
-const grid = document.getElementById('storesGrid');
-const empty = document.getElementById('emptyState');
-document.getElementById('resultCount').textContent = filtered.length + (filtered.length === 1 ? ' store found' : ' stores found');
-
-if (filtered.length === 0) {
-grid.style.display = 'none';
-empty.style.display = 'block';
-return;
-}
-empty.style.display = 'none';
-grid.style.display = 'grid';
-
-grid.innerHTML = filtered.map((s, i) => {
-const verified = String(s.hygiene).toLowerCase() === 'yes' || String(s.hygiene).toLowerCase() === 'true';
-return `
-<div class="store-card" style="animation-delay:${Math.min(i, 8) * 0.05}s">
-<div class="store-top">
-<span class="store-cat">${s.category || 'Store'}</span>
-<span class="hygiene-badge${verified ? '' : ' pending'}">
-<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2l7 3v6c0 5-3 8-7 11-4-3-7-6-7-11V5z"/></svg>
-${verified ? 'Verified' : 'Pending'}
-</span>
-</div>
-<div class="store-name">${s.name || 'Unnamed Store'}</div>
-<div class="store-area">
-<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
-${s.area || ''}
-</div>
-${s.description ? `<div class="store-desc">${s.description}</div>` : ''}
-<div class="card-actions">
-<button class="order-btn" data-idx="${i}" type="button" style="width:100%;justify-content:center;">Order Now</button>
-</div>
-</div>`;
-}).join('');
-grid.querySelectorAll('.order-btn').forEach(btn => {
-btn.addEventListener('click', () => {
-const idx = parseInt(btn.dataset.idx, 10);
-openOrderModal(filtered[idx]);
-});
-});
-bindHoverTargets();
-}
-
-// ORDER MODAL
-let selectedStore = null;
-
-function openOrderModal(store) {
-selectedStore = store;
-document.getElementById('modalStoreName').textContent = store.name + (store.area ? ' — ' + store.area : '');
-document.getElementById('orderForm').reset();
-document.getElementById('orderForm').style.display = 'flex';
-document.getElementById('orderForm').style.flexDirection = 'column';
-document.getElementById('orderMsg').style.display = 'none';
-document.getElementById('orderModal').classList.add('open');
-}
-function closeOrderModal() {
-document.getElementById('orderModal').classList.remove('open');
-}
-document.getElementById('orderModal').addEventListener('click', e => {
-if (e.target.id === 'orderModal') closeOrderModal();
-});
-
-// FIXED: uses mode:'no-cors' — Apps Script POST responses redirect through
-// googleusercontent.com, which breaks normal fetch(). We fire the request and
-// assume success rather than trying to read a response that never resolves cleanly.
-document.getElementById('orderForm').addEventListener('submit', async function(e) {
-e.preventDefault();
-const btn = document.getElementById('orderSubmitBtn');
-const msg = document.getElementById('orderMsg');
-btn.disabled = true;
-btn.textContent = 'Sending...';
-
-const payload = {
-action: 'placeOrder',
-store: selectedStore.name,
-items: document.getElementById('orderItems').value,
-customerName: document.getElementById('orderName').value,
-phone: document.getElementById('orderPhone').value,
-address: document.getElementById('orderAddress').value
-};
-
-try {
-await fetch(SHEET_API, {
-method: 'POST',
-mode: 'no-cors',
-headers: { 'Content-Type': 'application/json' },
-body: JSON.stringify(payload)
-});
-document.getElementById('orderForm').style.display = 'none';
-msg.textContent = '✅ Order sent! ' + selectedStore.name + ' will call you shortly to confirm.';
-msg.className = 'modal-msg ok';
-} catch (err) {
-msg.textContent = '❌ Network error. Please call the store directly instead.';
-msg.className = 'modal-msg err';
-}
-btn.disabled = false;
-btn.textContent = 'Send Order';
-});
-
-document.getElementById('searchInput').addEventListener('input', render);
+function showPreview(name){openModal('Preview: '+decodeURIComponent(name),'This business is only placeholder content. It is not a real merchant on ThodaLocal, and no order can be placed from this preview.');}
+function openLocationNotice(){openModal('Location is not live yet','Location-based discovery will be enabled when ThodaLocal officially launches in your area. For now, you can explore the sample experience and join the early-access list.');}
+function openModal(title,text){document.getElementById('modalTitle').textContent=title;document.getElementById('modalText').textContent=text;document.getElementById('infoModal').classList.add('open')}
+function closeModal(){document.getElementById('infoModal').classList.remove('open')}
+function escapeHtml(value){return String(value).replace(/[&<>'"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]))}
+document.getElementById('searchInput').addEventListener('input',render);
+document.getElementById('infoModal').addEventListener('click',e=>{if(e.target.id==='infoModal')closeModal()});
 loadStores();
 </script>
 </body>
