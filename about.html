@@ -4,177 +4,224 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — ThodaLocal</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&display=swap" rel="stylesheet">
+<meta name="description" content="The story behind ThodaLocal — why it exists, what it's building, and who's building it. A RYC Corporation company.">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
 <style>
-:root {
---gold: #c17f24;
---gold2: #e09a35;
+:root{
+  --bg:#fbfaf7;
+  --surface:#fff;
+  --surface-2:#f4f1ea;
+  --ink:#141615;
+  --muted:#666b67;
+  --green:#17643e;
+  --green-dark:#0f4c2f;
+  --green-soft:#e9f4ed;
+  --gold:#b97821;
+  --line:#e7e2d8;
+  --shadow:0 20px 60px rgba(25,35,29,.08);
 }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { font-family: 'DM Sans', sans-serif; background: #0a0a0a; color: #f0ede8; cursor: none; overflow-x: hidden; }
-.cursor {
-width: 8px; height: 8px; background: var(--gold2);
-border-radius: 50%; position: fixed; top: 0; left: 0;
-pointer-events: none; z-index: 9999;
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"DM Sans",sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden;cursor:none}
+a{text-decoration:none;color:inherit}
+.container{width:min(1000px,calc(100% - 40px));margin:0 auto}
+
+/* CUSTOM CURSOR */
+.cursor,.cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+.cursor{width:8px;height:8px;border-radius:50%;background:var(--gold)}
+.cursor-ring{width:34px;height:34px;border-radius:50%;border:1px solid rgba(23,100,62,.35);transition:width .25s ease,height .25s ease,border-color .25s ease,background .25s ease}
+.cursor-ring.is-active{width:56px;height:56px;border-color:var(--gold);background:rgba(185,120,33,.08)}
+@media (hover:none),(pointer:coarse){.cursor,.cursor-ring{display:none}body{cursor:auto}}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:50;height:74px;padding:0 6vw;display:flex;align-items:center;justify-content:space-between;background:rgba(251,250,247,.9);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav-logo{display:inline-flex;align-items:center;gap:9px;font-family:"Manrope",sans-serif;font-size:20px;font-weight:800;letter-spacing:-.04em}
+.nav-logo span{color:var(--green)}
+.nav-back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:14px;font-weight:600;padding:10px 14px;border-radius:12px;transition:.2s ease}
+.nav-back:hover{background:var(--surface-2);color:var(--ink)}
+
+/* HERO */
+.hero{position:relative;padding:88px 0 64px;background:radial-gradient(circle at 86% 10%,rgba(23,100,62,.09),transparent 30%),var(--bg);border-bottom:1px solid var(--line);overflow:hidden}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--green);font-size:11px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;margin-bottom:20px;animation:up .7s ease both}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 6px rgba(23,100,62,.10);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(23,100,62,.35)}50%{box-shadow:0 0 0 6px rgba(23,100,62,0)}}
+.hero h1{font-family:"Manrope",sans-serif;font-size:clamp(42px,6vw,72px);line-height:1.03;letter-spacing:-.05em;max-width:720px;animation:up .7s .1s ease both}
+.hero h1 em{font-family:"Playfair Display",serif;font-style:italic;font-weight:600;color:var(--green)}
+.hero p{max-width:600px;color:var(--muted);font-size:17px;line-height:1.8;margin-top:22px;animation:up .7s .2s ease both}
+@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTIONS */
+.section{padding:76px 0;border-bottom:1px solid var(--line)}
+.section.alt{background:var(--surface-2)}
+.label{color:var(--green);font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px}
+.section h2{font-family:"Manrope",sans-serif;font-size:clamp(28px,3.4vw,40px);letter-spacing:-.045em;line-height:1.08;max-width:620px;margin-bottom:22px}
+.section p{font-size:16px;color:#454a46;line-height:1.85;max-width:640px;margin-bottom:18px}
+.section p:last-of-type{margin-bottom:0}
+.section p strong{color:var(--ink);font-weight:700}
+
+/* RYC GRID */
+.ryc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:34px}
+.ryc-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px;transition:transform .25s ease,box-shadow .25s ease}
+.ryc-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.ryc-num{font-family:"Playfair Display",serif;font-style:italic;font-weight:600;font-size:36px;color:#d9dcd7;line-height:1;transition:color .3s ease}
+.ryc-card.active .ryc-num,.ryc-card:hover .ryc-num{color:var(--gold)}
+.ryc-name{font-family:"Manrope",sans-serif;font-weight:800;font-size:16px;letter-spacing:-.02em;margin:14px 0 6px}
+.ryc-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px}
+.ryc-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
+.ryc-card.active .ryc-tag{background:var(--green-soft);color:var(--green)}
+.ryc-card:not(.active) .ryc-tag{background:#fff;color:var(--muted);border:1px solid var(--line)}
+
+/* FOUNDER */
+.founder-block{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:52px 48px;max-width:700px;margin-top:34px;box-shadow:var(--shadow);overflow:hidden}
+.founder-mark{position:absolute;top:22px;left:34px;font-family:"Playfair Display",serif;font-size:96px;color:var(--green-soft);line-height:1;z-index:0;user-select:none}
+.founder-block p{position:relative;z-index:1;font-size:16px;color:#454a46;line-height:1.9;margin-bottom:16px;max-width:100%}
+.founder-block p strong{color:var(--ink);font-weight:700}
+.founder-block p.sign{font-family:"Playfair Display",serif;font-style:italic;font-weight:600;color:var(--gold);font-size:19px;margin-top:14px;margin-bottom:0}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:.7s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal:nth-child(1){transition-delay:0s}
+.reveal:nth-child(2){transition-delay:.09s}
+.reveal:nth-child(3){transition-delay:.18s}
+.reveal:nth-child(4){transition-delay:.27s}
+
+/* FOOTER */
+footer{padding:34px 6vw 42px;text-align:center;border-top:1px solid var(--line);background:#fff}
+.footer-link{font-family:"Manrope",sans-serif;font-weight:800}
+.footer-link span{color:var(--green)}
+.footer-copy{margin-top:9px;color:#89918b;font-size:12px}
+
+@media(max-width:640px){
+  nav{height:66px;padding:0 5vw}
+  .hero{padding:64px 0 48px}
+  .section{padding:56px 0}
+  .founder-block{padding:36px 26px}
+  .founder-mark{font-size:70px;top:14px;left:20px}
 }
-.cursor-ring {
-width: 36px; height: 36px;
-border: 1px solid rgba(224,154,53,0.4); border-radius: 50%;
-position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998;
-transition: width 0.2s, height 0.2s, border-color 0.2s;
-}
-@media (max-width: 600px) { body { cursor: auto; } .cursor, .cursor-ring { display: none; } }
-nav {
-padding: 24px 10vw;
-display: flex;
-justify-content: space-between;
-align-items: center;
-border-bottom: 1px solid #1a1a1a;
-}
-.nav-logo { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -0.5px; text-decoration: none; color: #f0ede8; }
-.nav-logo span { color: var(--gold2); }
-.nav-link { color: #666; text-decoration: none; font-size: 14px; }
-.nav-link:hover { color: var(--gold2); }
-.hero {
-padding: 100px 10vw;
-border-bottom: 1px solid #1a1a1a;
-}
-.label { font-size: 11px; letter-spacing: 4px; color: var(--gold2); text-transform: uppercase; margin-bottom: 16px; }
-.hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(40px, 6vw, 80px); font-weight: 800; letter-spacing: -2px; line-height: 1; margin-bottom: 32px; animation: fadeUp 0.7s 0.1s ease both; }
-.hero h1 span { font-family: 'Fraunces', serif; font-style: italic; font-weight: 500; color: var(--gold2); letter-spacing: -1px; }
-.hero p { font-size: 18px; color: #888; max-width: 600px; line-height: 1.8; animation: fadeUp 0.7s 0.25s ease both; }
-.label { animation: fadeUp 0.7s ease both; }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-.section { padding: 80px 10vw; border-bottom: 1px solid #1a1a1a; }
-.section h2 { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 24px; }
-.section p { font-size: 16px; color: #888; line-height: 1.9; max-width: 680px; margin-bottom: 20px; }
-.section p strong { color: #f0ede8; }
-.ryc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2px; margin-top: 40px; }
-.ryc-card { background: #1a1a1a; padding: 32px; transition: background 0.3s ease, transform 0.25s ease; }
-.ryc-card:hover { background: #202020; transform: translateY(-4px); }
-.ryc-num { font-family: 'Fraunces', serif; font-style: italic; font-weight: 500; font-size: 42px; color: #262626; margin-bottom: 12px; transition: color 0.3s ease; }
-.ryc-name { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 8px; }
-.ryc-desc { font-size: 13px; color: #666; line-height: 1.6; }
-.ryc-card.active .ryc-num { color: var(--gold2); }
-.ryc-card:hover .ryc-num { color: var(--gold2); }
-.founder-block {
-background: #141414;
-border-left: 3px solid var(--gold2);
-padding: 40px 48px;
-max-width: 680px;
-margin-top: 40px;
-}
-.founder-block p { font-size: 16px; color: #aaa; line-height: 1.9; margin-bottom: 16px; }
-.founder-block p strong { color: #f0ede8; }
-.founder-block p.sign { font-family: 'Fraunces', serif; color: var(--gold2); font-style: italic; font-weight: 500; font-size: 20px; margin-bottom: 0; margin-top: 8px; }
-footer {
-padding: 48px 10vw;
-text-align: center;
-border-top: 1px solid #1a1a1a;
-}
-footer a { color: #666; text-decoration: none; font-size: 13px; }
-footer a:hover { color: var(--gold2); }
-.footer-copy { font-size: 12px; color: #333; margin-top: 16px; }
-.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal:nth-child(1) { transition-delay: 0s; }
-.reveal:nth-child(2) { transition-delay: .08s; }
-.reveal:nth-child(3) { transition-delay: .16s; }
-.reveal:nth-child(4) { transition-delay: .24s; }
 </style>
 </head>
 <body>
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
+
 <nav>
-<a href="index.html" class="nav-logo">Thoda<span>Local</span></a>
-<a href="index.html" class="nav-link">← Back to Home</a>
+  <a href="index.html" class="nav-logo">Thoda<span>Local</span></a>
+  <a href="index.html" class="nav-back">← Back to Home</a>
 </nav>
-<section class="hero">
-<div class="label">// Our Story</div>
-<h1>About <span>ThodaLocal</span></h1>
-<p>Ek 18 saal ke ladke ne socha — agar har badi company online aa sakti hai, toh chhoti local dukaan kyun nahi? Aur phir ThodaLocal bana.</p>
-</section>
-<section class="section reveal">
-<div class="label">// The Problem</div>
-<h2>Kya Problem Solve Kar Rahe Hain?</h2>
-<p>India mein lakho chhote local stores hain — sabzi wale, halwai, kirana stores, salons. <strong>Par inki koi online presence nahi.</strong> Log inhe dhundh nahi sakte. Trust nahi kar sakte. Aur yeh stores slowly band ho rahe hain.</p>
-<p>Doosri taraf — users ko nahi pata ki unke area mein kaun sa store <strong>hygienic hai, safe hai, genuine hai.</strong> Koi guarantee nahi. Koi transparency nahi.</p>
-<p>ThodaLocal yahi fix karta hai.</p>
-</section>
-<section class="section reveal">
-<div class="label">// The Solution</div>
-<h2>ThodaLocal Kya Karta Hai?</h2>
-<p>Har local store — chahe kitna bhi chota ho — <strong>ThodaLocal pe list ho sakta hai.</strong> Par sirf list hona kaafi nahi. Har store ko hamare hygiene verification se guzarna padta hai. Sirf verified stores ko badge milta hai.</p>
-<p>Users live camera feed se dekh sakte hain apna order pack hote hue. <strong>100% transparency.</strong> Aur hamare apne verified delivery network se order seedha ghar tak pahunchta hai.</p>
-</section>
-<section class="section reveal">
-<div class="label">// RYC Corporation</div>
-<h2>Yeh Sirf Shuruat Hai</h2>
-<p>ThodaLocal <strong>RYC Corporation</strong> ki pehli company hai — ek holding company jo multiple industry-defining ventures build kar rahi hai.</p>
-<div class="ryc-grid">
-<div class="ryc-card active reveal">
-<div class="ryc-num">01</div>
-<div class="ryc-name">ThodaLocal</div>
-<div class="ryc-desc">Hyperlocal verified store platform — Building Now</div>
-</div>
-<div class="ryc-card reveal">
-<div class="ryc-num">02</div>
-<div class="ryc-name">Construction & Mining</div>
-<div class="ryc-desc">Heavy industry vertical — Coming Soon</div>
-</div>
-<div class="ryc-card reveal">
-<div class="ryc-num">03</div>
-<div class="ryc-name">Good Devil Production</div>
-<div class="ryc-desc">Animation Studio — Coming Soon</div>
-</div>
-<div class="ryc-card reveal">
-<div class="ryc-num">04</div>
-<div class="ryc-name">Gaming Studio</div>
-<div class="ryc-desc">Game Development — Coming Soon</div>
-</div>
-</div>
-</section>
-<section class="section reveal">
-<div class="label">// The Founder</div>
-<h2>Kaun Bana Raha Hai Yeh?</h2>
-<div class="founder-block">
-<p class="reveal">Main <strong>18 saal ka hoon.</strong> Abhi 12th pass kiya hai. BTech shuru hone wala hai. Mere paas <strong>0 rupees the</strong> jab maine yeh shuru kiya. Koi co-founder nahi. Koi investor nahi. Koi family support nahi.</p>
-<p class="reveal">Par mere paas ek vision hai — <strong>RYC Corporation ko ek real empire banana.</strong> Ek holding company jiske andar multiple world-class companies hongi.</p>
-<p class="reveal">ThodaLocal sirf pehla kadam hai. Aur yeh kadam maine khud uthaya — ek laptop, internet, aur ek sapne ke saath.</p>
-<p class="sign reveal">— Founder, RYC Corporation</p>
-</div>
-</section>
+
+<header class="hero">
+  <div class="container">
+    <div class="eyebrow">Our story</div>
+    <h1>About <em>ThodaLocal</em></h1>
+    <p>Ek 18 saal ke ladke ne socha — agar har badi company online aa sakti hai, toh chhoti local dukaan kyun nahi? Aur phir ThodaLocal bana.</p>
+  </div>
+</header>
+
+<main>
+  <section class="section reveal">
+    <div class="container">
+      <div class="label">The problem</div>
+      <h2>Kya problem solve kar rahe hain?</h2>
+      <p>India mein lakho chhote local stores hain — sabzi wale, halwai, kirana stores, salons. <strong>Par inki koi online presence nahi.</strong> Log inhe dhundh nahi sakte. Trust nahi kar sakte. Aur yeh stores slowly band ho rahe hain.</p>
+      <p>Doosri taraf — users ko nahi pata ki unke area mein kaun sa store <strong>hygienic hai, safe hai, genuine hai.</strong> Koi guarantee nahi. Koi transparency nahi.</p>
+      <p>ThodaLocal yahi fix karta hai.</p>
+    </div>
+  </section>
+
+  <section class="section alt reveal">
+    <div class="container">
+      <div class="label">The solution</div>
+      <h2>ThodaLocal kya karta hai?</h2>
+      <p>Har local store — chahe kitna bhi chota ho — <strong>ThodaLocal pe list ho sakta hai.</strong> Par sirf list hona kaafi nahi. Har store ko hamare hygiene verification se guzarna padta hai. Sirf verified stores ko badge milta hai.</p>
+      <p>Users live camera feed se dekh sakte hain apna order pack hote hue. <strong>100% transparency.</strong> Aur hamare apne verified delivery network se order seedha ghar tak pahunchta hai.</p>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="container">
+      <div class="label">RYC Corporation</div>
+      <h2>Yeh sirf shuruat hai.</h2>
+      <p>ThodaLocal <strong>RYC Corporation</strong> ki pehli company hai — ek holding company jo multiple industry-defining ventures build kar rahi hai.</p>
+      <div class="ryc-grid">
+        <div class="ryc-card active reveal">
+          <div class="ryc-num">01</div>
+          <div class="ryc-name">ThodaLocal</div>
+          <div class="ryc-desc">Hyperlocal verified store platform</div>
+          <span class="ryc-tag">Building now</span>
+        </div>
+        <div class="ryc-card reveal">
+          <div class="ryc-num">02</div>
+          <div class="ryc-name">Construction &amp; Mining</div>
+          <div class="ryc-desc">Heavy industry vertical</div>
+          <span class="ryc-tag">Coming soon</span>
+        </div>
+        <div class="ryc-card reveal">
+          <div class="ryc-num">03</div>
+          <div class="ryc-name">Good Devil Production</div>
+          <div class="ryc-desc">Animation studio</div>
+          <span class="ryc-tag">Coming soon</span>
+        </div>
+        <div class="ryc-card reveal">
+          <div class="ryc-num">04</div>
+          <div class="ryc-name">Gaming Studio</div>
+          <div class="ryc-desc">Game development</div>
+          <span class="ryc-tag">Coming soon</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt reveal">
+    <div class="container">
+      <div class="label">The founder</div>
+      <h2>Kaun bana raha hai yeh?</h2>
+      <div class="founder-block">
+        <div class="founder-mark">&ldquo;</div>
+        <p>Main <strong>18 saal ka hoon.</strong> Abhi 12th pass kiya hai. BTech shuru hone wala hai. Mere paas <strong>0 rupees the</strong> jab maine yeh shuru kiya. Koi co-founder nahi. Koi investor nahi. Koi family support nahi.</p>
+        <p>Par mere paas ek vision hai — <strong>RYC Corporation ko ek real empire banana.</strong> Ek holding company jiske andar multiple world-class companies hongi.</p>
+        <p>ThodaLocal sirf pehla kadam hai. Aur yeh kadam maine khud uthaya — ek laptop, internet, aur ek sapne ke saath.</p>
+        <p class="sign">— Founder, RYC Corporation</p>
+      </div>
+    </div>
+  </section>
+</main>
+
 <footer>
-<a href="index.html">thodalocal.in</a>
-<div class="footer-copy">© 2026 ThodaLocal — RYC Corporation</div>
+  <a href="index.html" class="footer-link">Thoda<span>Local</span></a>
+  <div class="footer-copy">© 2026 ThodaLocal — A RYC Corporation Company</div>
 </footer>
+
 <script>
-// CURSOR
-const cursor = document.getElementById('cursor');
-const ring = document.getElementById('cursorRing');
-let mx = 0, my = 0, rx = 0, ry = 0;
-document.addEventListener('mousemove', e => {
-mx = e.clientX; my = e.clientY;
-cursor.style.transform = `translate(${mx - 4}px, ${my - 4}px)`;
-});
-function animRing() {
-rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
-requestAnimationFrame(animRing);
-}
-animRing();
-document.querySelectorAll('a, .ryc-card').forEach(el => {
-el.addEventListener('mouseenter', () => { ring.style.width = '52px'; ring.style.height = '52px'; ring.style.borderColor = 'rgba(224,154,53,0.7)'; });
-el.addEventListener('mouseleave', () => { ring.style.width = '36px'; ring.style.height = '36px'; ring.style.borderColor = 'rgba(224,154,53,0.4)'; });
-});
+// CUSTOM CURSOR
+(function(){
+  if(window.matchMedia('(hover:none),(pointer:coarse)').matches) return;
+  const dot=document.getElementById('cursor');
+  const ring=document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  window.addEventListener('mousemove',e=>{
+    mx=e.clientX;my=e.clientY;
+    dot.style.left=mx+'px';dot.style.top=my+'px';
+  });
+  (function loop(){
+    rx+=(mx-rx)*.15;ry+=(my-ry)*.15;
+    ring.style.left=rx+'px';ring.style.top=ry+'px';
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a,.ryc-card').forEach(el=>{
+    el.addEventListener('mouseenter',()=>ring.classList.add('is-active'));
+    el.addEventListener('mouseleave',()=>ring.classList.remove('is-active'));
+  });
+})();
 
 // SCROLL REVEAL
-const obs = new IntersectionObserver(entries => {
-entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
 </script>
 </body>
 </html>
