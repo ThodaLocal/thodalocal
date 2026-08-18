@@ -35,9 +35,17 @@
       background:var(--bg);
       color:var(--text);
       overflow-x:hidden;
+      cursor:none;
     }
     a{color:inherit}
     button,input,textarea{font:inherit}
+
+    /* CUSTOM CURSOR */
+    .cursor,.cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+    .cursor{width:8px;height:8px;border-radius:50%;background:var(--gold)}
+    .cursor-ring{width:34px;height:34px;border-radius:50%;border:1px solid rgba(22,92,59,.35);transition:width .25s ease,height .25s ease,border-color .25s ease,background .25s ease}
+    .cursor-ring.is-active{width:56px;height:56px;border-color:var(--gold);background:rgba(191,138,50,.08)}
+    @media (hover:none),(pointer:coarse){.cursor,.cursor-ring{display:none}body{cursor:auto}}
 
     /* NAV */
     nav{
@@ -367,6 +375,9 @@
 </head>
 
 <body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
   <nav>
     <a href="index.html" class="nav-logo">Thoda<span>Local</span></a>
     <a href="index.html" class="nav-back">← Back to Home</a>
@@ -537,6 +548,27 @@
         error.style.display = 'block';
       });
     });
+
+    // CUSTOM CURSOR
+    (function(){
+      if(window.matchMedia('(hover:none),(pointer:coarse)').matches) return;
+      const cursor = document.getElementById('cursor');
+      const ring = document.getElementById('cursorRing');
+      let mx=0,my=0,rx=0,ry=0;
+      window.addEventListener('mousemove',e=>{
+        mx=e.clientX;my=e.clientY;
+        cursor.style.left=mx+'px';cursor.style.top=my+'px';
+      });
+      (function loop(){
+        rx+=(mx-rx)*.15;ry+=(my-ry)*.15;
+        ring.style.left=rx+'px';ring.style.top=ry+'px';
+        requestAnimationFrame(loop);
+      })();
+      document.querySelectorAll('a,button,input,textarea').forEach(el=>{
+        el.addEventListener('mouseenter',()=>ring.classList.add('is-active'));
+        el.addEventListener('mouseleave',()=>ring.classList.remove('is-active'));
+      });
+    })();
   </script>
 </body>
 </html>
