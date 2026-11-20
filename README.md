@@ -2,7 +2,7 @@
 
 # Mehul Rao
 
-**B.Tech CSE (AI/ML) Undergraduate · Developer**
+**Developer · Builder · Business-Minded**
 
 Gurugram, Haryana, India
 
@@ -12,11 +12,12 @@ Gurugram, Haryana, India
 
 ## About Me
 
-I am a first-year Computer Science (AI/ML) student at K.R. Mangalam University, focused on building strong fundamentals and real, working software. My interests are Python development, artificial intelligence, web development and Linux systems.
+I am a developer and builder from Gurugram, India. I design and build practical software — business tools, automation and web products — with clean code and a sharp focus on real-world results.
 
-- 🌱 Currently learning: Python, AI/ML fundamentals, Web Development, Linux
-- 🛠️ I build: business tools, automation scripts, APIs and websites
-- 💼 Open to: internships, freelance projects and collaborations
+- 🛠️ I build: websites, business tools, automation scripts and APIs
+- 🎯 Focus: Python, Web Development, Automation, Linux
+- 💼 Open to: freelance projects, collaborations and business opportunities
+- 🤝 Known for: sharp thinking, honest work, and getting things done
 
 ---
 
@@ -39,10 +40,9 @@ I am a first-year Computer Science (AI/ML) student at K.R. Mangalam University, 
 |---|---|
 | [AI Business Assistant](https://github.com/ThodaLocal/ai-business-assistant) | Python chatbot for small businesses — customer FAQs, menu and pricing, bookings and enquiry logging |
 | [Price Drop Tracker](https://github.com/ThodaLocal/price-drop-tracker) | Python tool that watches a product watchlist and alerts when prices drop below target |
-| [Developer Portfolio](https://github.com/ThodaLocal/DeveloperPortfolio) | CSE Capstone — Linux administration, shell scripting, REST APIs and a full developer portfolio |
-| [Portfolio Website](https://thodalocal.github.io/developer-portfolio/) | My live personal portfolio site |
 | [ThodaLocal](https://github.com/ThodaLocal/thodalocal) | Hyperlocal verified store listing platform |
-| [CSE103 Labs](https://github.com/ThodaLocal/cse103-lab-LAB3) | Git/GitHub workflows, shell scripting and API interaction labs |
+| [Developer Portfolio](https://github.com/ThodaLocal/DeveloperPortfolio) | Linux administration, shell scripting, REST APIs and a full developer portfolio |
+| [Portfolio Website](https://thodalocal.github.io/developer-portfolio/) | My live personal portfolio site |
 
 ---
 
