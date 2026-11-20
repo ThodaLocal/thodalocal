@@ -1,25 +1,22 @@
 <div align="center">
 
-# MEHUL RAO
+# Mehul Rao
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=F7C948&center=true&vCenter=true&width=600&lines=Building+Zero+To+Empire;Python+%7C+AI+%7C+Web+Development;Gurugram+%E2%86%92+The+World" alt="Typing SVG" />
+**B.Tech CSE (AI/ML) Undergraduate · Developer**
 
-**B.Tech CSE (AI/ML) · Developer · Founder in the Making**
+Gurugram, Haryana, India
 
 </div>
 
 ---
 
-## ⚡ The Mission
+## About Me
 
-> Zero support. Zero money. One man building an empire.
+I am a first-year Computer Science (AI/ML) student at K.R. Mangalam University, focused on building strong fundamentals and real, working software. My interests are Python development, artificial intelligence, web development and Linux systems.
 
-I am a first-year engineering student building, shipping and learning in public — project by project. Everything I create is for one person: **my mother.** This profile is the public record of the journey from zero to empire.
-
-- 🔭 Currently building: **Zero To Empire** — the road from student to founder
-- 🌱 Learning: Python, AI/ML, Web Development, Linux
-- 🛠️ I build: websites, automation scripts, APIs and developer tools
-- 🎯 2026 goal: first product, first clients, first revenue
+- 🌱 Currently learning: Python, AI/ML fundamentals, Web Development, Linux
+- 🛠️ I build: business tools, automation scripts, APIs and websites
+- 💼 Open to: internships, freelance projects and collaborations
 
 ---
 
@@ -38,8 +35,10 @@ I am a first-year engineering student building, shipping and learning in public 
 
 ## 🚀 Featured Projects
 
-| Project | What it is |
+| Project | Description |
 |---|---|
+| [AI Business Assistant](https://github.com/ThodaLocal/ai-business-assistant) | Python chatbot for small businesses — customer FAQs, menu and pricing, bookings and enquiry logging |
+| [Price Drop Tracker](https://github.com/ThodaLocal/price-drop-tracker) | Python tool that watches a product watchlist and alerts when prices drop below target |
 | [Developer Portfolio](https://github.com/ThodaLocal/DeveloperPortfolio) | CSE Capstone — Linux administration, shell scripting, REST APIs and a full developer portfolio |
 | [Portfolio Website](https://thodalocal.github.io/developer-portfolio/) | My live personal portfolio site |
 | [ThodaLocal](https://github.com/ThodaLocal/thodalocal) | Hyperlocal verified store listing platform |
@@ -63,9 +62,3 @@ I am a first-year engineering student building, shipping and learning in public 
 
 - Portfolio: https://thodalocal.github.io/developer-portfolio/
 - GitHub: https://github.com/ThodaLocal
-
-<div align="center">
-
-**"Empires aren't inherited. They're built."**
-
-</div>
