@@ -2,7 +2,7 @@
 
 # MEHUL RAO
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=F7C948&center=true&vCenter=true&width=600&lines=Building+Zero+To+Empire;Python+%7C+AI+%7C+Web+Development;Delhi+%E2%86%92+The+World" alt="Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=F7C948&center=true&vCenter=true&width=600&lines=Building+Zero+To+Empire;Python+%7C+AI+%7C+Web+Development;Gurugram+%E2%86%92+The+World" alt="Typing SVG" />
 
 **B.Tech CSE (AI/ML) · Developer · Founder in the Making**
 
